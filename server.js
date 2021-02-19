@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/lwa-store'));
 
 
 app.listen(PORT);
@@ -11,7 +11,7 @@ app.listen(PORT);
 // PathLocationStrategy
 app.get('/*', function(req, res) {
 
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/lwa-store/index.html'));
 
 })
 
