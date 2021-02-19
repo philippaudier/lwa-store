@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h2>Ajouter un produit</h2>
+
+        <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" id="name" formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Type</mat-label>
+                <input matInput type="text" id="type" formControlName="type">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Prix</mat-label>
+                <input matInput type="text" id="price" formControlName="price">
+              </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="addProductForm.invalid">Ajouter à la vente</button>
+        </form>
+
+        <p class="text-danger">{{ errorMessage }}</p>
+    </div>
+</div>

@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -25,14 +26,18 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
+import { ContactService } from './services/contact.service';
+import { CreateProductComponent } from './products/create-product/create-product.component';
+import { from } from 'rxjs';
 
 const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'products', component: ListProductsComponent },
   { path: 'products/:idProduct', component: ProductsComponent },
+  { path: 'products/create-product', component: CreateProductComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' }
+  { path: '', redirectTo: 'products', pathMatch: 'full' },
+  { path: '**', redirectTo: 'products' }
 ];
 
 @NgModule({
@@ -44,7 +49,8 @@ const appRoutes: Routes = [
     ShoppingCartComponent,
     ProductsComponent,
     HomeComponent,
-    ListProductsComponent
+    ListProductsComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +64,12 @@ const appRoutes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule
   ],
-  providers: [],
+  providers: [
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
