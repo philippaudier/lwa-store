@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.0",
     "@angular/cli": "~11.2.0",
     "@angular/compiler-cli": "~11.2.0",
+    "@angular-devkit/build-angular": "~0.1102.0",
     "firebase": "^8.2.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -31,7 +32,7 @@
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.0",
+    
     
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
