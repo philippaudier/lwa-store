@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+
+    <div class="container">
         <h2>Ajouter un produit</h2>
 
         <form [formGroup]="nameFormGroup" class="example-form">
@@ -19,9 +19,9 @@
                 <mat-label>Prix</mat-label>
                 <input matInput type="text" placeholder="Prix du produit" id="price" formControlName="price" required>
               </mat-form-field>
-            <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="priceFormGroup.invalid">Ajouter à la vente</button>
+            
         </form>
-
+        <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="priceFormGroup.invalid">Ajouter à la vente</button>
         <p class="text-danger">{{ errorMessage }}</p>
     </div>
-</div>
+
