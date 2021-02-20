@@ -1,19 +1,17 @@
-<div class="container">
-    <div *ngIf="products" class="ng-if">
-        <div *ngFor="let product of products" class="ng-for">
-            
-                <mat-card class="example-card">
-                    <mat-card-header>
-                    <mat-card-title><a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a></mat-card-title>
-                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                    </mat-card-header>
-                    <img mat-card-image src="https://source.unsplash.com/collection/1201885/1600x900" alt="product">
-                    <mat-card-content>
-                        {{ product.price + "€"}}
-                    </mat-card-content>
-                </mat-card>
-            </div>
+<div *ngIf="products" class="container">
+    <div *ngFor="let product of products" class="container-2">
+        <mat-card class="example-card">
+            <mat-card-header>
+            <mat-card-title><a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a></mat-card-title>
+            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+            </mat-card-header>
+            <img mat-card-image src="https://source.unsplash.com/collection/1201885/1600x900" alt="product">
+            <mat-card-content>
+                {{ product.price + "€"}}
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
+
 
 
