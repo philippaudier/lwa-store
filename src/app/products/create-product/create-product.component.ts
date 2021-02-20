@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AddProductService } from 'src/app/services/add-product.service';
 
+interface Type {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-create-product',
@@ -11,6 +15,11 @@ import { AddProductService } from 'src/app/services/add-product.service';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
+
+  types: Type[] = [
+    {value: 'T-SHIRT', viewValue: 'T-SHIRT'},
+    {value: 'PULL', viewValue: 'PULL'}
+  ];
 
   nameFormGroup: FormGroup;
   typeFormGroup: FormGroup;
