@@ -1,7 +1,7 @@
 <div class="container">
     <h2>CONTACT</h2>
     <div [hidden]="submitted">
-        <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)">
+      <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" required name="name" formControlName="Name">

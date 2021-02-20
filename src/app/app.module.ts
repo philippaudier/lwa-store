@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -32,8 +33,8 @@ import { from } from 'rxjs';
 
 const appRoutes: Routes = [
   { path: 'products', component: ListProductsComponent },
-  { path: 'products/:idProduct', component: ProductsComponent },
   { path: 'products/create-product', component: CreateProductComponent },
+  { path: 'products/:idProduct', component: ProductsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -65,7 +66,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     ContactService

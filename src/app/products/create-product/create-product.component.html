@@ -2,22 +2,24 @@
     <div class="col-sm-8 col-sm-offset-2">
         <h2>Ajouter un produit</h2>
 
-        <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()" class="example-form">
+        <form [formGroup]="nameFormGroup" class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Nom</mat-label>
-                <input matInput type="text" id="name" formControlName="name">
+                <input matInput placeholder="Nom du produit" type="text" id="name" formControlName="name" required>
             </mat-form-field>
-
+        </form>
+        <form [formGroup]="typeFormGroup" class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Type</mat-label>
-                <input matInput type="text" id="type" formControlName="type">
+                <input matInput type="text" placeholder="Type de produit" id="type" formControlName="type" required>
             </mat-form-field>
-
+        </form>
+        <form [formGroup]="priceFormGroup" class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label>Prix</mat-label>
-                <input matInput type="text" id="price" formControlName="price">
+                <input matInput type="text" placeholder="Prix du produit" id="price" formControlName="price" required>
               </mat-form-field>
-            <button mat-raised-button color="primary" type="submit" [disabled]="addProductForm.invalid">Ajouter à la vente</button>
+            <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="priceFormGroup.invalid">Ajouter à la vente</button>
         </form>
 
         <p class="text-danger">{{ errorMessage }}</p>

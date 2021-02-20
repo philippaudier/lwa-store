@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AddProductService } from 'src/app/services/add-product.service';
 
@@ -12,39 +12,43 @@ import { AddProductService } from 'src/app/services/add-product.service';
 })
 export class CreateProductComponent implements OnInit {
 
-  addProductForm: FormGroup;
+  nameFormGroup: FormGroup;
+  typeFormGroup: FormGroup;
+  priceFormGroup: FormGroup;
   errorMessage: string;
 
   userSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private addproductService: AddProductService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
-    this.addProductForm = this.formBuilder.group({
+    this.nameFormGroup = this.formBuilder.group({
       name: ['', [Validators.required]]
     });
-    this.addProductForm = this.formBuilder.group({
+    this.typeFormGroup = this.formBuilder.group({
       type: ['', [Validators.required]]
     });
-    this.addProductForm = this.formBuilder.group({
+    this.priceFormGroup = this.formBuilder.group({
       price: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
-    const name = this.addProductForm.get('name').value;
-    const type = this.addProductForm.get('type').value;
-    const price = this.addProductForm.get('price').value;
+    const name = this.nameFormGroup.get('name').value;
+    const type = this.typeFormGroup.get('type').value;
+    const price = this.priceFormGroup.get('price').value;
 
     this.addproductService.addNewProduct(name, type, price).then(
-      (id) => {
-        this.router.navigate(['/products', id]);
+      (newProductId) => {
+        this.router.navigate(['/products', newProductId]);
+        console.log('product created');
       },
       (error) => {
         this.errorMessage = error;
