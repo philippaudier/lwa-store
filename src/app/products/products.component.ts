@@ -23,7 +23,6 @@ export class ProductsComponent implements OnInit {
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
 
       () => {
-        console.log();
         this.productSubscription = this.productManagerService.currentProduct.subscribe(
           (product) => {
             if (product) {

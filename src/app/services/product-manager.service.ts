@@ -13,16 +13,23 @@ export class ProductManagerService {
 
   constructor() { }
 
+  changeProduct(product: Product) {
+    this.productSubject.next(product);
+}
+
   getProduct(idProduct: number) {
-    return new Promise<Product>(
+    return new Promise<void>(
       (resolve, reject) => {
         firebase.database()
           .ref('/products/' + idProduct)
           .once('value')
           .then(
             (product) => {
-              resolve(product.val());
-              console.log(product.val());
+              this.changeProduct(product?.val());
+              resolve();
+            },
+            (error) => {
+              reject(error);
             }
           );
       }
