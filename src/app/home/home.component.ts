@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Product } from '../models/product.model';
+import { ProductManagerService } from '../services/product-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: Product[];
+  productSubscription: Subscription;
+
+  nonExistentProduct = false;
+
+  constructor(
+    private productManagerService: ProductManagerService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
   }
-
 }

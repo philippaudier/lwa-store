@@ -32,13 +32,14 @@ import { CreateProductComponent } from './products/create-product/create-product
 import { from } from 'rxjs';
 
 const appRoutes: Routes = [
-  { path: 'products', component: ListProductsComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'products', component: HomeComponent },
   { path: 'products/create-product', component: CreateProductComponent },
   { path: 'products/:idProduct', component: ProductsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: '', redirectTo: 'products', pathMatch: 'full' },
-  { path: '**', redirectTo: 'products' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({

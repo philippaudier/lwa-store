@@ -1,2 +1,8 @@
-<h2>PRODUCTS</h2>
-<p>products works!</p>
+<div class="container">
+    <p>Le nom du produit:</p>
+    <h4>{{ product.name }}</h4>
+    <p>Le prix du produit:</p>
+    <h4>{{ product.price }}</h4>
+
+    <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
+</div>
