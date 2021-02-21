@@ -12,6 +12,7 @@ export class CartManagerService {
   set(key: string, product: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(product));
+      console.log('added!');
     } catch (e) {
       console.error('Error saving to localStorage', e);
     }
@@ -33,9 +34,4 @@ export class CartManagerService {
       console.error('Error removing data from localStorage');
     }
   }
-
-  
-
-
-
 }

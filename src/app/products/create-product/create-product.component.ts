@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AddProductService } from 'src/app/services/add-product.service';
 
 interface Type {
@@ -25,8 +24,6 @@ export class CreateProductComponent implements OnInit {
   typeFormGroup: FormGroup;
   priceFormGroup: FormGroup;
   errorMessage: string;
-
-  userSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private addproductService: AddProductService,

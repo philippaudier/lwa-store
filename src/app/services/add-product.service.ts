@@ -16,6 +16,7 @@ export class AddProductService {
             this.getNextId().then( // Get next Id to assign it to the new group
                 (nextProductId) => {
                     newProduct.idProduct = nextProductId;
+                    newProduct.quantity = '1';
                     // Create new product
                     firebase.database().ref('/products/nextProductId').set(nextProductId + 1);
                     firebase.database().ref('/products/' + newProduct.idProduct).set(newProduct).then(
@@ -50,4 +51,6 @@ getNextId() {
         }
     );
 }
+
+
 }

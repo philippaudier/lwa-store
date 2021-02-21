@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
@@ -11,7 +12,9 @@ export class ProductManagerService {
   private productSubject = new BehaviorSubject<Product>(null);
   currentProduct = this.productSubject.asObservable();
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+  ) { }
 
   changeProduct(product: Product) {
     this.productSubject.next(product);
@@ -48,6 +51,26 @@ export class ProductManagerService {
                     }
                     dataArray.splice(-1, 1);
                     resolve(dataArray);
+                }
+            );
+        }
+    );
+  }
+
+  removeProduct(idProduct: number) {
+    return new Promise<void>(
+        (resolve, reject) => {
+            this.getProduct(this.route.snapshot.params['id']).then( // Get next Id to assign it to the new group
+                (data) => {
+                    firebase.database().ref('/products/' + idProduct).remove().then(
+                        () => {
+                            resolve();
+                            console.log('product has been removed!');
+                        }
+                    );
+                }, (error) => {
+                    reject(error);
+                    console.log('product has not been removed');
                 }
             );
         }

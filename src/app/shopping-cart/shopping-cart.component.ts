@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { ProductManagerService } from '../services/product-manager.service';
 import { CartManagerService } from '../services/cart-manager.service';
-import { Product } from '../models/product.model';
-import { from } from 'rxjs';
-import { ProductsComponent } from '../products/products.component';
-import { element } from 'protractor';
-import { FormBuilder, FormGroup, NumberValueAccessor, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -16,22 +13,37 @@ import { FormBuilder, FormGroup, NumberValueAccessor, Validators } from '@angula
 })
 export class ShoppingCartComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'type', 'price'];
+  displayedColumns: string[] = ['name', 'type', 'quantity', 'price', 'delete'];
   dataSource: any[];
+
+  public rowId: any = {};
 
   quantityFormGroup: FormGroup;
 
+  productBasePrice: number;
+
+  @Input() quantity: number;
+
   constructor(
     private cartManagerService: CartManagerService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
-
+  /* ngOnChanges(changes: SimpleChanges) {
+      if (changes.quantity != null && changes.quantity.currentValue != null) {
+        this.quantity = changes.quantity.currentValue;
+        console.log('quantity has update ! ' + this.quantity);
+      }
+  } */
 
   ngOnInit(): void {
+
     this.quantityFormGroup = this.formBuilder.group({
-      quantity: ['', [Validators.required]]
+      quantity: [this.quantity, [Validators.required]]
     });
+    this.quantityFormGroup.get('quantity').setValue('1');
+    
 
     this.dataSource = [];
     Object.keys(localStorage).forEach(data => {
@@ -40,6 +52,7 @@ export class ShoppingCartComponent implements OnInit {
         this.dataSource.push(product);
       }
     });
+    console.log(this.dataSource);
   }
 
   convertToNumber(value: string) {
@@ -55,4 +68,25 @@ export class ShoppingCartComponent implements OnInit {
   getTotalCost() {
     return this.dataSource.reduce((acc, value) => acc + this.convertToNumber(value.price), 0);
   }
+
+  removeProduct(key: string) {
+    if (this.cartManagerService.get(key)) {
+      console.log(this.cartManagerService.get(key));
+      this.cartManagerService.remove(key);
+      this.ngOnInit();
+    } else {
+      console.log('this product doesnt exist');
+      this.ngOnInit();
+    }
+  }
+
+  getProductBasePrice(key: string) {
+    const product = this.cartManagerService.get(key);
+    this.productBasePrice = this.convertToNumber(product.price);
+    /* console.log(this.quantity); */
+    console.log('quantity value = ' + this.quantityFormGroup.get('quantity').value);
+    
+    return this.productBasePrice;
+  }
 }
+

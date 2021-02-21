@@ -1,60 +1,74 @@
 <div class="container">
-    <h2>CART</h2>
-<p>shopping-cart works!</p>
-<ul>
-    <li *ngFor="let dataSource of dataSource">
-        {{dataSource}}
-    </li>
+  <h2>CART</h2>
+<ul ng-template *ngIf="dataSource?.length; else noRecipes">
+  <!-- <li *ngFor="let dataSource of dataSource">
+      {{dataSource}}
+  </li> -->
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <!-- <ng-container matColumnDef="idProduct">
-          <th mat-header-cell *matHeaderCellDef> idProduct </th>
-          <td mat-cell *matCellDef="let element"> {{element.idProduct}} </td>
-        </ng-container> -->
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Item </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          <td mat-footer-cell *matFooterCellDef> Total </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef> Type </th>
-          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <!-- <ng-container matColumnDef="idProduct">
+        <th mat-header-cell *matHeaderCellDef> idProduct </th>
+        <td mat-cell *matCellDef="let element"> {{element.idProduct}} </td>
+      </ng-container> -->
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Item </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let element; let i = rowId;">
+              <form [formGroup]="quantityFormGroup" class="example-form">
+                  <mat-form-field class="example-full-width">
+                      <input type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
+                      (input)="element.price = getProductBasePrice(element.idProduct) * this.quantityFormGroup.get('quantity').value">
+                      <!-- <input [value] = "element.quantity" type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
+                      (input)="element.price = getProductBasePrice(element.idProduct) * element.quantity"> -->
+                  </mat-form-field>
+              </form>
+          </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Cost </th>
+        <td mat-cell *matCellDef="let element"> {{element.price | currency:"EUR":"symbol"}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency:"EUR":"symbol"}} </td>
+      </ng-container>
 
-        <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Quantity </th>
-            <td mat-cell *matCellDef="let element">
-                <form [formGroup]="quantityFormGroup" class="example-form">
-                    <mat-form-field class="example-full-width">
-                        <input [(ngModel)]="qty" type="number" id="element.id" matInput formControlName="quantity" required
-                        (click)="element.price = basePrice * qty">
-                    </mat-form-field>
-                </form>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Cost </th>
-          <td mat-cell *matCellDef="let element"> {{element.price | currency:"EUR":"symbol"}} </td>
-          <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency:"EUR":"symbol"}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-      </table>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="primary" aria-label="delete" (click)="removeProduct(element.idProduct)">
+            <mat-icon>clear</mat-icon>
+          </button></td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
 </ul>
+
+<ng-template #noRecipes><p>Your cart is empty!</p></ng-template>
+
 </div>
 

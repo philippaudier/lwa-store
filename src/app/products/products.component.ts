@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductManagerService } from '../services/product-manager.service';
@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(private productManagerService: ProductManagerService,
               private route: ActivatedRoute,
+              private router: Router,
               private cartManagerService: CartManagerService) { }
 
   ngOnInit(): void {
@@ -46,7 +47,6 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart() {
-    const key = 'panier';
     this.product = new Product('', '', null, null);
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
@@ -55,6 +55,7 @@ export class ProductsComponent implements OnInit {
             if (product) {
               this.product = product;
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
+              this.router.navigate(['/shopping-cart']);
               console.log(product);
             } else {
               this.nonExistentProduct = true;
@@ -62,5 +63,12 @@ export class ProductsComponent implements OnInit {
           }
         );
     });
+  }
+
+  // ADMIN
+  removeProduct() {
+    this.productManagerService.removeProduct(this.route.snapshot.params.idProduct);
+    this.router.navigate(['/products']);
+    console.log('you are trying to remove a product !');
   }
 }
