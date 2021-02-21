@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductManagerService } from '../services/product-manager.service';
+import { CartManagerService } from '../services/cart-manager.service';
+import { convertToObject } from 'typescript';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +19,8 @@ export class ProductsComponent implements OnInit {
   nonExistentProduct = false;
 
   constructor(private productManagerService: ProductManagerService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartManagerService: CartManagerService) { }
 
   ngOnInit(): void {
     this.product = new Product('', '', null, null);
@@ -39,5 +43,24 @@ export class ProductsComponent implements OnInit {
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
+  }
+
+  addToCart() {
+    const key = 'panier';
+    this.product = new Product('', '', null, null);
+    this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
+      () => {
+        this.productSubscription = this.productManagerService.currentProduct.subscribe(
+          (product) => {
+            if (product) {
+              this.product = product;
+              this.cartManagerService.set(JSON.stringify(product.idProduct), product);
+              console.log(product);
+            } else {
+              this.nonExistentProduct = true;
+            }
+          }
+        );
+    });
   }
 }

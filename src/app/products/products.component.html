@@ -3,6 +3,8 @@
     <h4>{{ product.name }}</h4>
     <p>Le prix du produit:</p>
     <h4>{{ product.price }}</h4>
-
+    <button mat-mini-fab color="primary" aria-label="add" (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+    </button>
     <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
 </div>
