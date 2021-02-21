@@ -43,7 +43,6 @@ export class ShoppingCartComponent implements OnInit {
       quantity: [this.quantity, [Validators.required]]
     });
     this.quantityFormGroup.get('quantity').setValue('1');
-    
 
     this.dataSource = [];
     Object.keys(localStorage).forEach(data => {

@@ -68,7 +68,9 @@ export class ProductsComponent implements OnInit {
   // ADMIN
   removeProduct() {
     this.productManagerService.removeProduct(this.route.snapshot.params.idProduct);
-    this.router.navigate(['/products']);
+    setTimeout(() => {
+      this.router.navigate(['/products']);
+  }, 500);  // 0.5s
     console.log('you are trying to remove a product !');
   }
 }
