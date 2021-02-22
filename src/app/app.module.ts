@@ -19,8 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-
-
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -72,10 +71,13 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatBadgeModule
   ],
   providers: [
-    ContactService
+    ContactService,
+    ShoppingCartComponent,
+    HeaderComponent
   ],
   bootstrap: [AppComponent]
 })

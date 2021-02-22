@@ -14,7 +14,18 @@
     
     </div>
     <span class="example-spacer"></span>
-    <a routerLink="shopping-cart"><button mat-icon-button color="example-icon" aria-label="shopping-cart"><mat-icon>shopping_cart</mat-icon></button></a>
+    <a routerLink="shopping-cart">
+        <button mat-icon-button color="example-icon" aria-label="shopping-cart">
+            <mat-icon 
+                [matBadge]="count" 
+                [matBadgeHidden]="count === 0" 
+                matBadgeColor="accent" 
+                matBadgePosition="below after"
+                matBadgeSize="small"
+                matBadgeOverlap="true"
+                >shopping_cart</mat-icon>
+        </button>
+    </a>
   </mat-toolbar>
   
   

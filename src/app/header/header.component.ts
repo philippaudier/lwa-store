@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SharedServiceService } from '../services/shared-service.service';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  count: number;
+
+  constructor(
+    private sharedService: SharedServiceService,
+  ) { }
 
   ngOnInit(): void {
-  }
+    this.count = this.sharedService.productCount;
+    console.log(this.count);
 
+  }
 }

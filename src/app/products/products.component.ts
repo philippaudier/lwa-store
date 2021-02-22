@@ -6,6 +6,8 @@ import { ProductManagerService } from '../services/product-manager.service';
 import { CartManagerService } from '../services/cart-manager.service';
 import { convertToObject } from 'typescript';
 import { stringify } from '@angular/compiler/src/util';
+import { HeaderComponent } from '../header/header.component';
+import { SharedServiceService } from '../services/shared-service.service';
 
 @Component({
   selector: 'app-products',
@@ -21,7 +23,8 @@ export class ProductsComponent implements OnInit {
   constructor(private productManagerService: ProductManagerService,
               private route: ActivatedRoute,
               private router: Router,
-              private cartManagerService: CartManagerService) { }
+              private cartManagerService: CartManagerService,
+              private sharedService: SharedServiceService) { }
 
   ngOnInit(): void {
     this.product = new Product('', '', null, null);
@@ -55,6 +58,7 @@ export class ProductsComponent implements OnInit {
             if (product) {
               this.product = product;
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
+              this.sharedService.incrementProductCount();
               this.router.navigate(['/shopping-cart']);
               console.log(product);
             } else {
@@ -68,6 +72,7 @@ export class ProductsComponent implements OnInit {
   // ADMIN
   removeProduct() {
     this.productManagerService.removeProduct(this.route.snapshot.params.idProduct);
+    this.sharedService.decrementProductCount();
     setTimeout(() => {
       this.router.navigate(['/products']);
   }, 500);  // 0.5s

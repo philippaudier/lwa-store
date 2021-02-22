@@ -15,8 +15,9 @@ export class ShoppingCartComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'type', 'quantity', 'price', 'delete'];
   dataSource: any[];
+  dataSourceLength: number;
 
-  public rowId: any = {};
+  /* public rowId: any = {}; */
 
   quantityFormGroup: FormGroup;
 
@@ -38,20 +39,34 @@ export class ShoppingCartComponent implements OnInit {
   } */
 
   ngOnInit(): void {
-
+    this.dataSource = [];
+    this.initCart();
+    this.dataSourceLength = this.getCart();
+    console.log(this.dataSourceLength);
     this.quantityFormGroup = this.formBuilder.group({
       quantity: [this.quantity, [Validators.required]]
     });
     this.quantityFormGroup.get('quantity').setValue('1');
 
-    this.dataSource = [];
+  }
+
+  initCart() {
     Object.keys(localStorage).forEach(data => {
       const product = this.cartManagerService.get(data);
       if (product.idProduct) {
         this.dataSource.push(product);
       }
     });
-    console.log(this.dataSource);
+    /* console.log(this.dataSource); */
+  }
+
+  getCart() {
+    if (this.dataSource?.length > 0) {
+      console.log('getCart log : ' + this.dataSource?.length);
+      return this.dataSource?.length;
+    } else {
+      console.log('the cart is empty!');
+    }
   }
 
   convertToNumber(value: string) {
