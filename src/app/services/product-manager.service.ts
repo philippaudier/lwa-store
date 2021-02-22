@@ -44,8 +44,8 @@ export class ProductManagerService {
         (resolve, reject) => {
             firebase.database().ref('/products/').once('value').then(
                 (data) => {
-                    let dataArray = new Array<Product>();
-                    let dataVal = data.val();
+                    const dataArray = new Array<Product>();
+                    const dataVal = data.val();
                     for (let key in dataVal) {
                         dataArray.push(dataVal[key]);
                     }
@@ -57,10 +57,10 @@ export class ProductManagerService {
     );
   }
 
-  removeProduct(idProduct: number) {
+  removeProductFromStore(idProduct: number) {
     return new Promise<void>(
         (resolve, reject) => {
-            this.getProduct(this.route.snapshot.params['id']).then( // Get next Id to assign it to the new group
+            this.getProduct(this.route.snapshot.params.id).then(
                 (data) => {
                     firebase.database().ref('/products/' + idProduct).remove().then(
                         () => {

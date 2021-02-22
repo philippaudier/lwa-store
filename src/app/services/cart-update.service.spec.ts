@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SharedServiceService } from './shared-service.service';
+import { CartUpdateService } from './cart-update.service';
 
-describe('SharedServiceService', () => {
-  let service: SharedServiceService;
+describe('CartUpdateService', () => {
+  let service: CartUpdateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SharedServiceService);
+    service = TestBed.inject(CartUpdateService);
   });
 
   it('should be created', () => {

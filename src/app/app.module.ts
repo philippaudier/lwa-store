@@ -30,7 +30,7 @@ import { HomeComponent } from './home/home.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { ContactService } from './services/contact.service';
 import { CreateProductComponent } from './products/create-product/create-product.component';
-import { from } from 'rxjs';
+import { CartUpdateService } from './services/cart-update.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -76,6 +76,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ContactService,
+    /* CartUpdateService, */
     ShoppingCartComponent,
     HeaderComponent
   ],

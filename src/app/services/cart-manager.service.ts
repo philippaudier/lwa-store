@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Product } from '../models/product.model';
-
+import { Injectable, Input } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartManagerService {
 
-  constructor() { }
+  public productCount: number;
+
+  constructor( ) { }
 
   set(key: string, product: any): void {
     try {

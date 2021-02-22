@@ -1,8 +1,8 @@
 import { compileInjectable } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SharedServiceService } from '../services/shared-service.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { CartManagerService } from '../services/cart-manager.service';
+import { CartUpdateService } from '../services/cart-update.service';
 
 @Component({
   selector: 'app-header',
@@ -11,22 +11,18 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
 })
 export class HeaderComponent implements OnInit {
 
-  count: number;
-  countSubscription: Subscription;
+  public count: number;
 
   constructor(
-    private sharedService: SharedServiceService,
+    private cartUpdate: CartUpdateService,
   ) { }
 
   ngOnInit(): void {
-    /* this.count = this.sharedService.productCount;
-    console.log('count = ' + this.count); */
-    this.updateCartBadge();
-  }
 
-  updateCartBadge() {
-    this.count = this.sharedService.getProductCount();
-    console.log('cart has been updated !');
-    console.log('count = ' + this.count);
+    this.cartUpdate.getCount().subscribe((value) => {
+      this.count = value;
+      console.log('header : count = ' + this.count);
+    });
+
   }
 }
