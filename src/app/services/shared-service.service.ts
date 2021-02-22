@@ -15,7 +15,7 @@ export class SharedServiceService {
     this.productCount--;
   }
 
-  getProducCount() {
+  getProductCount() {
     return this.productCount;
   }
 

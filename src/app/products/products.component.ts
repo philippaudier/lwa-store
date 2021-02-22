@@ -24,7 +24,9 @@ export class ProductsComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private cartManagerService: CartManagerService,
-              private sharedService: SharedServiceService) { }
+              private sharedService: SharedServiceService,
+              private header: HeaderComponent,
+              ) { }
 
   ngOnInit(): void {
     this.product = new Product('', '', null, null);
@@ -58,7 +60,12 @@ export class ProductsComponent implements OnInit {
             if (product) {
               this.product = product;
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
+
+              // badge de merde qui update jamais
               this.sharedService.incrementProductCount();
+              this.header.updateCartBadge();
+              // fin
+              
               this.router.navigate(['/shopping-cart']);
               console.log(product);
             } else {
@@ -72,7 +79,7 @@ export class ProductsComponent implements OnInit {
   // ADMIN
   removeProduct() {
     this.productManagerService.removeProduct(this.route.snapshot.params.idProduct);
-    this.sharedService.decrementProductCount();
+    this.header.updateCartBadge();
     setTimeout(() => {
       this.router.navigate(['/products']);
   }, 500);  // 0.5s

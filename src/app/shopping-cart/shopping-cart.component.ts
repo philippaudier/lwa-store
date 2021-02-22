@@ -3,6 +3,8 @@ import { ProductManagerService } from '../services/product-manager.service';
 import { CartManagerService } from '../services/cart-manager.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SharedServiceService } from '../services/shared-service.service';
+import { HeaderComponent } from '../header/header.component';
 
 
 
@@ -28,7 +30,9 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private cartManagerService: CartManagerService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedServiceService,
+    private header: HeaderComponent,
   ) {}
 
   /* ngOnChanges(changes: SimpleChanges) {
@@ -42,7 +46,7 @@ export class ShoppingCartComponent implements OnInit {
     this.dataSource = [];
     this.initCart();
     this.dataSourceLength = this.getCart();
-    console.log(this.dataSourceLength);
+    /* console.log(this.dataSourceLength); */
     this.quantityFormGroup = this.formBuilder.group({
       quantity: [this.quantity, [Validators.required]]
     });
@@ -62,7 +66,7 @@ export class ShoppingCartComponent implements OnInit {
 
   getCart() {
     if (this.dataSource?.length > 0) {
-      console.log('getCart log : ' + this.dataSource?.length);
+      /* console.log('getCart log : ' + this.dataSource?.length); */
       return this.dataSource?.length;
     } else {
       console.log('the cart is empty!');
@@ -85,8 +89,14 @@ export class ShoppingCartComponent implements OnInit {
 
   removeProduct(key: string) {
     if (this.cartManagerService.get(key)) {
-      console.log(this.cartManagerService.get(key));
+      /* console.log(this.cartManagerService.get(key)); */
       this.cartManagerService.remove(key);
+
+      // badge de merde qui update jamais
+      this.sharedService.decrementProductCount();
+      this.header.updateCartBadge();
+      // fin
+
       this.ngOnInit();
     } else {
       console.log('this product doesnt exist');
@@ -98,8 +108,7 @@ export class ShoppingCartComponent implements OnInit {
     const product = this.cartManagerService.get(key);
     this.productBasePrice = this.convertToNumber(product.price);
     /* console.log(this.quantity); */
-    console.log('quantity value = ' + this.quantityFormGroup.get('quantity').value);
-    
+    /* console.log('quantity value = ' + this.quantityFormGroup.get('quantity').value); */
     return this.productBasePrice;
   }
 }

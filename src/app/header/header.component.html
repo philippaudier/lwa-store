@@ -15,10 +15,9 @@
     </div>
     <span class="example-spacer"></span>
     <a routerLink="shopping-cart">
-        <button mat-icon-button color="example-icon" aria-label="shopping-cart">
+        <button mat-icon-button color="example-icon" aria-label="shopping-cart" (click)="updateCartBadge()">
             <mat-icon 
                 [matBadge]="count" 
-                [matBadgeHidden]="count === 0" 
                 matBadgeColor="accent" 
                 matBadgePosition="below after"
                 matBadgeSize="small"
