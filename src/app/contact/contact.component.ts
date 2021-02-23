@@ -10,7 +10,13 @@ import { ContactService } from '../services/contact.service';
 })
 export class ContactComponent implements OnInit {
 
-  model = new Contact('Philippe', 'mail@mail.com', 'Good job', 'You\'re online store app is really great');
+  model = new Contact('', '', '', '');
+
+  nameFormGroup: FormGroup;
+  emailFormGroup: FormGroup;
+  subjectFormGroup: FormGroup;
+  messageFormGroup: FormGroup;
+  errorMessage: string;
 
   submitted = false;
   FormData: FormGroup;
@@ -21,16 +27,38 @@ export class ContactComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.FormData = this.formBuilder.group({
-      Name: new FormControl('', [Validators.required]),
-      Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-      Subject: new FormControl('', [Validators.required]),
-      Message: new FormControl('', [Validators.required])
-      });
+      this.FormData = this.formBuilder.group({
+        Name: new FormControl('', [Validators.required]),
+        Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+        Subject: new FormControl('', [Validators.required]),
+        Message: new FormControl('', [Validators.required])
+        });
+      this.initForm();
+  }
+
+  initForm() {
+    this.nameFormGroup = this.formBuilder.group({
+      name: ['', [Validators.required]]
+    });
+    this.emailFormGroup = this.formBuilder.group({
+      email: ['', [Validators.required]]
+    });
+    this.subjectFormGroup = this.formBuilder.group({
+      subject: ['', [Validators.required]]
+    });
+    this.messageFormGroup = this.formBuilder.group({
+      message: ['', [Validators.required]]
+    });
   }
 
   onSubmit(data) {
     /* his.submitted = true; */
+    const name = this.nameFormGroup.get('name').value;
+    const email = this.emailFormGroup.get('email').value;
+    const subject = this.subjectFormGroup.get('subject').value;
+    const message = this.messageFormGroup.get('message').value;
+    /* const data = '{Name: "' + name + '", Email: "' + email + '", Subject: "' + subject + '", Message: "' + message + '"}'; */
+
     console.log(data);
     this.contact.senMessage(data)
     .subscribe(response => {
@@ -41,10 +69,22 @@ export class ContactComponent implements OnInit {
     console.log({ error });
     });
   }
+  /* onSubmit() {
+    const name = this.nameFormGroup.get('name').value;
+    const email = this.emailFormGroup.get('email').value;
+    const subject = this.subjectFormGroup.get('subject').value;
+    const message = this.messageFormGroup.get('message').value;
 
-  newContact() {
-    this.model = new Contact('', '', '', '');
-  }
+    this.addproductService.addNewProduct(name, type, price).then(
+      (newProductId) => {
+        this.router.navigate(['/products', newProductId]);
+        console.log('product created');
+      },
+      (error) => {
+        this.errorMessage = error;
+      }
+    );
+  } */
 }
 
 

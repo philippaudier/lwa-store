@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <h2>CONTACT</h2>
       <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="example-form">
         <div class="form-group">
@@ -34,6 +34,62 @@
           </div>
   
         <button type="submit" class="btn btn-success" [disabled]="!FormData.valid">Submit</button>
-        <!-- <button type="button" class="btn btn-default" (click)="newContact(); contact.reset()">New Contact</button> -->
+        <button type="button" class="btn btn-default" (click)="newContact(); contact.reset()">New Contact</button>
       </form>
+</div> -->
+
+<div class="container">
+  <h2>CONTACT</h2>
+  <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="example-form">
+  <!-- <form [formGroup]="nameFormGroup" class="example-form"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label for="name">NAME</mat-label>
+      <input matInput type="text" id="name" formControlName="Name" required>
+      <!-- <mat-error *ngIf="nameFormGroup.hasError('name') && !nameFormGroup.hasError('required')">
+        Please enter a name
+      </mat-error>
+      <mat-error *ngIf="nameFormGroup.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error> -->
+    </mat-form-field>
+  <!-- </form>
+  <form [formGroup]="emailFormGroup" class="example-form"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label for="email">Email</mat-label>
+      <input matInput type="email" id="email" formControlName="Email" required>
+      <!-- <mat-error *ngIf="emailFormGroup.hasError('email') && emailFormGroup.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormGroup.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error> -->
+    </mat-form-field>
+  <!-- </form> -->
+  <!-- <form [formGroup]="subjectFormGroup" class="example-form"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label for="subject">SUBJECT</mat-label>
+      <input matInput type="text" id="subject" formControlName="Subject" required>
+      <!-- <mat-error *ngIf="subjectFormGroup.hasError('subject') && !subjectFormGroup.hasError('required')">
+        Please enter a subject -->
+     <!--  </mat-error>
+      <mat-error *ngIf="subjectFormGroup.hasError('required')">
+        Subject is <strong>required</strong>
+      </mat-error> -->
+    </mat-form-field>
+  <!-- </form> -->
+  <!-- <form [formGroup]="messageFormGroup" class="example-form"> -->
+    <mat-form-field class="example-full-width">
+      <mat-label for="message">MESSAGE</mat-label>
+      <textarea matInput type="text" id="message" formControlName="Message" required></textarea>
+      <!-- <mat-error *ngIf="messageFormGroup.hasError('message') && !messageFormGroup.hasError('required')">
+        Please enter a message
+      </mat-error>
+      <mat-error *ngIf="messageFormGroup.hasError('required')">
+        MESSAGE is <strong>required</strong>
+      </mat-error> -->
+    </mat-form-field>
+  <!-- </form> -->
+  <button mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SUBMIT</button>
+  <p class="text-danger">{{ errorMessage }}</p>
+</form>
 </div>
