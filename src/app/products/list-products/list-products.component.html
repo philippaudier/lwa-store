@@ -1,6 +1,7 @@
 <div class="container">
     <div *ngIf="products" class="sub-container">
         <div *ngFor="let product of products" class="sub-sub-container">
+            <a routerLink="/products/{{product.idProduct}}">
             <mat-card class="example-card">
                 <mat-card-header>
                 <mat-card-title><a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a></mat-card-title>
@@ -11,6 +12,7 @@
                     {{ product.price | currency:"EUR":"symbol"}}
                 </mat-card-content>
             </mat-card>
+        </a>
         </div>
     </div>
 </div>

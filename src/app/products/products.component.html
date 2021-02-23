@@ -3,13 +3,19 @@
     <h4>{{ product.name }}</h4>
     <p>Le prix du produit:</p>
     <h4>{{ product.price | currency:"EUR":"symbol"}}</h4>
-    <p>Add to cart:</p>
-    <button mat-mini-fab color="primary" aria-label="add" (click)="addToCart()">
-        <mat-icon>add_shopping_cart</mat-icon>
-    </button>
-    <p>Remove the product:</p>
-    <button mat-mini-fab color="primary" aria-label="add" (click)="onClickRemoveProduct()">
-        <mat-icon>delete</mat-icon>
-    </button>
+    <div class="add-container">
+        <p>Add to cart:</p>
+        <button mat-icon-button color="primary" aria-label="add" (click)="addToCart()">
+            <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+    </div>
+    
+    <div class="dev-container">
+        <p>Remove the product from the store:</p>
+        <button mat-icon-button color="primary" aria-label="remove" (click)="onClickRemoveProduct()">
+            <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+    </div>
+    
     <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
 </div>

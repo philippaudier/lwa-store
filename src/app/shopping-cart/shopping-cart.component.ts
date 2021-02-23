@@ -23,6 +23,7 @@ export class ShoppingCartComponent implements OnInit {
 
   productBasePrice: number;
   totalCheckoutCost: number;
+  isEnabled = false;
 
   @Input() quantity: number;
 
@@ -67,9 +68,10 @@ export class ShoppingCartComponent implements OnInit {
 
   getCart() {
     if (this.dataSource?.length > 0) {
+      this.isEnabled = true;
       return this.dataSource?.length;
     } else {
-      console.log('the cart is empty!');
+      this.isEnabled = false;
     }
   }
 
