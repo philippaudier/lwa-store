@@ -33,6 +33,7 @@ import { ContactService } from './services/contact.service';
 import { CreateProductComponent } from './products/create-product/create-product.component';
 import { CartUpdateService } from './services/cart-update.service';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ListProductsComponent,
     CreateProductComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
