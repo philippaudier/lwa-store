@@ -14,7 +14,7 @@ import { CartUpdateService } from '../services/cart-update.service';
 export class ShoppingCartComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'type', 'quantity', 'price', 'delete'];
-  dataSource: any[];
+  public dataSource: any[];
   dataSourceLength: number;
 
   /* public rowId: any = {}; */
@@ -22,6 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   quantityFormGroup: FormGroup;
 
   productBasePrice: number;
+  totalCheckoutCost: number;
 
   @Input() quantity: number;
 
@@ -50,15 +51,22 @@ export class ShoppingCartComponent implements OnInit {
       const product = this.cartManagerService.get(data);
       if (product.idProduct) {
         this.dataSource.push(product);
+        this.dataSource.sort((a, b) => {
+          if(a.idProduct > b.idProduct) {
+            return 1;
+          } else if (a.idProduct < b.idProduct) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        console.log('idProduct = ' + product.idProduct);
       }
     });
   }
 
   getCart() {
     if (this.dataSource?.length > 0) {
-      const value = this.dataSource?.length;
-      console.log('longueur du tableau cart' + this.dataSource?.length);
-      /* this.cartManagerService.setProductCount(value); */
       return this.dataSource?.length;
     } else {
       console.log('the cart is empty!');
@@ -81,8 +89,8 @@ export class ShoppingCartComponent implements OnInit {
 
   removeProductFromCart(key: string) {
     if (this.cartManagerService.get(key)) {
-
       this.cartManagerService.remove(key);
+      this.cartUpdate.removeCheckoutData(key);
       this.ngOnInit();
     } else {
       console.log('this product doesnt exist');
@@ -96,6 +104,14 @@ export class ShoppingCartComponent implements OnInit {
     /* console.log(this.quantity); */
     /* console.log('quantity value = ' + this.quantityFormGroup.get('quantity').value); */
     return this.productBasePrice;
+  }
+
+  checkout() {
+    console.log(this.dataSource);
+    this.totalCheckoutCost = this.getTotalCost();
+    this.cartUpdate.setCheckoutData(this.dataSource);
+    this.cartUpdate.setTotalCost(this.totalCheckoutCost);
+    console.log(this.cartUpdate.getCheckoutData());
   }
 }
 

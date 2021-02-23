@@ -2,7 +2,7 @@
     <p>Le nom du produit:</p>
     <h4>{{ product.name }}</h4>
     <p>Le prix du produit:</p>
-    <h4>{{ product.price }}</h4>
+    <h4>{{ product.price | currency:"EUR":"symbol"}}</h4>
     <p>Add to cart:</p>
     <button mat-mini-fab color="primary" aria-label="add" (click)="addToCart()">
         <mat-icon>add_shopping_cart</mat-icon>

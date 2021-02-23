@@ -1,0 +1,62 @@
+<div class="container">
+    <h2>CHECKOUT</h2>
+<p>Your order:</p>
+<div class="sub-container">
+    <div *ngFor="let product of cartContent" class="sub-sub-container">
+        <p>Nom du produit : </p>
+        <p>{{product.name}}</p>
+        <p>Prix du produit : </p>
+        <p>{{product.price | currency:"EUR":"symbol"}}</p>
+        <p>Quantité : </p>
+        <p>{{product.quantity}}</p>
+    </div>
+</div>
+
+<p>TOTAL : </p>
+<span>{{totalCost | currency:"EUR":"symbol"}}</span>
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="contactInformationFormGroup">
+      <form [formGroup]="contactInformationFormGroup">
+        <ng-template matStepLabel>Contact Information</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="First name" formControlName="firstName" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="shippingFormGroup">
+      <form [formGroup]="shippingFormGroup">
+        <ng-template matStepLabel>Shipping</ng-template>
+        <mat-form-field>
+          <input matInput formControlName="adress" placeholder="Adress" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentFormGroup">
+        <form [formGroup]="paymentFormGroup">
+          <ng-template matStepLabel>Payment</ng-template>
+          <mat-form-field>
+            <input matInput formControlName="payment" placeholder="card" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div> 

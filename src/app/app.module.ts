@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -31,6 +32,7 @@ import { ListProductsComponent } from './products/list-products/list-products.co
 import { ContactService } from './services/contact.service';
 import { CreateProductComponent } from './products/create-product/create-product.component';
 import { CartUpdateService } from './services/cart-update.service';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
   { path: 'products/:idProduct', component: ProductsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
@@ -53,7 +56,8 @@ const appRoutes: Routes = [
     ProductsComponent,
     HomeComponent,
     ListProductsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatStepperModule
   ],
   providers: [
     ContactService,
