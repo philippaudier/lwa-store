@@ -1,7 +1,17 @@
-.container {
+.product-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 64px 0;
+}
+
+.product-title {
+    width: 100%;
+    text-align: center;
+}
+
+.product-title h1 {
+    margin: 64px 0;
 }
 
 .dev-container {

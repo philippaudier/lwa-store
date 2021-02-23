@@ -1,7 +1,10 @@
-<div class="container">
-    <h2>CHECKOUT</h2>
+<div class="checkout-container">
+    <div class="checkout-title">
+        <h1>CHECKOUT</h1>
+    </div>
+    
 <p>Your order:</p>
-<div class="sub-container">
+
     <div *ngFor="let product of cartContent" class="sub-sub-container">
         <p>Nom du produit : </p>
         <p>{{product.name}}</p>
@@ -10,7 +13,7 @@
         <p>Quantité : </p>
         <p>{{product.quantity}}</p>
     </div>
-</div>
+
 
 <p>TOTAL : </p>
 <span>{{totalCost | currency:"EUR":"symbol"}}</span>

@@ -3,24 +3,24 @@
     
         <app-menu></app-menu>
         
-        <span class="example-spacer"></span>
+        
         <div class="logo-container">
             <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button 
                 class="example-icon favorite-icon"
-                aria-label="Example icon-button with heart icon">
+                aria-label="logo">
                 <img class="" src="assets/logo/logo-r.png" alt="LWA">
             </button>
             </a>
         
         </div>
-        <span class="example-spacer"></span>
+        
         <a routerLink="shopping-cart">
-            <button mat-icon-button color="example-icon" aria-label="shopping-cart">
+            <button mat-icon-button aria-label="shopping-cart" class="cart-button">
                 <mat-icon 
                     [matBadge]="count" 
                     [matBadgeHidden]="count === 0"
-                    matBadgeColor="accent" 
+                    matBadgeColor="warn" 
                     matBadgePosition="below after"
                     matBadgeSize="small"
                     matBadgeOverlap="true"

@@ -1,8 +1,9 @@
-.container {
-    padding: 68px 68px;
+.router-outlet {
+    padding: 0 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FFFCE8;
 }
 

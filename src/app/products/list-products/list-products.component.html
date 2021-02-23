@@ -1,4 +1,8 @@
-<div class="container">
+<div class="list-product-container">
+    <div class="list-product-title">
+        <h1>PRODUCTS</h1>
+    </div>
+    
     <div *ngIf="products" class="sub-container">
         <div *ngFor="let product of products" class="sub-sub-container">
             <a routerLink="/products/{{product.idProduct}}">
