@@ -30,8 +30,9 @@ mat-form-field {
 
 .contact-container {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     align-items: center;
     margin: 64px 0;
     
@@ -52,5 +53,6 @@ mat-form-field {
 
 button {
     padding: 0 48px;
+    width: 100vw;
 }
 

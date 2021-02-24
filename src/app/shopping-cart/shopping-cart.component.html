@@ -2,7 +2,7 @@
   <div class="shopping-cart-title">
     <h1>CART</h1>
   </div>
-<ul ng-template *ngIf="dataSource?.length; else noRecipes">
+<div ng-template *ngIf="dataSource?.length; else noRecipes">
   <!-- <li *ngFor="let dataSource of dataSource">
       {{dataSource}}
   </li> -->
@@ -69,7 +69,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
-</ul>
+  </div>
 <a *ngIf="isEnabled" routerLink="/checkout" routerLinkActive="true">
   <button mat-raised-button color="primary" type="submit" (click)="checkout()" [disabled]="!dataSource.length">CHECKOUT</button>
 </a>

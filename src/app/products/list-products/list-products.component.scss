@@ -1,8 +1,6 @@
 a {
     color: inherit;
     text-decoration: inherit;
-    font-family: 'Montserrat', sans-serif;
-    /* font-family: 'Clicker Script', cursive; */
 }
 .list-product-container {
     display: flex;
@@ -37,7 +35,6 @@ a {
     flex-direction: column;
     justify-content: space-between;
     margin: 0 0 20px 0;
-    
 }
 
 mat-card {
@@ -48,6 +45,13 @@ mat-card {
     margin: 4px;
     background-color: #2B2D42;
     max-width: 100%;
+}
+
+.list-product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: lighter;
 }
 
 

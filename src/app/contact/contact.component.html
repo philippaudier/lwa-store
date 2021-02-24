@@ -42,23 +42,23 @@
   <div class="contact-title">
     <h1>CONTACT</h1>
   </div>
-  
+<div class="contact-form">
   <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)">
   <!-- <form [formGroup]="nameFormGroup" class="example-form"> -->
     <mat-form-field>
       <mat-label for="name">NAME</mat-label>
       <input matInput type="text" id="name" formControlName="Name" required>
-      <!-- <mat-error *ngIf="nameFormGroup.hasError('name') && !nameFormGroup.hasError('required')">
+      <mat-error *ngIf="nameFormGroup.hasError('name') && !nameFormGroup.hasError('required')">
         Please enter a name
       </mat-error>
       <mat-error *ngIf="nameFormGroup.hasError('required')">
         Name is <strong>required</strong>
-      </mat-error> -->
+      </mat-error>
     </mat-form-field>
   <!-- </form>
   <form [formGroup]="emailFormGroup" class="example-form"> -->
     <mat-form-field>
-      <mat-label for="email">Email</mat-label>
+      <mat-label for="email">EMAIL</mat-label>
       <input matInput type="email" id="email" formControlName="Email" required>
       <!-- <mat-error *ngIf="emailFormGroup.hasError('email') && emailFormGroup.hasError('required')">
         Please enter a valid email address
@@ -95,4 +95,5 @@
   <button mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SUBMIT</button>
   <p class="text-danger">{{ errorMessage }}</p>
 </form>
+</div>
 </div>

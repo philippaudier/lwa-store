@@ -7,13 +7,14 @@
         <div *ngFor="let product of products" class="sub-sub-container">
             <a routerLink="/products/{{product.idProduct}}">
             <mat-card class="example-card">
-                <mat-card-header>
-                <mat-card-title><a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a></mat-card-title>
-                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                </mat-card-header>
-                <img mat-card-image src="https://source.unsplash.com/collection/1201885/1600x900" alt="product">
-                <mat-card-content>
+                <!-- <mat-card-header>
+                <mat-card-title></mat-card-title>
+                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header> -->
+                <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
+                <mat-card-content class="list-product-info">
                     {{ product.price | currency:"EUR":"symbol"}}
+                    <a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a>
                 </mat-card-content>
             </mat-card>
         </a>
