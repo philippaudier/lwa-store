@@ -1,12 +1,18 @@
 .footer-container {
-    z-index: 1000;
     color: white;
     text-transform: uppercase;
     display: flex;
     width: auto;
-    border-top: 1px solid #2b2b2b;
     padding: 64px;
     background-color: #2B2D42;
+    flex-grow: 1;
+}
+
+.footer-container a {
+    color: white;
+    opacity: 75%;
+    padding: 9px 0;
+    text-transform: capitalize;
 }
 
 .footer-products {
@@ -19,7 +25,7 @@
     display: flex;
     flex-direction: column;
     width: 33%;
-    padding: 0 8px;
+    
 }
 
 .footer-social {
@@ -30,46 +36,25 @@
 
 .footer-pages-content {
     font-size: 11px;
-    opacity: 75%;
     display: flex;
-    text-transform: capitalize;
-    color: white;
 }
 
 .footer-products-content {
-    text-transform: capitalize;
     display: flex;
     font-size: 11px;
-    opacity: 75%;
-    color: white;
-    
 }
 
 .footer-social-content {
-    text-transform: capitalize;
     font-size: 11px;
-    opacity: 75%;
-    color: white;
 }
 
-.footer-social-content span {
-    text-transform: capitalize;
+/* .footer-social-content span {
     margin-left: 8px;
-    color: white;
-}
+} */
 
 .footer-social-content a {
-    text-transform: capitalize;
     display: flex;
     align-items: center;
-    color: white;
-}
-
-a {
-    
-    color: inherit;
-    padding: 9px 0;
-    color: white;
     
 }
 

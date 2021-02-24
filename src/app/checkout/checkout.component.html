@@ -1,22 +1,10 @@
 <div class="checkout-container">
     <div class="checkout-title">
-        <h1>CHECKOUT</h1>
+        <h3>checkout</h3>
+        <p>back to cart</p>
     </div>
     
-<p>Your order:</p>
 
-    <div *ngFor="let product of cartContent" class="sub-sub-container">
-        <p>Nom du produit : </p>
-        <p>{{product.name}}</p>
-        <p>Prix du produit : </p>
-        <p>{{product.price | currency:"EUR":"symbol"}}</p>
-        <p>Quantité : </p>
-        <p>{{product.quantity}}</p>
-    </div>
-
-
-<p>TOTAL : </p>
-<span>{{totalCost | currency:"EUR":"symbol"}}</span>
   <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="contactInformationFormGroup">
       <form [formGroup]="contactInformationFormGroup">
@@ -24,23 +12,56 @@
         <mat-form-field>
           <input matInput placeholder="First name" formControlName="firstName" required>
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="shippingFormGroup">
-      <form [formGroup]="shippingFormGroup">
-        <ng-template matStepLabel>Shipping</ng-template>
         <mat-form-field>
-          <input matInput formControlName="adress" placeholder="Adress" required>
-        </mat-form-field>
+            <input matInput placeholder="Last name" formControlName="firstName" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email adress" formControlName="firstName" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Phone (optional)" formControlName="firstName">
+          </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
+    <div>
+        <mat-step [stepControl]="shippingFormGroup" >
+            <form [formGroup]="shippingFormGroup">
+              <ng-template matStepLabel>Shipping</ng-template>
+              <mat-form-field>
+                <input matInput formControlName="adress" placeholder="Adress" required class="input-full-width">
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput formControlName="adress" placeholder="Apt num, Suite (optional)">
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="adress" placeholder="City" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="adress" placeholder="State / Province" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="adress" placeholder="Zip / Postal code" required>
+                    
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Country</mat-label>
+                  <mat-select value="UNITED STATES" type="text" id="type" placeholder="Type de produit" formControlName="adress" required>
+                      <mat-option *ngFor="let country of countries" [value]="country.value">
+                        {{country.viewValue}}
+                      </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+    </div>
+    
     <mat-step [stepControl]="paymentFormGroup">
         <form [formGroup]="paymentFormGroup">
           <ng-template matStepLabel>Payment</ng-template>
@@ -62,4 +83,18 @@
       </div>
     </mat-step>
   </mat-vertical-stepper>
+  <i>Your order:</i>
+
+    <div *ngFor="let product of cartContent" class="sub-sub-container">
+        <p>Nom du produit : </p>
+        <p>{{product.name}}</p>
+        <p>Prix du produit : </p>
+        <p>{{product.price | currency:"EUR":"symbol"}}</p>
+        <p>Quantité : </p>
+        <p>{{product.quantity}}</p>
+    </div>
+
+
+<p>TOTAL : </p>
+<span>{{totalCost | currency:"EUR":"symbol"}}</span>
 </div> 

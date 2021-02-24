@@ -2,19 +2,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
     padding: 64px 0;
+
+    width: 100%;
 }
 
 .checkout-title {
     width: 100%;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-.checkout-title h1 {
+.checkout-title p {
+    display: flex;
+    
+    justify-content: right;
+    align-items: center;
+    margin: 0;
+}
+
+.checkout-title h3 {
     margin-top: 88px;
     margin-bottom: 88px;
     color: #282A3E;
-    font-weight: lighter;
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .sub-container {
@@ -31,4 +45,22 @@
     justify-content: space-between;
     padding: 20px;
     margin: 20px;
+}
+
+mat-vertical-stepper {
+    background-color: #FFFCE8;
+    width: 100%;
+}
+
+::ng-deep .mat-step-header {
+    padding: 24px 0;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.checkout-shipping-container {
+    display: flex;
+    flex-direction: column;
 }

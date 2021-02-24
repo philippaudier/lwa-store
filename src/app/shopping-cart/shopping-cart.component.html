@@ -39,7 +39,7 @@
                   <mat-form-field class="example-full-width">
                       <input type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
                       (input)="element.price = getProductBasePrice(element.idProduct) * this.quantityFormGroup.get('quantity').value"
-                      (click)="element.quantity = this.quantityFormGroup.get('quantity').value">
+                      (input)="element.quantity = this.quantityFormGroup.get('quantity').value">
                       <!-- <input [value] = "element.quantity" type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
                       (input)="element.price = getProductBasePrice(element.idProduct) * element.quantity"> -->
                   </mat-form-field>
