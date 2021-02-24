@@ -1,21 +1,28 @@
-<div class="product-container">
-    <div class="product-title">
+<div class="container">
+    <div class="row title">
         <h1>{{ product.name }}</h1>
     </div>
-    <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
-    <div class="add-container">
-        <p>Add to cart:</p>
-        <button mat-icon-button color="primary" aria-label="add" (click)="addToCart()">
-            <mat-icon>add_shopping_cart</mat-icon>
-        </button>
+    <div class="row content">
+        <div class="row product">
+            <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
+            <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
+        </div>
+        
+        <div class="row add">
+            <p>Add to cart:</p>
+            <button mat-icon-button color="primary" aria-label="add" (click)="addToCart()">
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+        </div>
+        
+        <div class="row footer">
+            <p>Remove the product from the store:</p>
+            <button mat-icon-button color="primary" aria-label="remove" (click)="onClickRemoveProduct()">
+                <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+        </div>
+        
+        <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
     </div>
     
-    <div class="dev-container">
-        <p>Remove the product from the store:</p>
-        <button mat-icon-button color="primary" aria-label="remove" (click)="onClickRemoveProduct()">
-            <mat-icon>remove_circle_outline</mat-icon>
-        </button>
-    </div>
-    
-    <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
 </div>

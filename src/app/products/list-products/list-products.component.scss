@@ -1,57 +1,58 @@
-a {
-    color: inherit;
-    text-decoration: inherit;
-}
-.list-product-container {
+.container {
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
-    padding: 64px 0;
+    height: 100%;
+    padding: 128px 64px 0 64px;
 }
 
-.list-product-title {
+.container .row {
+    /* border: 1px dotted grey; */
     width: 100%;
-    text-align: center;
 }
 
-.list-product-title h1 {
-    margin-top: 88px;
-    margin-bottom: 88px;
-    color: #282A3E;
-    font-weight: bold;
-    
+.container .row.title {
+flex: 0 1 auto;
+text-align: center;
+padding-bottom: 32px;
 }
 
-.sub-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    
+.container .row.content {
+    flex: 1 1 auto;
 }
 
-.sub-sub-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0 0 20px 0;
+.container .row.mat.card {
+    padding-bottom: 32px;
 }
 
-mat-card {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 4px;
-    background-color: #2B2D42;
-    max-width: 100%;
-}
-
-.list-product-info {
+.container .mat.card.info {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-weight: lighter;
 }
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+h1 {
+    margin: 0;
+    font-weight: bold;
+}
+
+mat-card {
+    
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: #2B2D42;
+    
+}
+
+
+
+
 
 

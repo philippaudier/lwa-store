@@ -1,10 +1,10 @@
-<div class="list-product-container">
-    <div class="list-product-title">
+<div class="container">
+    <div class="row title">
         <h1>PRODUCTS</h1>
     </div>
     
-    <div *ngIf="products" class="sub-container">
-        <div *ngFor="let product of products" class="sub-sub-container">
+    <div *ngIf="products" class="row content">
+        <div *ngFor="let product of products" class="row mat card">
             <a routerLink="/products/{{product.idProduct}}">
             <mat-card class="example-card">
                 <!-- <mat-card-header>
@@ -12,7 +12,7 @@
                 <mat-card-subtitle>Dog Breed</mat-card-subtitle>
                 </mat-card-header> -->
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
-                <mat-card-content class="list-product-info">
+                <mat-card-content class="mat card info">
                     {{ product.price | currency:"EUR":"symbol"}}
                     <a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a>
                 </mat-card-content>

@@ -2,6 +2,7 @@
     color: white;
     text-transform: uppercase;
     display: flex;
+    justify-content: space-between;
     width: auto;
     padding: 64px;
     background-color: #2B2D42;
@@ -17,20 +18,20 @@
 .footer-products {
     display: flex;
     flex-direction: column;
-    width: 33%;
+    
 }
 
 .footer-pages {
     display: flex;
     flex-direction: column;
-    width: 33%;
+    
     
 }
 
 .footer-social {
     display: flex;
     flex-direction: column;
-    width: 33%;
+    
 }
 
 .footer-pages-content {

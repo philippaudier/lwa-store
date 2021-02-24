@@ -38,12 +38,12 @@
       </form>
 </div> -->
 
-<div class="contact-container">
-  <div class="contact-title">
+<div class="container">
+  <div class="row title">
     <h1>CONTACT</h1>
   </div>
-<div class="contact-form">
-  <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)">
+<div class="row form">
+  <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="row mat form">
   <!-- <form [formGroup]="nameFormGroup" class="example-form"> -->
     <mat-form-field>
       <mat-label for="name">NAME</mat-label>
