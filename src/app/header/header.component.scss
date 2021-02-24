@@ -3,7 +3,7 @@
 }
 
 img {
-    width: 100px;
+    width: 40px;
 }
 
 mat-icon {
@@ -14,6 +14,8 @@ mat-icon {
     width: 100px;
     height: 100px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     
 }
 
@@ -41,15 +43,16 @@ button {
 }
 
 .mat-toolbar {
-    padding: 64px 32px;
+    padding: 32px 32px;
     display: flex;
     justify-content: space-between;
     background-color: #FFFCE8;
     
+    box-shadow: 0px .5px 4px #2b2d42;
 }
 
 mat-icon {
-    color: #2b2b2b;
+    color: #2B2D42;
 }
 
 
