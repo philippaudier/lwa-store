@@ -1,5 +1,3 @@
-
-
 .container {
     display: flex;
     flex-flow: column;
@@ -22,13 +20,13 @@ padding-bottom: 32px;
     flex: 1 1 auto;
     flex-direction: column;
     justify-content: center;
-    /* background-color: blueviolet; */
+    
 }
 
-.content {
-    /* background-color: brown; */
+.table.content {
     width: 100%;
     margin-bottom: 21px;
+    border: 2px solid #2b2d42;
 }
 
 a {

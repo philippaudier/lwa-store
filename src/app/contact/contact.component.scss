@@ -11,7 +11,8 @@ padding-bottom: 32px;
 }
 
 .form {
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
+    max-width: 400px;
 }
 
 .content {

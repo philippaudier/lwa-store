@@ -3,7 +3,7 @@
     <h1>CART</h1>
   </div>
 <div ng-template *ngIf="dataSource?.length; else noRecipes" class="row content">
-  <table mat-table [dataSource]="dataSource" class="content" color="primary">
+  <table mat-table [dataSource]="dataSource" class="table content" color="primary">
     
       <ng-container matColumnDef="name" color="primary">
         <th mat-header-cell *matHeaderCellDef> Item </th>
