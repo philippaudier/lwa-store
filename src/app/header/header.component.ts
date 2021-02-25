@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
     this.cartUpdate.getCount().subscribe((value) => {
       this.count = value;
+      console.log(value);
     });
 
   }

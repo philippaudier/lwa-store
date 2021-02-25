@@ -1,25 +1,26 @@
-.container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    height: 100%;
-    padding: 128px 64px 0 64px;
-}
 
 .container .row {
     /* border: 1px dotted grey; */
     width: 100%;
 }
 
-.container .row.title {
+.title {
 flex: 0 1 auto;
 text-align: center;
 padding-bottom: 32px;
 }
 
-.container .row.form {
+.form {
     flex: 1 1 auto;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 
 .container .row.mat.form {
     display: flex;

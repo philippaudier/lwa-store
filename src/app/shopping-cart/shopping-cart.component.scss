@@ -1,14 +1,14 @@
+
+
 .container {
     display: flex;
     flex-flow: column;
     align-items: center;
     height: 100%;
-    padding: 128px 64px 0 64px;
-    
 }
 
 .container .row {
-    border: 1px dotted grey;
+    /* border: 1px dotted grey; */
     width: 100%;
 }
 
@@ -20,15 +20,15 @@ padding-bottom: 32px;
 
 .container .row.content {
     flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: blueviolet; */
 }
 
-.container .row.table{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: lighter;
-    width: auto;
-    font-size: 2px;
+.content {
+    /* background-color: brown; */
+    width: 100%;
+    margin-bottom: 21px;
 }
 
 a {
@@ -38,6 +38,15 @@ a {
 
 h1 {
     font-weight: bold;
+}
+
+button {
+    width: 100%;
+}
+
+.center {
+    
+    text-align: center;
 }
   
 /* tr.mat-footer-row {

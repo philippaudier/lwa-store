@@ -4,10 +4,14 @@
     </div>
     <div class="row content">
         <div class="row product">
-            <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
-            <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
+            <div class="photo">
+                <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
+            </div>
+            <div class="description">
+                <p>Description</p>
+            </div>
         </div>
-        
+        <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
         <div class="row add">
             <p>Add to cart:</p>
             <button mat-icon-button color="primary" aria-label="add" (click)="addToCart()">

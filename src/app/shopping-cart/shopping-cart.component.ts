@@ -13,7 +13,7 @@ import { CartUpdateService } from '../services/cart-update.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'type', 'quantity', 'price', 'delete'];
+  displayedColumns: string[] = ['name', 'quantity', 'price', 'delete'];
   public dataSource: any[];
   dataSourceLength: number;
 
@@ -69,6 +69,7 @@ export class ShoppingCartComponent implements OnInit {
   getCart() {
     if (this.dataSource?.length > 0) {
       this.isEnabled = true;
+      console.log(this.dataSource.length);
       return this.dataSource?.length;
     } else {
       this.isEnabled = false;

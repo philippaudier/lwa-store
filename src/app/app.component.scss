@@ -2,12 +2,10 @@
     display: flex;
     flex-flow: column;
     height: 100%;
-
-    
   }
   
   .container .row {
-    /* border: 1px dotted grey; */
+    border: 1px dotted grey;
   }
   
   .container .row.header {
@@ -20,11 +18,16 @@
   }
   
   .container .row.content {
-    flex: 1 1 auto;
+
+        padding-top: 128px;
+        padding: 128px 32px 0;
+        flex: 1 1 auto;
   }
   
   .container .row.footer {
-    flex: 0 1 40px;
+    /* flex: 0 1 20px; */
+    background-color: #2B2D42;
+    
   }
   
 

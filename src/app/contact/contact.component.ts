@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Contact } from '../models/contact.model';
 import { ContactService } from '../services/contact.service';
 
@@ -23,7 +24,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private contact: ContactService
+    private contact: ContactService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,17 +53,11 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  onSubmit(data) {
-    /* his.submitted = true; */
-    const name = this.nameFormGroup.get('name').value;
-    const email = this.emailFormGroup.get('email').value;
-    const subject = this.subjectFormGroup.get('subject').value;
-    const message = this.messageFormGroup.get('message').value;
-    /* const data = '{Name: "' + name + '", Email: "' + email + '", Subject: "' + subject + '", Message: "' + message + '"}'; */
+  onSubmit(data: any) {
 
-    console.log(data);
     this.contact.senMessage(data)
     .subscribe(response => {
+    this.router.navigate(['/home']);
     location.href = 'https://mailthis.to/confirm';
     console.log(response);
     }, error => {
@@ -69,22 +65,6 @@ export class ContactComponent implements OnInit {
     console.log({ error });
     });
   }
-  /* onSubmit() {
-    const name = this.nameFormGroup.get('name').value;
-    const email = this.emailFormGroup.get('email').value;
-    const subject = this.subjectFormGroup.get('subject').value;
-    const message = this.messageFormGroup.get('message').value;
-
-    this.addproductService.addNewProduct(name, type, price).then(
-      (newProductId) => {
-        this.router.navigate(['/products', newProductId]);
-        console.log('product created');
-      },
-      (error) => {
-        this.errorMessage = error;
-      }
-    );
-  } */
 }
 
 

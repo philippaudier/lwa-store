@@ -3,7 +3,7 @@
     flex-flow: column;
     align-items: center;
     height: 100%;
-    padding: 128px 64px 0 64px;
+    
 }
 
 .container .row {
@@ -15,14 +15,22 @@
 flex: 0 1 auto;
 text-align: center;
 padding-bottom: 32px;
+
 }
 
 .container .row.content {
     flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container .row.content>* {
+    flex: 1 1 160px;
 }
 
 .container .row.mat.card {
-    padding-bottom: 32px;
+    padding: 0 32px 32px 32px;
+    flex-grow: 1;
 }
 
 .container .mat.card.info {
