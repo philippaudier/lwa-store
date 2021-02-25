@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Injectable, NgModule } from '@angular/core';
+import { BrowserModule, HammerModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import * as Hammer from 'hammerjs';
+import 'hammer-timejs';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,6 +50,12 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: 'home' }
 ];
 
+@Injectable()
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    swipe: { direction: Hammer.DIRECTION_ALL },
+  } as any;
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,13 +89,18 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatTableModule,
     MatBadgeModule,
-    MatStepperModule
+    MatStepperModule,
+    HammerModule
   ],
   providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    },
     ContactService,
     /* CartUpdateService, */
     ShoppingCartComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   bootstrap: [AppComponent]
 })

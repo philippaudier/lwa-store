@@ -71,4 +71,12 @@ button {
         display : none; 
         visibility : hidden; 
     }
+
+@media (max-width: 480px) {
+    .checkout.button {
+        display : none; 
+        visibility : hidden; 
+    }
+    
+}
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import firebase from 'firebase';
+import { CartUpdateService } from './services/cart-update.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,13 @@ import firebase from 'firebase';
 export class AppComponent {
   title = 'lwa-store';
 
-  constructor() {
+
+  isShopping = true;
+
+
+  constructor(
+    private cartUpdate: CartUpdateService,
+  ) {
 
   const firebaseConfig = {
     // Your web app's Firebase configuration
@@ -23,6 +30,13 @@ export class AppComponent {
     };
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  }
+
+  ngOnInit() {
+    this.cartUpdate.getIsShopping().subscribe((value) => {
+      this.isShopping = value;
+      console.log(value);
+    });
   }
 
 

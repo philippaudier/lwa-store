@@ -106,4 +106,9 @@ export class ProductsComponent implements OnInit {
     }, 500);
     console.log('you are trying to remove a product !');
   }
+
+  onSwipeRight() {
+    this.router.navigate(['/products']);
+  }
+
 }

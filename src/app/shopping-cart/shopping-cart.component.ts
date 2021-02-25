@@ -3,6 +3,7 @@ import { CartManagerService } from '../services/cart-manager.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { CartUpdateService } from '../services/cart-update.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -32,6 +33,7 @@ export class ShoppingCartComponent implements OnInit {
     private formBuilder: FormBuilder,
     private header: HeaderComponent,
     private cartUpdate: CartUpdateService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class ShoppingCartComponent implements OnInit {
     // get cart length
     this.cartUpdate.setCount(this.dataSource?.length);
     //
+    this.setIsShopping();
   }
 
   initCart() {
@@ -115,6 +118,18 @@ export class ShoppingCartComponent implements OnInit {
     this.cartUpdate.setCheckoutData(this.dataSource);
     this.cartUpdate.setTotalCost(this.totalCheckoutCost);
     console.log(this.cartUpdate.getCheckoutData());
+  }
+
+  onSwipeRight() {
+    this.router.navigate(['/products']);
+  }
+
+  setIsShopping() {
+    this.cartUpdate.setIsShopping();
+  }
+
+  ngOnDestroy() {
+    this.setIsShopping();
   }
 }
 

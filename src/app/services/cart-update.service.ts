@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
@@ -6,12 +7,16 @@ import {BehaviorSubject, Observable} from 'rxjs';
 })
 export class CartUpdateService {
   private productCount: BehaviorSubject<number>;
+  public isShopping: BehaviorSubject<boolean>;
   public checkoutData: any[];
   public total: number;
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
     this.productCount = new BehaviorSubject<number>(0);
     this.checkoutData = [];
     this.total = 0;
+    this.isShopping = new BehaviorSubject<boolean>(true);
   }
 
   setCount(count: number) {
@@ -45,4 +50,17 @@ export class CartUpdateService {
   getCheckoutData() {
     return this.checkoutData;
   }
+
+  setIsShopping() {
+    if (this.router.url !== '/shopping-cart') {
+      this.isShopping.next(true);
+    } else {
+      this.isShopping.next(false);
+    }
+  }
+
+  getIsShopping() {
+    return this.isShopping.asObservable();
+  }
+
 }
