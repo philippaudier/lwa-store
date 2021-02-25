@@ -1,4 +1,6 @@
 import { Injectable, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,8 @@ export class CartManagerService {
 
   public productCount: number;
 
-  constructor( ) { }
+  constructor() {
+  }
 
   set(key: string, product: any): void {
     try {

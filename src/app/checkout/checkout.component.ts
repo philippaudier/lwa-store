@@ -44,6 +44,7 @@ export class CheckoutComponent implements OnInit {
       this.cartUpdate.setCheckoutState(true);
     });
     this.cartContent = this.cartUpdate.getCheckoutData();
+    console.log('CHECKOUT DATA === ' + this.cartContent);
     this.totalCost = this.cartUpdate.getTotalCost();
 
     this.contactInformationFormGroup = this.formBuilder.group({

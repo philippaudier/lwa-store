@@ -96,7 +96,6 @@ export class ProductsComponent implements OnInit {
 
               this.product = product;
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
-              // increment cart product count
               this.router.navigate(['/shopping-cart']);
               // fin
             } else {

@@ -10,8 +10,11 @@ export class CartUpdateService {
   public isShopping: BehaviorSubject<boolean>;
   public onCheckout: BehaviorSubject<boolean>;
   public cartProductQuantity: BehaviorSubject<number>;
+  /* public checkoutData: any[]; */
   public checkoutData: any[];
   public total: number;
+
+  private trouve = false;
   constructor(
     private router: Router,
   ) {
@@ -31,11 +34,14 @@ export class CartUpdateService {
     return this.productCount.asObservable();
   }
 
-  setCheckoutData(dataSource: any) {
-    this.checkoutData = [];
+   setCheckoutData(dataSource: any) {
+    
     dataSource.forEach((product: any) => {
-      this.checkoutData.push(product);
+      if (!this.checkoutData.find(p => p.idProduct === product.idProduct)) {
+        this.checkoutData.push(product);
+      }
     });
+    console.log(this.checkoutData);
   }
 
   removeCheckoutData(key: string) {
