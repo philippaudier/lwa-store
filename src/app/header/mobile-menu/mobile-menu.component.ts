@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartUpdateService } from 'src/app/services/cart-update.service';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MobileMenuComponent implements OnInit {
 
-  constructor() { }
+  onCheckout = false;
+
+  constructor(
+    private cartUpdate: CartUpdateService
+  ) { }
 
   ngOnInit(): void {
+    this.cartUpdate.getCheckoutState().subscribe((value) => {
+      this.onCheckout = value;
+    });
   }
 
 }

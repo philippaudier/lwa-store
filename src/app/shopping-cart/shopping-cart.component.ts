@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { CartUpdateService } from '../services/cart-update.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateTitleService } from '../services/update-title.service';
 
 
 
@@ -33,10 +34,12 @@ export class ShoppingCartComponent implements OnInit {
     private formBuilder: FormBuilder,
     private header: HeaderComponent,
     private cartUpdate: CartUpdateService,
-    private router: Router
+    private router: Router,
+    private updateTitle: UpdateTitleService
   ) {}
 
   ngOnInit(): void {
+    this.updateTitle.setTitle('CART');
     this.dataSource = [];
     this.initCart();
     this.getCart();

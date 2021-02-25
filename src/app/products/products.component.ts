@@ -9,6 +9,7 @@ import { CartUpdateService } from '../services/cart-update.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UpdateTitleService } from '../services/update-title.service';
 
 interface Size {
   value: string;
@@ -45,6 +46,7 @@ export class ProductsComponent implements OnInit {
               private shoppingCart: ShoppingCartComponent,
               private title: Title,
               private formBuilder: FormBuilder,
+              private updateTitle: UpdateTitleService,
               ) { }
 
 
@@ -52,6 +54,8 @@ export class ProductsComponent implements OnInit {
     this.addToCartFormGroup = this.formBuilder.group({
       size: ['', Validators.required]
     });
+
+    this.updateTitle.setTitle('PRODUCT');
 
     this.title.setTitle('PRODUCTS');
     this.product = new Product('', '', null, null);

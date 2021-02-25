@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductManagerService } from '../services/product-manager.service';
+import { UpdateTitleService } from '../services/update-title.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,10 @@ export class HomeComponent implements OnInit {
   nonExistentProduct = false;
 
   constructor(
-    private productManagerService: ProductManagerService,
-    private route: ActivatedRoute,
+    private updateTitle: UpdateTitleService
   ) { }
 
   ngOnInit(): void {
+    this.updateTitle.setTitle('PRODUCTS');
   }
 }

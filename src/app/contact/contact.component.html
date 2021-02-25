@@ -1,4 +1,6 @@
 <div class="container">
+
+
   <div class="title">
     <h1>CONTACT</h1>
   </div>
@@ -52,11 +54,9 @@
           </mat-error> -->
         </mat-form-field>
       <!-- </form> -->
-      <div class="separator"></div>
-      <button mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SUBMIT</button>
       <p class="text-danger">{{ errorMessage }}</p>
-      <div class="separator"></div>
     </form>
+    <div class="separator"></div>
+      <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SEND</button>
   </div>
-  
 </div>

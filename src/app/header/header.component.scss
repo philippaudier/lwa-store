@@ -86,7 +86,7 @@ button {
     display: flex;
     justify-content: space-between;
     background-color: #FFFCE8;
-    /* box-shadow: 0px .5px 4px #2b2d42; */
+    box-shadow: 0px .5px 4px #2b2d42;
 }
 
 mat-icon {
@@ -96,6 +96,28 @@ mat-icon {
 p {
     margin: 0;
 }
+
+.logo.checkout { 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo.cart.singular {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.logo.cart.plural {
+    display: flex;
+}
+
+.logo.cart {
+    position: fixed;
+    right: 0;
+}
+
+
 
 
 

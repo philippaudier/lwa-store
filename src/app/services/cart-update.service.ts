@@ -9,6 +9,7 @@ export class CartUpdateService {
   private productCount: BehaviorSubject<number>;
   public isShopping: BehaviorSubject<boolean>;
   public onCheckout: BehaviorSubject<boolean>;
+  public cartProductQuantity: BehaviorSubject<number>;
   public checkoutData: any[];
   public total: number;
   constructor(
@@ -19,6 +20,7 @@ export class CartUpdateService {
     this.total = 0;
     this.isShopping = new BehaviorSubject<boolean>(true);
     this.onCheckout = new BehaviorSubject<boolean>(false);
+    this.cartProductQuantity = new BehaviorSubject<number>(0);
   }
 
   setCount(count: number) {
@@ -71,6 +73,14 @@ export class CartUpdateService {
 
   getCheckoutState() {
     return this.onCheckout.asObservable();
+  }
+
+  setCartProductQuantity(value) {
+    this.cartProductQuantity.next(value);
+  }
+
+  getCartProductQuantity() {
+    return this.cartProductQuantity.asObservable();
   }
 
 }

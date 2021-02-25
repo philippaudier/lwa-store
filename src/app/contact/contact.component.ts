@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Contact } from '../models/contact.model';
 import { ContactService } from '../services/contact.service';
+import { UpdateTitleService } from '../services/update-title.service';
 
 @Component({
   selector: 'app-contact',
@@ -25,17 +26,21 @@ export class ContactComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private contact: ContactService,
-    private router: Router
+    private router: Router,
+    private updateTitle: UpdateTitleService
   ) {}
 
   ngOnInit(): void {
-      this.FormData = this.formBuilder.group({
-        Name: new FormControl('', [Validators.required]),
-        Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-        Subject: new FormControl('', [Validators.required]),
-        Message: new FormControl('', [Validators.required])
-        });
-      this.initForm();
+
+    this.updateTitle.setTitle('CONTACT');
+
+    this.FormData = this.formBuilder.group({
+      Name: new FormControl('', [Validators.required]),
+      Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      Subject: new FormControl('', [Validators.required]),
+      Message: new FormControl('', [Validators.required])
+      });
+    this.initForm();
   }
 
   initForm() {

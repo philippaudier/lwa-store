@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
 
   public count: number;
   public pageTitle: string;
+  onCheckout = false;
+  isShopping = true;
 
   constructor(
     private cartUpdate: CartUpdateService,
@@ -23,7 +25,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.updateTitle.setTitle();
+    this.cartUpdate.getCheckoutState().subscribe((value) => {
+      this.onCheckout = value;
+      console.log(value);
+    });
     this.cartUpdate.getCount().subscribe((value) => {
       this.count = value;
       console.log(value);
@@ -32,7 +37,8 @@ export class HeaderComponent implements OnInit {
     this.updateTitle.getTitle().subscribe((value) => {
       this.pageTitle = value;
     });
-    console.log(this.pageTitle);
-
+    this.cartUpdate.getIsShopping().subscribe((value) => {
+      this.isShopping = value;
+    });
   }
 }

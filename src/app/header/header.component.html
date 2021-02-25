@@ -3,7 +3,7 @@
         <app-menu class="hide"></app-menu>
         
         
-        <div class="logo desktop">
+        <div class="logo desktop" *ngIf="isShopping">
             <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button 
                 class="example-icon favorite-icon"
@@ -12,11 +12,20 @@
             </button>
             </a>
         </div>
-        <div class="logo mobile">
-            <p>{{ pageTitle | async }} fix me !</p>
+        <div class="logo mobile" *ngIf="!onCheckout && isShopping">
+            <p>{{pageTitle}}</p>
         </div>
-        
-        
+        <div class="logo cart singular" *ngIf="!onCheckout && !isShopping && count < 2">
+            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+            <p>{{count}} ITEM</p>
+        </div>
+        <div class="logo cart plural" *ngIf="!onCheckout && !isShopping && count >= 2">
+            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+            <p>{{count}} ITEMS</p>
+        </div>
+        <div class="logo checkout" *ngIf="onCheckout">
+            <img class="" src="assets/logo/logo-r.png" alt="LWA">
+        </div>
         <a routerLink="shopping-cart" class="hide">
             <button mat-icon-button aria-label="shopping-cart" class="cart-button">
                 <mat-icon 

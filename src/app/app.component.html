@@ -8,9 +8,10 @@
   </div>
   
   <div class="row cart button" *ngIf="!onCheckout">
-    <a routerLink="/shopping-cart" routerLinkActive="true" *ngIf="isShopping">
+    <a routerLink="/shopping-cart" routerLinkActive="true" *ngIf="count !== 0 && isShopping">
       <button mat-raised-button color="transparent" >
-        <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon>
+        <!-- <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon> -->
+        <p>{{count}} ITEM</p>
       </button>
       </a>
       <!-- <a routerLink="/checkout" routerLinkActive="true"

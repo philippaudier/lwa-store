@@ -15,18 +15,8 @@ export class UpdateTitleService {
       this.pageTitle = new BehaviorSubject<string>('');
     }
 
-    setTitle() {
-      if (this.router.url === '/home') {
-        this.pageTitle.next('insérer le logo');
-      } else if (this.router.url === '/products') {
-        this.pageTitle.next('PRODUCTS');
-      } else if (this.router.url === '/contact') {
-        this.pageTitle.next('CONTACT');
-      } else if (this.router.url === '/shopping-cart') {
-        this.pageTitle.next('CART');
-      } else if (this.router.url === '/checkout') {
-        this.pageTitle.next('insérer le logo');
-      }
+    setTitle(value) {
+      this.pageTitle.next(value);
     }
 
     getTitle() {

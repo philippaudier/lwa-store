@@ -14,6 +14,8 @@ export class AppComponent {
 
   isShopping = true;
   onCheckout = false;
+  cartProductQuantity = 0;
+  count = 0;
 
   constructor(
     private cartUpdate: CartUpdateService,
@@ -33,12 +35,20 @@ export class AppComponent {
   }
 
   ngOnInit() {
+
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
     });
     this.cartUpdate.getCheckoutState().subscribe((value) => {
       this.onCheckout = value;
     });
+    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
+      this.cartProductQuantity = value;
+    });
+    this.cartUpdate.getCount().subscribe((value) => {
+      this.count = value;
+    });
   }
+
 }
 
