@@ -51,6 +51,8 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.updateTitle.setLookProductTrue();
     this.addToCartFormGroup = this.formBuilder.group({
       size: ['', Validators.required]
     });
@@ -78,6 +80,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnDestroy() {
     this.productSubscription.unsubscribe();
+    setTimeout(() => {
+      this.updateTitle.setLookProductFalse();
+    });
   }
 
   addToCart() {

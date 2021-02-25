@@ -1,9 +1,9 @@
 <div class="container">
     <mat-toolbar>
-        <app-menu class="hide"></app-menu>
+        <app-menu class="hide" *ngIf="!onCheckout"></app-menu>
         
         
-        <div class="logo desktop" *ngIf="isShopping">
+        <div class="logo desktop" *ngIf="isShopping && !onCheckout">
             <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button 
                 class="example-icon favorite-icon"
@@ -12,7 +12,10 @@
             </button>
             </a>
         </div>
-        <div class="logo mobile" *ngIf="!onCheckout && isShopping">
+        <div class="logo mobile title" *ngIf="isDisplayed">
+            <p>{{productTitle}}</p>
+        </div>
+        <div class="logo mobile" *ngIf="!onCheckout && isShopping && !isDisplayed">
             <p>{{pageTitle}}</p>
         </div>
         <div class="logo cart singular" *ngIf="!onCheckout && !isShopping && count < 2">
@@ -26,7 +29,7 @@
         <div class="logo checkout" *ngIf="onCheckout">
             <img class="" src="assets/logo/logo-r.png" alt="LWA">
         </div>
-        <a routerLink="shopping-cart" class="hide">
+        <a routerLink="shopping-cart" class="hide" *ngIf="!onCheckout">
             <button mat-icon-button aria-label="shopping-cart" class="cart-button">
                 <mat-icon 
                     [matBadge]="count" 

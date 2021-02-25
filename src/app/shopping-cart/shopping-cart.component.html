@@ -1,4 +1,4 @@
-<div (swipeRight)="onSwipeRight()">
+<div>
   
   <div class="container">
 
@@ -29,13 +29,20 @@
             <mat-icon>clear</mat-icon>
           </button>
         </div>
-        
       </div>
+      <div class="regular checkout">
+        <button routerLink="/checkout" routerLinkActive="true" mat-raised-button color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
+      </div>
+        
       <div class="center">
         <button class="cart" routerLink="[/shopping-cart]" mat-raised-button type="submit">CONTINUE SHOPPING</button>
         <button routerLink="/checkout" mat-raised-button routerLinkActive="true" color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
       </div>
       
+      
+      
+     
+    </div>
       
     </div>
     <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>

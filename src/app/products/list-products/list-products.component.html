@@ -5,7 +5,7 @@
     
     <div *ngIf="products" class="row content">
         <div *ngFor="let product of products" class="row mat card">
-            <a routerLink="/products/{{product.idProduct}}">
+            <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)">
             <mat-card class="example-card">
                 <!-- <mat-card-header>
                 <mat-card-title></mat-card-title>
@@ -14,7 +14,7 @@
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
                 <mat-card-content class="mat card info">
                     {{ product.price | currency:"EUR":"symbol"}}
-                    <a routerLink="/products/{{product.idProduct}}"> {{ product.name }} </a>
+                    <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)"> {{ product.name }} </a>
                 </mat-card-content>
             </mat-card>
         </a>

@@ -125,10 +125,6 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.cartUpdate.getCheckoutData());
   }
 
-  onSwipeRight() {
-    this.router.navigate(['/products']);
-  }
-
   setIsShopping() {
     this.cartUpdate.setIsShopping();
   }

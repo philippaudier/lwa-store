@@ -1,14 +1,14 @@
 <div class="container" (swipeRight)="onSwipeRight()">
-    <div class="row title">
+    <!-- <div class="row title">
         <h1>{{ product.name }}</h1>
-    </div>
+    </div> -->
     <div class="row content">
         <div class="row product">
             <div class="photo">
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
             </div>
             <div class="description">
-                <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
+                <h2 class="price">{{ product.price | currency:"EUR":"symbol"}}</h2>
                 <div class="row add">
                     <form [formGroup]="addToCartFormGroup" class="full width">
                         <mat-form-field appearance="fill" class="full width">
@@ -36,12 +36,12 @@
         
         
         
-        <div class="row footer">
+        <!-- <div class="row footer">
             <p>Remove the product from the store:</p>
             <button mat-icon-button color="primary" aria-label="remove" (click)="onClickRemoveProduct()">
                 <mat-icon>remove_circle_outline</mat-icon>
             </button>
-        </div>
+        </div> -->
         
         <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
     </div>

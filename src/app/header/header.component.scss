@@ -22,6 +22,11 @@ mat-icon {
     justify-content: center;
 }
 
+.logo.mobile.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 @media (max-width: 480px){
     .hide{   
         visibility : hidden; 
@@ -110,6 +115,8 @@ p {
 }
 .logo.cart.plural {
     display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .logo.cart {

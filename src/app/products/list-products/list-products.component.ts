@@ -32,4 +32,8 @@ export class ListProductsComponent implements OnInit {
     this.router.navigate(['/products/create-products']);
   }
 
+  setProductName(value) {
+    this.updateTitle.setProductName(value);
+    console.log('TRUE NAME = ' + value);
+  }
 }

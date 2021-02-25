@@ -1,4 +1,5 @@
 import { compileInjectable } from '@angular/compiler';
+import { validateAndRewriteCoreSymbol } from '@angular/compiler-cli/src/ngtsc/imports';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,8 +16,10 @@ export class HeaderComponent implements OnInit {
 
   public count: number;
   public pageTitle: string;
+  public productTitle: string;
   onCheckout = false;
   isShopping = true;
+  public isDisplayed = false;
 
   constructor(
     private cartUpdate: CartUpdateService,
@@ -25,20 +28,26 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.updateTitle.getLookProduct().subscribe((value) => {
+      this.isDisplayed = value;
+    });
     this.cartUpdate.getCheckoutState().subscribe((value) => {
       this.onCheckout = value;
-      console.log(value);
     });
     this.cartUpdate.getCount().subscribe((value) => {
       this.count = value;
-      console.log(value);
     });
-
     this.updateTitle.getTitle().subscribe((value) => {
       this.pageTitle = value;
+    });
+    this.updateTitle.getProductName().subscribe((value) => {
+      this.productTitle = value;
     });
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
     });
   }
+
+
+
 }
