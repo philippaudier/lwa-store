@@ -55,6 +55,13 @@ flex: 0 1 auto;
 padding-bottom: 32px;
 }
 
+@media (max-width: 480px){
+    .container .row.title {
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
 .container .row.content{
     flex: 1 1 auto;
 }
@@ -67,7 +74,7 @@ padding-bottom: 32px;
 }
 
 .container .row.product>* {
-    flex: 1 1 160px;
+    flex: 1 1 200px;
 }
 
 .photo {
@@ -81,6 +88,8 @@ padding-bottom: 32px;
 
 .container .row.add {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 
@@ -88,6 +97,16 @@ padding-bottom: 32px;
     display: flex;
     
 }
+
+.separator {
+    height: 20px;
+}
+
+.full.width {
+    width: 100%;
+}
+
+
 
 p {
     margin: 0;

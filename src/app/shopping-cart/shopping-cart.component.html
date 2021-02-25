@@ -55,11 +55,13 @@
       
       
     </table>
+    <div class="separator"></div>
     <div class="center">
       <a *ngIf="isEnabled" routerLink="/checkout" routerLinkActive="true">
         <button mat-raised-button color="primary" type="submit" (click)="checkout()" [disabled]="!dataSource.length">CHECKOUT</button>
       </a>
     </div>
+    <div class="separator"></div>
   </div>
   
   

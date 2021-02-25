@@ -8,16 +8,33 @@
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
             </div>
             <div class="description">
-                <p>Description</p>
+                <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
+                <div class="row add">
+                    <form [formGroup]="addToCartFormGroup" class="full width">
+                        <mat-form-field appearance="fill" class="full width">
+                            <mat-label>Size</mat-label>
+                            <mat-select value="SMALL" type="text" id="type" placeholder="Type de produit" formControlName="size" required>
+                                <mat-option *ngFor="let size of sizes" [value]="size.value">
+                                {{size.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </form>
+                    <button mat-raised-button color="primary" (click)="addToCart()" class="full width">ADD TO CART</button>
+                    <div class="separator"></div>
+                    <p>
+                        6 oz., 100% Preshrunk combed ring spun Cotton
+                        (SUPeR SOFT)
+                        Standard Sizing / True To Size
+                        Seamless non-topstitched 7/8"collar
+                        Taped neck and shoulders
+                        7/8" double needle sleeve and bottom hems
+                    </p>
+                </div>
             </div>
         </div>
-        <h2>{{ product.price | currency:"EUR":"symbol"}}</h2>
-        <div class="row add">
-            <p>Add to cart:</p>
-            <button mat-icon-button color="primary" aria-label="add" (click)="addToCart()">
-                <mat-icon>add_shopping_cart</mat-icon>
-            </button>
-        </div>
+        
+        
         
         <div class="row footer">
             <p>Remove the product from the store:</p>

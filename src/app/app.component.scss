@@ -5,7 +5,7 @@
   }
   
   .container .row {
-    border: 1px dotted grey;
+    /* border: 1px dotted grey; */
   }
   
   .container .row.header {
@@ -28,11 +28,57 @@
         width: auto;
         
   }
+
+  .container .row.cart.button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      bottom: -3px;
+      right: 0;
+      left: 0;
+      
+  }
+
+  @media (min-width: 480px){
+    .container .row.cart.button{
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
+  a {
+      width: 100%;
+  }
+
+  button {
+      width: 100%;
+      height: 64px;
+      background-color: #FFFCE8;
+  }
+
+  .separator {
+      height: 64px;
+  }
+
+  @media (min-width: 480px){
+    .separator{
+        display : none; 
+        visibility : hidden; 
+    }
+}
   
   .container .row.footer {
     /* flex: 0 1 20px; */
     background-color: #2B2D42;
     
   }
+
+  @media (max-width: 480px){
+    .container .row.footer{
+        display : none; 
+        visibility : hidden; 
+    }
+}
   
 

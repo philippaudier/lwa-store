@@ -4,7 +4,17 @@
   </div>
   <div class="row content">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <div class="separator"></div>
   </div>
+  
+  <div class="row cart button">
+    <a routerLink="/shopping-cart" routerLinkActive="true">
+      <button mat-raised-button color="transparent" >
+        <mat-icon aria-hidden="false" aria-label="cart" appearance="outline">shopping_cart</mat-icon>
+      </button>
+      </a>
+  </div>
+  
   <div class="row footer">
     <app-footer></app-footer>
   </div>

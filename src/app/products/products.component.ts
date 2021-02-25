@@ -7,6 +7,13 @@ import { CartManagerService } from '../services/cart-manager.service';
 import { HeaderComponent } from '../header/header.component';
 import { CartUpdateService } from '../services/cart-update.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { Title } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+interface Size {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-products',
@@ -15,10 +22,19 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
 })
 export class ProductsComponent implements OnInit {
 
+  sizes: Size[] = [
+    {value: 'SMALL', viewValue: 'SMALL'},
+    {value: 'MEDIUM', viewValue: 'MEDIUM'},
+    {value: 'LARGE', viewValue: 'LARGE'},
+    {value: 'XL', viewValue: 'XL'}
+  ];
+
   product: Product;
   productSubscription: Subscription;
   nonExistentProduct = false;
   dataSource: any[];
+
+  addToCartFormGroup: FormGroup;
 
   constructor(private productManagerService: ProductManagerService,
               private route: ActivatedRoute,
@@ -27,9 +43,17 @@ export class ProductsComponent implements OnInit {
               private header: HeaderComponent,
               private cartUpdate: CartUpdateService,
               private shoppingCart: ShoppingCartComponent,
+              private title: Title,
+              private formBuilder: FormBuilder,
               ) { }
 
+
   ngOnInit(): void {
+    this.addToCartFormGroup = this.formBuilder.group({
+      size: ['', Validators.required]
+    });
+
+    this.title.setTitle('PRODUCTS');
     this.product = new Product('', '', null, null);
     this.dataSource = [];
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(

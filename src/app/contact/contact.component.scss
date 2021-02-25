@@ -10,6 +10,13 @@ text-align: center;
 padding-bottom: 32px;
 }
 
+@media (max-width: 480px){
+    .title {
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
 .form {
     /* flex: 1 1 auto; */
     max-width: 400px;
@@ -27,6 +34,10 @@ padding-bottom: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.separator {
+    height: 20px;
 }
 
 h1 {

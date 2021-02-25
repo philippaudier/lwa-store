@@ -20,3 +20,10 @@
 h1 {
     margin: 0;
 }
+
+@media (max-width: 480px){
+    .container .row.title {
+        display : none; 
+        visibility : hidden; 
+    }
+}

@@ -10,14 +10,53 @@ mat-icon {
     color: #2b2d42;
 }
 
-.logo-container {
-    width: 100px;
-    height: 100px;
+.logo.desktop {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
+
+.logo.mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 480px){
+    .hide{   
+        visibility : hidden; 
+    }
+}
+
+@media (min-width: 480px){
+    .show{
+        display : none;    
+        visibility : hidden; 
+    }
+}
+
+@media (max-width: 480px){
+    .logo.desktop {
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
+@media (min-width: 480px){
+    .logo.mobile {
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
+@media (max-width: 480px){
+    .logo.mobile {
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+}
+
 
 a {
 

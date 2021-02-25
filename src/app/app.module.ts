@@ -34,6 +34,7 @@ import { CreateProductComponent } from './products/create-product/create-product
 import { CartUpdateService } from './services/cart-update.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
+import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
     ListProductsComponent,
     CreateProductComponent,
     CheckoutComponent,
-    FooterComponent
+    FooterComponent,
+    MobileMenuComponent
   ],
   imports: [
     BrowserModule,

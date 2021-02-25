@@ -1,10 +1,9 @@
 <div class="container">
     <mat-toolbar>
-    
-        <app-menu></app-menu>
+        <app-menu class="hide"></app-menu>
         
         
-        <div class="logo-container">
+        <div class="logo desktop">
             <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button 
                 class="example-icon favorite-icon"
@@ -12,10 +11,13 @@
                 <img class="" src="assets/logo/logo-r.png" alt="LWA">
             </button>
             </a>
-        
+        </div>
+        <div class="logo mobile">
+            <p>INSERT DYNAMIC TITLE</p>
         </div>
         
-        <a routerLink="shopping-cart">
+        
+        <a routerLink="shopping-cart" class="hide">
             <button mat-icon-button aria-label="shopping-cart" class="cart-button">
                 <mat-icon 
                     [matBadge]="count" 
@@ -27,6 +29,7 @@
                     >shopping_cart</mat-icon>
             </button>
         </a>
+        <app-mobile-menu class="show"></app-mobile-menu>
       </mat-toolbar>
 </div>
 

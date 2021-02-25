@@ -16,6 +16,8 @@ text-align: center;
 padding-bottom: 32px;
 }
 
+
+
 .container .row.content {
     flex: 1 1 auto;
     flex-direction: column;
@@ -25,8 +27,11 @@ padding-bottom: 32px;
 
 .table.content {
     width: 100%;
-    margin-bottom: 21px;
     border: 2px solid #2b2d42;
+}
+
+.separator {
+    height: 20px;
 }
 
 a {
@@ -60,3 +65,10 @@ button {
     margin: 88px 0;
     width: 100%;
 } */
+
+@media (max-width: 480px){
+    .container .row.title {
+        display : none; 
+        visibility : hidden; 
+    }
+}

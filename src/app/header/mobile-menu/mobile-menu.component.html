@@ -1,0 +1,8 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon color="primary">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" color="primary">
+    <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
+    <button mat-menu-item disabled><span>GALLERY</span></button>
+    <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
+</mat-menu>
