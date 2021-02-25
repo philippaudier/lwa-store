@@ -29,6 +29,18 @@
         
   }
 
+  @media (max-width: 480px){
+    .container .row.content{
+        
+        padding: 64px 32px 0;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+    }
+}
+
   .container .row.cart.button {
       display: flex;
       flex-direction: column;

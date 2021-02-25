@@ -1,9 +1,47 @@
 <div (swipeRight)="onSwipeRight()">
+  
   <div class="container">
+
     <div class="row title">
       <h1>CART</h1>
     </div>
-  <div ng-template *ngIf="dataSource?.length; else noRecipes" class="row content">
+    <div  ng-template *ngIf="dataSource?.length; else noRecipes">
+      <div *ngFor="let item of dataSource" class="row product">
+        <div class="row picture">
+          <img mat-card-image src="https://source.unsplash.com/collection/1764795/1600x900" alt="product">
+        </div>
+        <div class="row information">
+          <p>{{item.price | currency:"EUR":"symbol"}}</p>
+          <p>{{item.name}}</p>
+        </div>
+        <div class="row quantity">
+          <form [formGroup]="quantityFormGroup" class="example-form">
+            <mat-form-field style="width:5vw" appearance="none">
+              
+                <input type="number" min="1" id="item.idProduct" matInput formControlName="quantity" required
+                (input)="item.price = getProductBasePrice(item.idProduct) * this.quantityFormGroup.get('quantity').value"
+                (input)="item.quantity = this.quantityFormGroup.get('quantity').value">
+            </mat-form-field>
+        </form>
+        </div>
+        <div class="row delete">
+          <button mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(item.idProduct)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+        
+      </div>
+      <div class="center">
+        <button class="cart" routerLink="[/shopping-cart]" mat-raised-button type="submit">Back to cart</button>
+        <button routerLink="/checkout" mat-raised-button routerLinkActive="true" color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
+      </div>
+      
+      
+    </div>
+    <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>
+      
+    
+  <!-- <div ng-template *ngIf="dataSource?.length; else noRecipes" class="row content">
     <table mat-table [dataSource]="dataSource" class="table content" color="primary">
       
         <ng-container matColumnDef="name" color="primary">
@@ -11,13 +49,6 @@
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           <td mat-footer-cell *matFooterCellDef> Total </td>
         </ng-container>
-      
-        <!-- <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef> Type </th>
-          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-          <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container> -->
-  
         <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef> Quantity </th>
             <td mat-cell *matCellDef="let element">
@@ -26,8 +57,6 @@
                         <input type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
                         (input)="element.price = getProductBasePrice(element.idProduct) * this.quantityFormGroup.get('quantity').value"
                         (input)="element.quantity = this.quantityFormGroup.get('quantity').value">
-                        <!-- <input [value] = "element.quantity" type="number" min="1" id="element.idProduct" matInput formControlName="quantity" required
-                        (input)="element.price = getProductBasePrice(element.idProduct) * element.quantity"> -->
                     </mat-form-field>
                 </form>
             </td>
@@ -68,7 +97,7 @@
     
       
     <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>
-  </div>
+  </div> -->
 </div>
 
   

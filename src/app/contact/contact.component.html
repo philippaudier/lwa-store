@@ -1,59 +1,62 @@
-<div class="title">
-  <h1>CONTACT</h1>
-</div>
-<div class="form">
-  <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="content">
-  <!-- <form [formGroup]="nameFormGroup" class="example-form"> -->
-    <mat-form-field appearance="outline">
-      <mat-label for="name">NAME</mat-label>
-      <input matInput type="text" id="name" formControlName="Name" required>
-      <mat-error *ngIf="nameFormGroup.hasError('name') && !nameFormGroup.hasError('required')">
-        Please enter a name
-      </mat-error>
-      <mat-error *ngIf="nameFormGroup.hasError('required')">
-        Name is <strong>required</strong>
-      </mat-error>
-      </mat-form-field>
-    <!-- </form>
-    <form [formGroup]="emailFormGroup" class="example-form"> -->
+<div class="container">
+  <div class="title">
+    <h1>CONTACT</h1>
+  </div>
+  <div class="form">
+    <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="content">
+    <!-- <form [formGroup]="nameFormGroup" class="example-form"> -->
       <mat-form-field appearance="outline">
-        <mat-label for="email">EMAIL</mat-label>
-        <input matInput type="email" id="email" formControlName="Email" required>
-        <!-- <mat-error *ngIf="emailFormGroup.hasError('email') && emailFormGroup.hasError('required')">
-          Please enter a valid email address
+        <mat-label for="name">NAME</mat-label>
+        <input matInput type="text" id="name" formControlName="Name" required>
+        <mat-error *ngIf="nameFormGroup.hasError('name') && !nameFormGroup.hasError('required')">
+          Please enter a name
         </mat-error>
-        <mat-error *ngIf="emailFormGroup.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error> -->
-      </mat-form-field>
-    <!-- </form> -->
-    <!-- <form [formGroup]="subjectFormGroup" class="example-form"> -->
-      <mat-form-field appearance="outline">
-        <mat-label for="subject">SUBJECT</mat-label>
-        <input matInput type="text" id="subject" formControlName="Subject" required>
-        <!-- <mat-error *ngIf="subjectFormGroup.hasError('subject') && !subjectFormGroup.hasError('required')">
-          Please enter a subject -->
-      <!--  </mat-error>
-        <mat-error *ngIf="subjectFormGroup.hasError('required')">
-          Subject is <strong>required</strong>
-        </mat-error> -->
-      </mat-form-field>
-    <!-- </form> -->
-    <!-- <form [formGroup]="messageFormGroup" class="example-form"> -->
-      <mat-form-field appearance="outline">
-        <mat-label for="message">MESSAGE</mat-label>
-        <textarea matInput type="text" id="message" formControlName="Message" required></textarea>
-        <!-- <mat-error *ngIf="messageFormGroup.hasError('message') && !messageFormGroup.hasError('required')">
-          Please enter a message
+        <mat-error *ngIf="nameFormGroup.hasError('required')">
+          Name is <strong>required</strong>
         </mat-error>
-        <mat-error *ngIf="messageFormGroup.hasError('required')">
-          MESSAGE is <strong>required</strong>
-        </mat-error> -->
-      </mat-form-field>
-    <!-- </form> -->
-    <div class="separator"></div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SUBMIT</button>
-    <p class="text-danger">{{ errorMessage }}</p>
-    <div class="separator"></div>
-  </form>
+        </mat-form-field>
+      <!-- </form>
+      <form [formGroup]="emailFormGroup" class="example-form"> -->
+        <mat-form-field appearance="outline">
+          <mat-label for="email">EMAIL</mat-label>
+          <input matInput type="email" id="email" formControlName="Email" required>
+          <!-- <mat-error *ngIf="emailFormGroup.hasError('email') && emailFormGroup.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormGroup.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+      <!-- </form> -->
+      <!-- <form [formGroup]="subjectFormGroup" class="example-form"> -->
+        <mat-form-field appearance="outline">
+          <mat-label for="subject">SUBJECT</mat-label>
+          <input matInput type="text" id="subject" formControlName="Subject" required>
+          <!-- <mat-error *ngIf="subjectFormGroup.hasError('subject') && !subjectFormGroup.hasError('required')">
+            Please enter a subject -->
+        <!--  </mat-error>
+          <mat-error *ngIf="subjectFormGroup.hasError('required')">
+            Subject is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+      <!-- </form> -->
+      <!-- <form [formGroup]="messageFormGroup" class="example-form"> -->
+        <mat-form-field appearance="outline">
+          <mat-label for="message">MESSAGE</mat-label>
+          <textarea matInput type="text" id="message" formControlName="Message" required></textarea>
+          <!-- <mat-error *ngIf="messageFormGroup.hasError('message') && !messageFormGroup.hasError('required')">
+            Please enter a message
+          </mat-error>
+          <mat-error *ngIf="messageFormGroup.hasError('required')">
+            MESSAGE is <strong>required</strong>
+          </mat-error> -->
+        </mat-form-field>
+      <!-- </form> -->
+      <div class="separator"></div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SUBMIT</button>
+      <p class="text-danger">{{ errorMessage }}</p>
+      <div class="separator"></div>
+    </form>
+  </div>
+  
 </div>

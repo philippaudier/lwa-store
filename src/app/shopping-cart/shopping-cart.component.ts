@@ -48,6 +48,8 @@ export class ShoppingCartComponent implements OnInit {
     this.cartUpdate.setCount(this.dataSource?.length);
     //
     this.setIsShopping();
+    this.enableCheckoutButton();
+    console.log(this.isEnabled);
   }
 
   initCart() {
@@ -128,9 +130,17 @@ export class ShoppingCartComponent implements OnInit {
     this.cartUpdate.setIsShopping();
   }
 
+  enableCheckoutButton() {
+    if (this.router.url === 'shopping-cart') {
+      this.isEnabled = true;
+    }
+  }
+
   ngOnDestroy() {
     setTimeout(() => {
       this.setIsShopping();
+      this.isEnabled = false;
+      console.log(this.isEnabled);
     });
   }
 }

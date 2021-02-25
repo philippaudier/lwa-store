@@ -1,23 +1,27 @@
 
+.container {
+    max-width: 1000px;
+}
+
 .container .row {
     /* border: 1px dotted grey; */
     width: 100%;
 }
 
-.title {
+.container .title {
 flex: 0 1 auto;
 text-align: center;
 padding-bottom: 32px;
 }
 
 @media (max-width: 480px){
-    .title {
+    .container .title {
         display : none; 
         visibility : hidden; 
     }
 }
 
-.form {
+.container .form {
     /* flex: 1 1 auto; */
     max-width: 400px;
 }

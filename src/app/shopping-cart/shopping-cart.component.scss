@@ -3,11 +3,73 @@
     flex-flow: column;
     align-items: center;
     height: 100%;
+    width: 100%;
+    padding-bottom: 34px;
 }
 
 .container .row {
     /* border: 1px dotted grey; */
     width: 100%;
+}
+
+.container .row.product {
+    display: flex;
+    height: 128px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+}
+
+.container .row.delete {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .row.quantity {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container .row.quantity p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container .row.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.container .row.picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 34px 0 0;
+
+}
+
+/* ::ng-deep .mat-form-field-infix {
+    top: -1em;
+} */
+.mat-form-field-wrapper{
+    padding-bottom: 0;
+  }
+
+:host ::ng-deep .mat-form-field-infix {
+    margin: 0 !important;
+    padding: 0px !important;
+}
+
+
+.row.information p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 .container .row.title {
@@ -43,13 +105,41 @@ h1 {
     font-weight: bold;
 }
 
-button {
+.center button {
     width: 100%;
+    height: 64px;
 }
 
+.center .cart {
+    background-color: #FFFCE8; 
+}
+
+
+
 .center {
-    
+    display: flex;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@media (min-width: 480px){
+    .center {
+        display : none; 
+        visibility : hidden; 
+    }
+}
+
+img {
+    /* width: 50%;
+    margin: 0; */
+    width: 10em; 
+     
+    height: auto;
+    margin: 0;
+    
 }
   
 /* tr.mat-footer-row {
@@ -79,4 +169,9 @@ button {
     }
     
 }
+
+input {
+    text-align: center;
+}
+
 }
