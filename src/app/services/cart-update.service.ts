@@ -8,6 +8,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class CartUpdateService {
   private productCount: BehaviorSubject<number>;
   public isShopping: BehaviorSubject<boolean>;
+  public onCheckout: BehaviorSubject<boolean>;
   public checkoutData: any[];
   public total: number;
   constructor(
@@ -17,6 +18,7 @@ export class CartUpdateService {
     this.checkoutData = [];
     this.total = 0;
     this.isShopping = new BehaviorSubject<boolean>(true);
+    this.onCheckout = new BehaviorSubject<boolean>(false);
   }
 
   setCount(count: number) {
@@ -61,6 +63,14 @@ export class CartUpdateService {
 
   getIsShopping() {
     return this.isShopping.asObservable();
+  }
+
+  setCheckoutState(value) {
+    this.onCheckout.next(value);
+  }
+
+  getCheckoutState() {
+    return this.onCheckout.asObservable();
   }
 
 }

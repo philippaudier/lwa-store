@@ -129,7 +129,9 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.setIsShopping();
+    setTimeout(() => {
+      this.setIsShopping();
+    });
   }
 }
 

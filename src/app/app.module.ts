@@ -78,7 +78,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,
+      {scrollPositionRestoration: 'enabled'}),
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -102,6 +103,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     ShoppingCartComponent,
     HeaderComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule],
 })
 export class AppModule { }

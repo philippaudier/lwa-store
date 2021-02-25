@@ -13,7 +13,7 @@ export class AppComponent {
 
 
   isShopping = true;
-
+  onCheckout = false;
 
   constructor(
     private cartUpdate: CartUpdateService,
@@ -35,20 +35,10 @@ export class AppComponent {
   ngOnInit() {
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
-      console.log(value);
     });
-  }
-
-
-  onActivate(event) {
-    const scrollToTop = window.setInterval(() => {
-        let pos = window.pageYOffset;
-        if (pos > 0) {
-            window.scrollTo(0, pos - 20); // how far to scroll on each step
-        } else {
-            window.clearInterval(scrollToTop);
-        }
-    }, 16);
+    this.cartUpdate.getCheckoutState().subscribe((value) => {
+      this.onCheckout = value;
+    });
   }
 }
 

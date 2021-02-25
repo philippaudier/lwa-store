@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartManagerService } from '../services/cart-manager.service';
 import { CartUpdateService } from '../services/cart-update.service';
+import { UpdateTitleService } from '../services/update-title.service';
 
 @Component({
   selector: 'app-header',
@@ -18,28 +19,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     private cartUpdate: CartUpdateService,
     private router: Router,
+    private updateTitle: UpdateTitleService,
   ) { }
 
   ngOnInit(): void {
-
+    this.updateTitle.setTitle();
     this.cartUpdate.getCount().subscribe((value) => {
       this.count = value;
       console.log(value);
     });
-    this.setTitle();
+
+    this.updateTitle.getTitle().subscribe((value) => {
+      this.pageTitle = value;
+    });
     console.log(this.pageTitle);
 
-  }
-
-  setTitle() {
-    if (this.router.url === '/contact') {
-      this.pageTitle = 'CONTACT';
-    } else if (this.router.url === '/products') {
-      this.pageTitle = 'PRODUCTS';
-    } else if (this.router.url === '/shopping-cart') {
-      this.pageTitle = 'CART';
-    } else if (this.router.url === '/home') {
-      this.pageTitle = 'PRODUCTS';
-    }
   }
 }

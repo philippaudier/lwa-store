@@ -3,17 +3,25 @@
     <app-header></app-header>
   </div>
   <div class="row content">
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <router-outlet></router-outlet>
     <div class="separator"></div>
   </div>
   
-  <div class="row cart button">
-    <a routerLink="/shopping-cart" routerLinkActive="true">
+  <div class="row cart button" *ngIf="!onCheckout">
+    <a routerLink="/shopping-cart" routerLinkActive="true" *ngIf="isShopping">
       <button mat-raised-button color="transparent" >
-        <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" *ngIf="isShopping">shopping_cart</mat-icon>
-        <p *ngIf="!isShopping" class="checkout button">CHECKOUT</p>
+        <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon>
       </button>
       </a>
+      <a routerLink="/checkout" routerLinkActive="true"
+      *ngIf="!isShopping">
+        <button mat-raised-button color="transparent" >
+          <p  class="checkout button">CHECKOUT</p>
+        </button>
+        </a>
+        
+      
+      
   </div>
   
   <div class="row footer">

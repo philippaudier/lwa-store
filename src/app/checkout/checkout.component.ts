@@ -39,6 +39,10 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Update onCheckout boolean
+    setTimeout(() => {
+      this.cartUpdate.setCheckoutState(true);
+    });
     this.cartContent = this.cartUpdate.getCheckoutData();
     this.totalCost = this.cartUpdate.getTotalCost();
 
@@ -50,6 +54,12 @@ export class CheckoutComponent implements OnInit {
     });
     this.paymentFormGroup = this.formBuilder.group({
       payment: ['', Validators.required]
+    });
+  }
+
+  ngOnDestroy() {
+    setTimeout(() => {
+      this.cartUpdate.setCheckoutState(false);
     });
   }
 
