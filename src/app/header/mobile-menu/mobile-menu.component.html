@@ -13,11 +13,14 @@
     </button>
     <div color="primary" class="menu" *ngIf="displayMenu">
         <div class="logo">
-            <a routerLink="/home" routerLinkActive="active">
+            <!-- <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button class="example-icon favorite-icon" aria-label="logo" (click)="hideMenu()">
                 <img class="" src="assets/logo/logo-r.png" alt="LWA">
             </button>
-            </a>
+            </a> -->
+            <button mat-icon-button aria-label="checkout menu" (click)="onDisplayMenu()">
+                <a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
+            </button>
         </div>
         <a routerLink="products"><button mat-menu-item (click)="hideMenu()"><span>PRODUCTS</span></button></a>
         <button mat-menu-item disabled ><span>GALLERY</span></button>

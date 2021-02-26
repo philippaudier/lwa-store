@@ -14,13 +14,14 @@ $general-typography: mat-typography-config(
 );
 
 // Be sure that you only ever include this mixin once!
-@include mat-core($general-typography);
+
 
 // LWA theme
-
+$lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
 @include angular-material-theme($lwa-theme);
 
-$lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
+
+
 
 $lwa-primary: mat-palette($md-primary);
 $lwa-accent: mat-palette($md-accent);

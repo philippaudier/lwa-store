@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -91,7 +92,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatTableModule,
     MatBadgeModule,
     MatStepperModule,
-    HammerModule
+    HammerModule,
+    MatDividerModule
   ],
   providers: [
     {
