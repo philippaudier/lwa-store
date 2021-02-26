@@ -29,4 +29,8 @@ export class MobileMenuComponent implements OnInit {
       this.displayMenu = true;
     }
   }
+
+  hideMenu() {
+    this.displayMenu = false;
+  }
 }

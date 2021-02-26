@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'Forum', cursive;
-    src: font-url('/src/font/Forum-Regular.ttf') format("truetype");
+    src: font-url('/font/Forum-Regular.ttf') format("truetype");
     font-weight: normal;
     font-style: normal;
   }
@@ -15,5 +15,9 @@ html, body {
     font-family: 'Forum', cursive;
     height: 100%;
     margin: 0;
-    background-color:#E6DCC7;
+    background-color: #F5F8DE;
+}
+
+.mat-typography {
+    font-family: 'Forum', cursive;
 }

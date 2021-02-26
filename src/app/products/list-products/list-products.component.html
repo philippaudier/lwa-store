@@ -14,7 +14,7 @@
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
                 <mat-card-content class="mat card info">
                     {{ product.price | currency:"EUR":"symbol"}}
-                    <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)"> {{ product.name }} </a>
+                    <!-- <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)"> {{ product.name }} </a> -->
                 </mat-card-content>
             </mat-card>
         </a>
