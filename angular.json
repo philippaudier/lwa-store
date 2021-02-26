@@ -35,8 +35,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "src/theme.scss",
-              "src/assets/fonts/Forum-Regular.ttf"
+              "src/theme.scss"
             ],
             "scripts": []
           },
