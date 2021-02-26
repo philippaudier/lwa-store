@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import './theme_variables.scss';
+@import url('//fonts.googleapis.com/css2?family=Forum&display=swap');
 @include mat-core();
 
 $lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);

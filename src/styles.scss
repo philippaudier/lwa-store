@@ -1,12 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('//fonts.googleapis.com/css2?family=Forum&display=swap');
 
-@font-face {
-    font-family: 'Forum', cursive;
-    src: font-url('/font/Forum-Regular.ttf') format("truetype");
-    font-weight: normal;
-    font-style: normal;
-  }
 @import './theme.scss'; 
 //the theme.scss contains $custom-theme defined above
 @include angular-material-theme($lwa-color-palette);

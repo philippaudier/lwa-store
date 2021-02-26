@@ -3,6 +3,7 @@
     flex-flow: column;
     align-items: center;
     height: 100%;
+    max-width: 580px;
     
 }
 
@@ -46,6 +47,11 @@ mat-vertical-stepper {
 .container .row.footer {
     display: flex;
     
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 a {

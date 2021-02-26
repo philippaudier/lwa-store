@@ -36,13 +36,24 @@
     display: flex;
     align-items: center;
 } */
+
+// flow
+.flex.flow.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 .container {
     display: flex;
     flex-flow: column;
     align-items: center;
     height: 100%;
-    max-width: 1000px;
+    max-width: 580px;
     touch-action: pan-y !important;
+    margin-bottom: 32px;
+    margin-top: 16px;
     
 }
 
@@ -133,9 +144,17 @@ img {
     margin: 0; */
     max-width: 100%; 
     display:block; 
+    
     height: auto;
     margin: 0;
+    border: 1px solid #2B2D42;
+    border-radius: 4px;
     
+}
+::ng-deep .mat-form-field-flex {
+    /* border-top: 1px solid #2B2D42;
+    border-left: 1px solid #2B2D42;
+    border-right: 1px solid #2B2D42; */
 }
 
 .price {

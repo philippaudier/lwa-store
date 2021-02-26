@@ -1,10 +1,11 @@
 .container {
     display: flex;
-    flex-flow: column;
+    text-align: center;
+    flex-direction: column;
+    padding-bottom: 34px;
+    margin: 0;
     align-items: center;
     height: 100%;
-    width: 100%;
-    padding-bottom: 34px;
 }
 
 .container .row {
@@ -14,8 +15,8 @@
 
 .container .row.product {
     display: flex;
-    height: 128px;
-    padding-bottom: 16px;
+    height: 200px;
+    padding-bottom: 32px;
     justify-content: space-between;
 }
 
@@ -49,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 34px 0 0;
+    margin-right: 40px;
     
 
 }
@@ -74,7 +75,7 @@
 }
 
 .container .row.title {
-flex: 0 1 auto;
+
 text-align: center;
 padding-bottom: 32px;
 }
@@ -132,16 +133,6 @@ h1 {
         visibility : hidden; 
     }
 }
-
-img {
-    /* width: 50%;
-    margin: 0; */
-    width: 10em; 
-     
-    height: auto;
-    margin: 0;
-    
-}
   
 /* tr.mat-footer-row {
     font-weight: bold;
@@ -190,4 +181,7 @@ input {
 .regular.checkout {
     display: flex;
     justify-content: flex-end;
+}
+
+.ng.template {
 }
