@@ -42,13 +42,13 @@
 }
 
   .container .row.cart.button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 
   @media (min-width: 480px){
@@ -65,7 +65,7 @@
   button {
       width: 100%;
       height: 64px;
-      background-color: #FFFCE8;
+      background-color:#E6DCC7;
   }
 
   p {

@@ -9,6 +9,8 @@ import { CartUpdateService } from 'src/app/services/cart-update.service';
 export class MobileMenuComponent implements OnInit {
 
   onCheckout = false;
+  displayMenu = false;
+  
 
   constructor(
     private cartUpdate: CartUpdateService
@@ -20,4 +22,11 @@ export class MobileMenuComponent implements OnInit {
     });
   }
 
+  onDisplayMenu() {
+    if (this.displayMenu) {
+      this.displayMenu = false;
+    } else {
+      this.displayMenu = true;
+    }
+  }
 }

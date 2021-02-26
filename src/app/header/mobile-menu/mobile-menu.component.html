@@ -1,11 +1,20 @@
 <div class="container" *ngIf="!onCheckout">
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon color="primary">more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" color="primary">
+    <mat-menu #menu="matMenu" color="primary" class="menu">
         <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
         <button mat-menu-item disabled><span>GALLERY</span></button>
         <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
     </mat-menu>
+ -->
+    <button mat-icon-button aria-label="checkout menu" (click)="onDisplayMenu()">
+        <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+    </button>
+    <div color="primary" class="menu" *ngIf="displayMenu">
+        <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
+        <button mat-menu-item disabled><span>GALLERY</span></button>
+        <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
+    </div>
 </div>
 

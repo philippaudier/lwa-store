@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private cartUpdate: CartUpdateService,
     private updateTitle: UpdateTitleService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {

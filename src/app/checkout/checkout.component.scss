@@ -3,17 +3,20 @@
     flex-flow: column;
     align-items: center;
     height: 100%;
+    
 }
 
 .container .row {
     /* border: 1px dotted grey; */
     width: 100%;
     justify-content: center;
+    background-color:#E6DCC7;
 }
 
 .container .row.title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex: 0 1 auto;
     text-align: center;
     padding-bottom: 32px;
@@ -21,6 +24,12 @@
 
 .container .row.content{
     flex: 1 1 auto;
+    
+    
+}
+
+mat-vertical-stepper {
+    background-color:#E6DCC7;
 }
 
 .container .row.product {

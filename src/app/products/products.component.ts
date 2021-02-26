@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
   productSubscription: Subscription;
   nonExistentProduct = false;
   dataSource: any[];
+  isLookingProduct = false;
 
   addToCartFormGroup: FormGroup;
 
@@ -51,6 +52,10 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.updateTitle.getLookProduct().subscribe((value) => {
+      this.isLookingProduct = value;
+    });
 
     this.updateTitle.setLookProductTrue();
     this.addToCartFormGroup = this.formBuilder.group({
