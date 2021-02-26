@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 
+@font-face {
+    font-family: 'Forum', cursive;
+    src: url(assets/font/Forum-Regular.ttf) format("opentype");
+  }
 @import './theme.scss'; 
 //the theme.scss contains $custom-theme defined above
 @include angular-material-theme($lwa-color-palette);
@@ -10,7 +14,4 @@ html, body {
     height: 100%;
     margin: 0;
     background-color: #FFFCE8;
-}
-.mat-typography {
-    font-family: 'Forum', cursive;
 }

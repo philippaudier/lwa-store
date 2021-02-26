@@ -102,27 +102,28 @@ p {
     margin: 0;
 }
 
-.logo.checkout { 
+.container .toolbar.logo.checkout { 
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.logo.cart.singular {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    
+.toolbar .logo.cart.singular {
 }
-.logo.cart.plural {
+.toolbar .logo.cart.plural {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.logo.cart {
-    position: fixed;
-    right: 0;
+.toolbar .logo.cart {
+    display: flex;
+}
+
+.container .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
