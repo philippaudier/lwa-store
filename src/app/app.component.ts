@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import firebase from 'firebase';
+import { setTokenSourceMapRange } from 'typescript';
+import { Product } from './models/product.model';
+import { CartManagerService } from './services/cart-manager.service';
 import { CartUpdateService } from './services/cart-update.service';
+import { ProductManagerService } from './services/product-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +19,16 @@ export class AppComponent {
   isShopping = true;
   onCheckout = false;
   cartProductQuantity = 0;
-  count = 0;
+
+  
+
+  products: Product[];
+  public count = 0;
 
   constructor(
     private cartUpdate: CartUpdateService,
+    private productManager: ProductManagerService,
+    private cartManagerService: CartManagerService
   ) {
 
   const firebaseConfig = {
@@ -45,10 +55,10 @@ export class AppComponent {
     this.cartUpdate.getCartProductQuantity().subscribe((value) => {
       this.cartProductQuantity = value;
     });
+
     this.cartUpdate.getCount().subscribe((value) => {
       this.count = value;
     });
+
   }
-
 }
-

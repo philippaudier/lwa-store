@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CartUpdateService {
-  private productCount: BehaviorSubject<number>;
+  public productCount: BehaviorSubject<number>;
   public isShopping: BehaviorSubject<boolean>;
   public onCheckout: BehaviorSubject<boolean>;
   public cartProductQuantity: BehaviorSubject<number>;

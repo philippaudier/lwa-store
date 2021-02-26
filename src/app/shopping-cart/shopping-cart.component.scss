@@ -170,6 +170,12 @@ img {
     
 }
 
+@media (max-width: 480px){
+    .hide {
+        display : none; 
+        visibility : hidden; 
+    }
+}
 input {
     text-align: center;
 }
@@ -182,5 +188,5 @@ input {
 
 .regular.checkout {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }

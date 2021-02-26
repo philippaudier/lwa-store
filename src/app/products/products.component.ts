@@ -68,6 +68,7 @@ export class ProductsComponent implements OnInit {
           (product) => {
             if (product) {
               this.product = product;
+              this.updateTitle.setProductName(this.product.name);
             } else {
               this.nonExistentProduct = true;
             }
@@ -95,6 +96,7 @@ export class ProductsComponent implements OnInit {
             if (product) {
 
               this.product = product;
+              //
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
               this.router.navigate(['/shopping-cart']);
               // fin

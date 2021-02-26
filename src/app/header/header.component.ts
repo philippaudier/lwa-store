@@ -1,10 +1,12 @@
 import { compileInjectable } from '@angular/compiler';
 import { validateAndRewriteCoreSymbol } from '@angular/compiler-cli/src/ngtsc/imports';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Product } from '../models/product.model';
 import { CartManagerService } from '../services/cart-manager.service';
 import { CartUpdateService } from '../services/cart-update.service';
+import { ProductManagerService } from '../services/product-manager.service';
 import { UpdateTitleService } from '../services/update-title.service';
 
 @Component({
@@ -21,9 +23,10 @@ export class HeaderComponent implements OnInit {
   isShopping = true;
   public isDisplayed = false;
 
+  products: Product[];
+
   constructor(
     private cartUpdate: CartUpdateService,
-    private router: Router,
     private updateTitle: UpdateTitleService,
   ) { }
 
@@ -47,7 +50,4 @@ export class HeaderComponent implements OnInit {
       this.isShopping = value;
     });
   }
-
-
-
 }

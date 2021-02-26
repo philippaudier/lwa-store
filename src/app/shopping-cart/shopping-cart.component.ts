@@ -58,6 +58,7 @@ export class ShoppingCartComponent implements OnInit {
   initCart() {
     Object.keys(localStorage).forEach(data => {
       const product = this.cartManagerService.get(data);
+      console.log(product);
       if (product.idProduct) {
         this.dataSource.push(product);
         this.dataSource.sort((a, b) => {
@@ -78,6 +79,7 @@ export class ShoppingCartComponent implements OnInit {
     if (this.dataSource?.length > 0) {
       this.isEnabled = true;
       console.log(this.dataSource.length);
+      this.cartUpdate.setCount(this.dataSource.length);
       return this.dataSource?.length;
     } else {
       this.isEnabled = false;
@@ -102,6 +104,7 @@ export class ShoppingCartComponent implements OnInit {
     if (this.cartManagerService.get(key)) {
       this.cartManagerService.remove(key);
       this.cartUpdate.removeCheckoutData(key);
+    
       this.ngOnInit();
     } else {
       console.log('this product doesnt exist');

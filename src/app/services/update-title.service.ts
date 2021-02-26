@@ -29,8 +29,6 @@ export class UpdateTitleService {
 
     setProductName(value) {
       this.productName.next(value);
-      console.log('SERVICE product name = ' + value);
-      console.log('YOOOOOOOOOOOO' + this.productName.value);
     }
 
     getProductName() {
