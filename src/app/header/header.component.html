@@ -1,4 +1,12 @@
 <div class="container">
+    <div class="header title font size" *ngIf="!onCheckout && !isShopping && count < 2">
+        <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+        <p>{{count}} ITEM</p>
+    </div>
+    <div class="header title font size" *ngIf="!onCheckout && !isShopping && count >= 2">
+        <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+        <p>{{count}} ITEMS</p>
+    </div>
     <mat-toolbar class="toolbar">
         <app-menu class="hide" *ngIf="!onCheckout"></app-menu>
         
@@ -12,20 +20,14 @@
             </button>
             </a>
         </div>
-        <div class="logo mobile title" *ngIf="isDisplayed">
+        <div class="logo mobile title font size" *ngIf="isDisplayed">
             <p>{{productTitle}}</p>
         </div>
         <div class="logo mobile" *ngIf="!onCheckout && isShopping && !isDisplayed">
             <p>{{pageTitle}}</p>
         </div>
-        <div class="logo cart singular" *ngIf="!onCheckout && !isShopping && count < 2">
-            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
-            <p>{{count}} ITEM</p>
-        </div>
-        <div class="logo cart plural" *ngIf="!onCheckout && !isShopping && count >= 2">
-            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
-            <p>{{count}} ITEMS</p>
-        </div>
+        
+        
         <div class="logo checkout" *ngIf="onCheckout">
             <img class="" src="assets/logo/logo-r.png" alt="LWA">
         </div>

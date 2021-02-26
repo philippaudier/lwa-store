@@ -10,6 +10,11 @@ mat-icon {
     color: #2b2d42;
 }
 
+.font.size{
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .logo.desktop {
     display: flex;
     align-items: center;
@@ -25,6 +30,15 @@ mat-icon {
 .logo.mobile.title {
     font-size: 24px;
     font-weight: bold;
+}
+
+.header.title {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
 }
 
 @media (max-width: 480px){
@@ -108,7 +122,13 @@ p {
     justify-content: center;
 }
 
-.toolbar .logo.cart.singular {
+.cart.singular {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
 }
 .toolbar .logo.cart.plural {
     display: flex;

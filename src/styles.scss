@@ -3,7 +3,9 @@
 
 @font-face {
     font-family: 'Forum', cursive;
-    src: url(assets/font/Forum-Regular.ttf) format("truetype");
+    src: font-url('Forum-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
   }
 @import './theme.scss'; 
 //the theme.scss contains $custom-theme defined above
