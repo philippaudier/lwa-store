@@ -1,12 +1,11 @@
+// Google font Forum-Regular
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
 @import '~@angular/material/theming';
 @import './theme_variables.scss';
 
-// Google font Forum-Regular
-@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
-
 @include mat-core();
 
-
+$lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
 // LWA typography
 $general-typography: mat-typography-config(
   $font-family: '"Forum", cursive',
@@ -14,14 +13,10 @@ $general-typography: mat-typography-config(
 );
 
 // Be sure that you only ever include this mixin once!
-
+@include mat-core($general-typography);
 
 // LWA theme
-$lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
 @include angular-material-theme($lwa-theme);
-
-
-
 
 $lwa-primary: mat-palette($md-primary);
 $lwa-accent: mat-palette($md-accent);
