@@ -73,6 +73,7 @@ export class AppComponent {
     console.log('is navigating ? = ' + this.isNavigating);
     console.log('is shopping ? = ' + this.isShopping);
     console.log('on checkout ? = ' + this.onCheckout);
+    console.log('on contactPage ? = ' + this.onContactPage);
     console.log('count ? = ' + this.count);
   }
 }

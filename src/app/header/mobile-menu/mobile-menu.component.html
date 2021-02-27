@@ -22,9 +22,9 @@
                 <a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
             </button>
         </div>
-        <a routerLink="products"><button mat-menu-item (click)="hideMenu()"><span>PRODUCTS</span></button></a>
+        <button mat-menu-item (click)="hideMenu()"><a routerLink="products"><span>PRODUCTS</span></a></button>
         <button mat-menu-item disabled ><span>GALLERY</span></button>
-        <a routerLink="contact"><button mat-menu-item (click)="hideMenu()"><span>CONTACT</span></button></a>
+        <button mat-menu-item (click)="hideMenu()"><a routerLink="contact"><span>CONTACT</span></a></button>
     </div>
 </div>
 

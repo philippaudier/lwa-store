@@ -8,7 +8,7 @@
   </div>
   
   <!-- <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count !== null && isShopping"> -->
-    <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count !== 0 && isShopping">  
+    <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count > 0 && isShopping">  
     <a routerLink="/shopping-cart" routerLinkActive="true">
       <button mat-raised-button color="transparent" >
         <!-- <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon> -->
