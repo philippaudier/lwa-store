@@ -6,17 +6,21 @@
     <div *ngIf="products" class="row content">
         <div *ngFor="let product of products" class="row mat card">
             <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)">
-            <mat-card class="example-card">
+            <mat-card>
                 <!-- <mat-card-header>
                 <mat-card-title></mat-card-title>
                 <mat-card-subtitle>Dog Breed</mat-card-subtitle>
                 </mat-card-header> -->
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
-                <mat-card-content class="mat card info">
-                    {{ product.price | currency:"EUR":"symbol"}}
+                
+                
+                <!-- <mat-card-content class="mat card info"> -->
+                    
                     <!-- <a routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)"> {{ product.name }} </a> -->
-                </mat-card-content>
+                <!-- </mat-card-content> -->
             </mat-card>
+            <div class="display-price">{{ product.price | currency:"EUR":"symbol"}}</div>
+            
         </a>
     </div>
     </div>

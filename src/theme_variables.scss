@@ -1,4 +1,5 @@
-/* For use in src/lib/core/theming/_palette.scss */
+
+// regular theme
 $md-primary: (
     50 : #adafc9,
     100 : #7e82ab,
@@ -131,13 +132,198 @@ $md-warn: (
     )
 );
 
+// sand theme
+/* For use in src/lib/core/theming/_palette.scss */
+$md-sand-primary: (
+    50 : #e8e9ea,
+    100 : #c6c9cc,
+    200 : #a1a5aa,
+    300 : #7b8187,
+    400 : #5e666e,
+    500 : #424b54,
+    600 : #3c444d,
+    700 : #333b43,
+    800 : #2b333a,
+    900 : #1d2329,
+    A100 : #72b8ff,
+    A200 : #3f9fff,
+    A400 : #0c85ff,
+    A700 : #0079f1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-sand-primary2: (
+    50 : #e6e8ec,
+    100 : #bfc6d0,
+    200 : #95a0b1,
+    300 : #6b7a91,
+    400 : #4b5e7a,
+    500 : #2b4162,
+    600 : #263b5a,
+    700 : #203250,
+    800 : #1a2a46,
+    900 : #101c34,
+    A100 : #729cff,
+    A200 : #3f79ff,
+    A400 : #0c55ff,
+    A700 : #0048f1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+$md-sand-accent: (
+    50 : #fcfaf6,
+    100 : #f8f3e9,
+    200 : #f4ecdb,
+    300 : #f0e4cd,
+    400 : #ecdec2,
+    500 : #e9d8b7,
+    600 : #e6d4b0,
+    700 : #e3cea7,
+    800 : #dfc89f,
+    900 : #d9bf90,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #fffaf1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-sand-warn: (
+    50 : #f6e7ea,
+    100 : #e8c4cb,
+    200 : #d99ca8,
+    300 : #ca7485,
+    400 : #be576b,
+    500 : #b33951,
+    600 : #ac334a,
+    700 : #a32c40,
+    800 : #9a2437,
+    900 : #8b1727,
+    A100 : #ffc1c8,
+    A200 : #ff8e9b,
+    A400 : #ff5b6e,
+    A700 : #ff4157,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #ffffff,
+    )
+);
+/* For use in src/lib/core/theming/_palette.scss */
+$md-sand-accent2: (
+    50 : #eee0e5,
+    100 : #d5b3be,
+    200 : #b98093,
+    300 : #9c4d67,
+    400 : #872647,
+    500 : #720026,
+    600 : #6a0022,
+    700 : #5f001c,
+    800 : #550017,
+    900 : #42000d,
+    A100 : #ff7785,
+    A200 : #ff4457,
+    A400 : #ff1129,
+    A700 : #f60019,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+
+
+
+
+
+// regular
 $lwa-primary: mat-palette($md-primary);
 $lwa-accent: mat-palette($md-warn);
 $lwa-warn: mat-palette($md-warn);
+// sand
+$lwa-sand-primary: mat-palette($md-sand-primary2);
+$lwa-sand-accent: mat-palette($md-sand-accent2);
+$lwa-sand-warn: mat-palette($md-sand-warn);
+
+/* $primary: mat-color($lwa-primary);
+$accent: mat-color($lwa-accent);
+$warn: mat-color($lwa-warn); */
 
 $primary: mat-color($lwa-primary);
 $accent: mat-color($lwa-accent);
 $warn: mat-color($lwa-warn);
+
+
 
 // Convert => mat-light-theme()
 $lwa-theme: mat-light-theme($lwa-primary, $lwa-accent);

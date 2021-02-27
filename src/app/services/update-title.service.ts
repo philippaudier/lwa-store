@@ -10,6 +10,7 @@ export class UpdateTitleService {
   private pageTitle: BehaviorSubject<string>;
   private productName: BehaviorSubject<string>;
   private lookProduct: BehaviorSubject<boolean>;
+  private onHomePage: BehaviorSubject<boolean>;
 
   constructor(
     private router: Router,
@@ -17,6 +18,7 @@ export class UpdateTitleService {
       this.pageTitle = new BehaviorSubject<string>('');
       this.productName = new BehaviorSubject<string>('');
       this.lookProduct = new BehaviorSubject<boolean>(false);
+      this.onHomePage = new BehaviorSubject<boolean>(false);
     }
 
     setTitle(value) {
@@ -43,6 +45,13 @@ export class UpdateTitleService {
     }
     getLookProduct() {
       return this.lookProduct.asObservable();
+    }
+
+    setOnHomePage(value) {
+      this.onHomePage.next(value);
+    }
+    getOnHomePage() {
+      return this.onHomePage.asObservable();
     }
 
 

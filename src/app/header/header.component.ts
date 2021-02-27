@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   public count: number;
   countHeader: number;
   pageTitle: string;
+  onHomePage = true;
   productTitle: string;
   onCheckout = false;
   isShopping = true;
@@ -53,6 +54,13 @@ export class HeaderComponent implements OnInit {
     this.cartUpdate.getCount().subscribe((value) => {
       this.countHeader = value;
     });
+    setTimeout(() => {
+      this.updateTitle.getOnHomePage().subscribe((value) => {
+        this.onHomePage = value;
+        console.log('onHomePage ? ' + this.onHomePage);
+      });
+    });
+    
     /* this.localStorageManager.get('count').subscribe((value) => {
       this.count = value;
       console.log('countHeader' + this.countHeader);

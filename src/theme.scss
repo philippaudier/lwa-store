@@ -5,7 +5,10 @@
 
 @include mat-core();
 
+// regular theme
 $lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
+// sand theme
+/* $lwa-theme: mat-light-theme($lwa-sand-primary, $lwa-sand-accent, $lwa-sand-warn); */
 // LWA typography
 $general-typography: mat-typography-config(
   $font-family: '"Forum", cursive',
@@ -18,9 +21,15 @@ $general-typography: mat-typography-config(
 // LWA theme
 @include angular-material-theme($lwa-theme);
 
+// regular theme
 $lwa-primary: mat-palette($md-primary);
 $lwa-accent: mat-palette($md-accent);
 $lwa-warn: mat-palette($md-warn);
+
+// sand theme
+/* $lwa-primary: mat-palette($md-sand-primary2);
+$lwa-accent: mat-palette($md-sand-accent2);
+$lwa-accent: mat-palette($md-sand-warn); */
 
 $lwa-color-palette: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
 

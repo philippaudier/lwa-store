@@ -24,7 +24,14 @@
             <p>{{productTitle}}</p>
         </div>
         <div class="logo mobile font size" *ngIf="!onCheckout && isShopping && !isDisplayed">
-            <p>{{pageTitle}}</p>
+            <p *ngIf="!onHomePage">{{pageTitle}}</p>
+            <a *ngIf="onHomePage"routerLink="/home" routerLinkActive="active">
+                <button mat-icon-button 
+                    class="example-icon favorite-icon"
+                    aria-label="logo">
+                    <img class="" src="assets/logo/logo-r.png" alt="LWA">
+                </button>
+            </a>
         </div>
         
         

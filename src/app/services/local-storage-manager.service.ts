@@ -57,7 +57,7 @@ export class LocalStorageManagerService {
 
   clear() {
     window.localStorage.clear();
-    this.router.navigate(['/products']);
+    this.router.navigate(['/home']);
   }
 
 }

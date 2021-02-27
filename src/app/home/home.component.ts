@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductManagerService } from '../services/product-manager.service';
@@ -18,10 +18,19 @@ export class HomeComponent implements OnInit {
   nonExistentProduct = false;
 
   constructor(
-    private updateTitle: UpdateTitleService
+    private updateTitle: UpdateTitleService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.updateTitle.setTitle('PRODUCTS');
+    if (this.router.url === '/home') {
+      this.updateTitle.setOnHomePage(true);
+    console.log('home onInit' + this.updateTitle.getOnHomePage());
+    } else {
+      this.updateTitle.setOnHomePage(false);
+    }
+    
   }
+
+  
 }
