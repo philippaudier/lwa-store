@@ -6,16 +6,17 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CartUpdateService {
-  public productCount: BehaviorSubject<number>;
-  public isShopping: BehaviorSubject<boolean>;
-  public onCheckout: BehaviorSubject<boolean>;
-  public cartProductQuantity: BehaviorSubject<number>;
+  private productCount: BehaviorSubject<number>;
+  private isShopping: BehaviorSubject<boolean>;
+  private onCheckout: BehaviorSubject<boolean>;
+  private cartProductQuantity: BehaviorSubject<number>;
   /* public checkoutData: any[]; */
   public checkoutData: any[];
   public total: number;
+  public onContact: BehaviorSubject<boolean>;
 
   // cart counter for "cart bar" at the bottom
-  public cartCounter: BehaviorSubject<number>;
+  private cartCounter: BehaviorSubject<number>;
 
   private trouve = false;
   constructor(
@@ -28,10 +29,12 @@ export class CartUpdateService {
     this.onCheckout = new BehaviorSubject<boolean>(false);
     this.cartProductQuantity = new BehaviorSubject<number>(0);
     this.cartCounter = new BehaviorSubject<number>(0);
+    this.onContact = new BehaviorSubject<boolean>(false);
   }
 
   setCount(count: number) {
     this.productCount.next(count);
+    console.log(this.productCount);
   }
 
   getCount(): Observable<number> {
@@ -39,7 +42,7 @@ export class CartUpdateService {
   }
 
    setCheckoutData(dataSource: any) {
-    
+
     dataSource.forEach((product: any) => {
       if (!this.checkoutData.find(p => p.idProduct === product.idProduct)) {
         this.checkoutData.push(product);
@@ -95,5 +98,13 @@ export class CartUpdateService {
 
   updateCartCounter(value) {
     this.cartCounter.next(value);
+  }
+
+  setOnContact(value) {
+    this.onContact.next(value);
+  }
+
+  getOnContact() {
+    return this.onContact.asObservable();
   }
 }

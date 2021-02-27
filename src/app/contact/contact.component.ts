@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Contact } from '../models/contact.model';
+import { CartUpdateService } from '../services/cart-update.service';
 import { ContactService } from '../services/contact.service';
 import { UpdateTitleService } from '../services/update-title.service';
 
@@ -27,13 +28,16 @@ export class ContactComponent implements OnInit {
     private formBuilder: FormBuilder,
     private contact: ContactService,
     private router: Router,
-    private updateTitle: UpdateTitleService
+    private updateTitle: UpdateTitleService,
+    private cartUpdate: CartUpdateService
   ) {}
 
   ngOnInit(): void {
 
     this.updateTitle.setTitle('CONTACT');
-
+    setTimeout(() => {
+      this.cartUpdate.setOnContact(true);
+    });
     this.FormData = this.formBuilder.group({
       Name: new FormControl('', [Validators.required]),
       Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
@@ -68,6 +72,12 @@ export class ContactComponent implements OnInit {
     }, error => {
     console.warn(error.responseText);
     console.log({ error });
+    });
+  }
+
+  ngOnDestroy() {
+    setTimeout(() => {
+      this.cartUpdate.setOnContact(false);
     });
   }
 }

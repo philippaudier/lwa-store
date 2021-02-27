@@ -5,6 +5,7 @@ import { CartUpdateService } from '../services/cart-update.service';
 import { Router } from '@angular/router';
 import { UpdateTitleService } from '../services/update-title.service';
 import { LocalStorageManagerService } from '../services/local-storage-manager.service';
+import { HeaderComponent } from '../header/header.component';
 
 
 
@@ -33,7 +34,8 @@ export class ShoppingCartComponent implements OnInit {
     private cartUpdate: CartUpdateService,
     private router: Router,
     private updateTitle: UpdateTitleService,
-    private localStorageManager: LocalStorageManagerService
+    private localStorageManager: LocalStorageManagerService,
+    private header: HeaderComponent
   ) {}
 
   ngOnInit(): void {

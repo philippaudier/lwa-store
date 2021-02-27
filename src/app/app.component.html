@@ -7,7 +7,7 @@
     <div class="separator" *ngIf="count > 0"></div>
   </div>
   
-  <div class="row cart button" *ngIf="!onCheckout">
+  <div class="row cart button" *ngIf="!onCheckout && !onContactPage">
     <a routerLink="/shopping-cart" routerLinkActive="true" *ngIf="count !== 0 && isShopping">
       <button mat-raised-button color="transparent" >
         <!-- <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon> -->

@@ -20,6 +20,7 @@ export class AppComponent {
   isShopping = true;
   onCheckout = false;
   cartProductQuantity = 0;
+  onContactPage = false;
 
   products: Product[];
   count = 0;
@@ -45,7 +46,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
     });
@@ -55,13 +55,12 @@ export class AppComponent {
     this.cartUpdate.getCartProductQuantity().subscribe((value) => {
       this.cartProductQuantity = value;
     });
-
     this.cartUpdate.getCount().subscribe((value) => {
     this.count = value;
-    console.log('init cart count' + value);
     });
-
+    this.cartUpdate.getOnContact().subscribe((value) => {
+      this.onContactPage = value;
+    });
     this.count = this.localStorageManager.get('count');
-    console.log('il y a ' + this.count + 'item dans le cadis');
   }
 }

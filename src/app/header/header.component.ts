@@ -18,7 +18,7 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
 })
 export class HeaderComponent implements OnInit {
 
-  count: number;
+  public count: number;
   countHeader: number;
   pageTitle: string;
   productTitle: string;
@@ -52,8 +52,14 @@ export class HeaderComponent implements OnInit {
     });
     this.cartUpdate.getCount().subscribe((value) => {
       this.countHeader = value;
+      console.log('countHeader' + this.countHeader);
     });
-
+    /* this.localStorageManager.get('count').subscribe((value) => {
+      this.count = value;
+      console.log('countHeader' + this.countHeader);
+    }); */
     this.count = this.localStorageManager.get('count');
+    console.log('localStorage number = ' + this.count);
+
   }
 }

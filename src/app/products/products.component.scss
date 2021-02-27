@@ -65,8 +65,9 @@
 
 .container .row.title {
 flex: 0 1 auto;
-
 padding-bottom: 32px;
+display: flex;
+flex-direction: column;
 }
 
 @media (max-width: 480px){
@@ -131,7 +132,7 @@ p {
 
 h2 {
     margin: 0;
-    text-align: center;
+    
 }
 
 h1 {
@@ -147,7 +148,6 @@ img {
     
     height: auto;
     margin: 0;
-    border: 1px solid #2B2D42;
     border-radius: 4px;
     
 }
@@ -160,4 +160,8 @@ img {
 .price {
     font-size: 24px;
     font-weight: bold;
+}
+
+.price-mobile {
+    text-align: center;
 }
