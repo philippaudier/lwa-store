@@ -34,8 +34,8 @@
         <a routerLink="shopping-cart" class="hide" *ngIf="!onCheckout">
             <button mat-icon-button aria-label="shopping-cart" class="cart-button">
                 <mat-icon 
-                    [matBadge]="count" 
-                    [matBadgeHidden]="count === 0"
+                    [matBadge]="countHeader" 
+                    [matBadgeHidden]="countHeader < 1"
                     matBadgeColor="accent" 
                     matBadgePosition="below after"
                     matBadgeSize="small"
