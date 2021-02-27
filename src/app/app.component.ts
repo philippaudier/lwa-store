@@ -5,6 +5,7 @@ import { setTokenSourceMapRange } from 'typescript';
 import { Product } from './models/product.model';
 import { CartManagerService } from './services/cart-manager.service';
 import { CartUpdateService } from './services/cart-update.service';
+import { LocalStorageManagerService } from './services/local-storage-manager.service';
 import { ProductManagerService } from './services/product-manager.service';
 
 @Component({
@@ -20,15 +21,14 @@ export class AppComponent {
   onCheckout = false;
   cartProductQuantity = 0;
 
-  
-
   products: Product[];
-  public count = 0;
+  count = 0;
 
   constructor(
     private cartUpdate: CartUpdateService,
     private productManager: ProductManagerService,
-    private cartManagerService: CartManagerService
+    private cartManagerService: CartManagerService,
+    private localStorageManager: LocalStorageManagerService
   ) {
 
   const firebaseConfig = {
@@ -57,8 +57,11 @@ export class AppComponent {
     });
 
     this.cartUpdate.getCount().subscribe((value) => {
-      this.count = value;
+    this.count = value;
+    console.log('init cart count' + value);
     });
 
+    this.count = this.localStorageManager.get('count');
+    console.log('il y a ' + this.count + 'item dans le cadis');
   }
 }

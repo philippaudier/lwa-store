@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import * as Hammer from 'hammerjs';
 import 'hammer-timejs';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -93,7 +94,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatBadgeModule,
     MatStepperModule,
     HammerModule,
-    MatDividerModule
+    MatDividerModule,
+    ClickOutsideModule
   ],
   providers: [
     {

@@ -14,6 +14,9 @@ export class CartUpdateService {
   public checkoutData: any[];
   public total: number;
 
+  // cart counter for "cart bar" at the bottom
+  public cartCounter: BehaviorSubject<number>;
+
   private trouve = false;
   constructor(
     private router: Router,
@@ -24,6 +27,7 @@ export class CartUpdateService {
     this.isShopping = new BehaviorSubject<boolean>(true);
     this.onCheckout = new BehaviorSubject<boolean>(false);
     this.cartProductQuantity = new BehaviorSubject<number>(0);
+    this.cartCounter = new BehaviorSubject<number>(0);
   }
 
   setCount(count: number) {
@@ -89,4 +93,7 @@ export class CartUpdateService {
     return this.cartProductQuantity.asObservable();
   }
 
+  updateCartCounter(value) {
+    this.cartCounter.next(value);
+  }
 }

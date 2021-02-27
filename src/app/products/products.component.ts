@@ -10,6 +10,7 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateTitleService } from '../services/update-title.service';
+import { LocalStorageManagerService } from '../services/local-storage-manager.service';
 
 interface Size {
   value: string;
@@ -48,6 +49,7 @@ export class ProductsComponent implements OnInit {
               private title: Title,
               private formBuilder: FormBuilder,
               private updateTitle: UpdateTitleService,
+              private localStorageManager: LocalStorageManagerService
               ) { }
 
 
@@ -99,12 +101,11 @@ export class ProductsComponent implements OnInit {
         this.productSubscription = this.productManagerService.currentProduct.subscribe(
           (product) => {
             if (product) {
-
               this.product = product;
-              //
+              // also increment cart counter value
+              this.localStorageManager.increment('count', JSON.stringify(product.idProduct));
               this.cartManagerService.set(JSON.stringify(product.idProduct), product);
               this.router.navigate(['/shopping-cart']);
-              // fin
             } else {
               this.nonExistentProduct = true;
             }

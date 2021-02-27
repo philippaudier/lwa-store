@@ -8,17 +8,17 @@
         <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
     </mat-menu>
  -->
-    <button mat-icon-button aria-label="checkout menu" (click)="onDisplayMenu()">
-        <mat-icon color="primary">keyboard_arrow_left</mat-icon>
+    <button mat-icon-button aria-label="checkout menu" (click)="displayMenuTrue()" id="arrow-button">
+        <mat-icon color="primary" id="arrow">keyboard_arrow_left</mat-icon>
     </button>
-    <div color="primary" class="menu" *ngIf="displayMenu">
+    <div color="primary" class="menu" *ngIf="displayMenu" (clickOutside)="onClickedOutside($event)" >
         <div class="logo">
             <!-- <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button class="example-icon favorite-icon" aria-label="logo" (click)="hideMenu()">
                 <img class="" src="assets/logo/logo-r.png" alt="LWA">
             </button>
             </a> -->
-            <button mat-icon-button aria-label="checkout menu" (click)="onDisplayMenu()">
+            <button mat-icon-button aria-label="checkout menu" (click)="hideMenu()">
                 <a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
             </button>
         </div>

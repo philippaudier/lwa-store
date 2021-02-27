@@ -14,7 +14,9 @@ export class CartManagerService {
 
   set(key: string, product: any): void {
     try {
-      localStorage.setItem(key, JSON.stringify(product));
+      if (localStorage.getItem(key) === null) {
+        localStorage.setItem(key, JSON.stringify(product));
+      }
     } catch (e) {
       console.error('Error saving to localStorage', e);
     }

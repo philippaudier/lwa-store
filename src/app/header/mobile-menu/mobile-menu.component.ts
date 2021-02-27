@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CartUpdateService } from 'src/app/services/cart-update.service';
 
 @Component({
@@ -10,24 +10,30 @@ export class MobileMenuComponent implements OnInit {
 
   onCheckout = false;
   displayMenu = false;
-  
+
 
   constructor(
     private cartUpdate: CartUpdateService
   ) { }
 
+  onClickedOutside(e: Event) {
+    const element: string = (e.target as Element).id;
+    console.log(element.toString());
+    if (element === 'arrow' || element === 'arrow-button') {
+    } else {
+      this.displayMenu = false;
+    }
+    console.log('clicked outside' + e);
+
+  }
   ngOnInit(): void {
     this.cartUpdate.getCheckoutState().subscribe((value) => {
       this.onCheckout = value;
     });
   }
 
-  onDisplayMenu() {
-    if (this.displayMenu) {
-      this.displayMenu = false;
-    } else {
-      this.displayMenu = true;
-    }
+  displayMenuTrue() {
+    this.displayMenu = true;
   }
 
   hideMenu() {

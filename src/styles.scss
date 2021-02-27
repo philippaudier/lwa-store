@@ -3,13 +3,8 @@
 //the theme.scss contains $custom-theme defined above
 @include angular-material-theme($lwa-color-palette);
 
-html, body { 
-    font-family: 'Forum', cursive;
+html, body {
     height: 100%;
     margin: 0;
     background-color: #F5F8DE;
-}
-
-.mat-typography {
-    font-family: 'Forum', cursive;
 }

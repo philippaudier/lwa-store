@@ -4,14 +4,15 @@
   </div>
   <div class="row content">
     <router-outlet></router-outlet>
-    <div class="separator"></div>
+    <div class="separator" *ngIf="count > 0"></div>
   </div>
   
   <div class="row cart button" *ngIf="!onCheckout">
     <a routerLink="/shopping-cart" routerLinkActive="true" *ngIf="count !== 0 && isShopping">
       <button mat-raised-button color="transparent" >
         <!-- <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon> -->
-        <p>{{count}} ITEM</p>
+        <p *ngIf="count < 2">{{count}} ITEM</p>
+        <p *ngIf="count > 1">{{count}} ITEMS</p>
       </button>
       </a>
       <!-- <a routerLink="/checkout" routerLinkActive="true"

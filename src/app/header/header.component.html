@@ -1,11 +1,11 @@
 <div class="container" id="container">
-    <div class="header title font size" *ngIf="!onCheckout && !isShopping && count < 2">
+    <div class="header title font size" *ngIf="!onCheckout && !isShopping && countHeader < 2">
         <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
-        <p>{{count}} ITEM</p>
+        <p>{{countHeader}} ITEM</p>
     </div>
-    <div class="header title font size" *ngIf="!onCheckout && !isShopping && count >= 2">
+    <div class="header title font size" *ngIf="!onCheckout && !isShopping && countHeader > 1">
         <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
-        <p>{{count}} ITEMS</p>
+        <p>{{countHeader}} ITEMS</p>
     </div>
     <mat-toolbar class="toolbar">
         <app-menu class="hide" *ngIf="!onCheckout"></app-menu>

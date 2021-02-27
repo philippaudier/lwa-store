@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product.model';
 import { Router } from '@angular/router';
 import { ProductManagerService } from 'src/app/services/product-manager.service';
 import { UpdateTitleService } from 'src/app/services/update-title.service';
+import { LocalStorageManagerService } from 'src/app/services/local-storage-manager.service';
 
 @Component({
   selector: 'app-list-products',
@@ -16,7 +17,8 @@ export class ListProductsComponent implements OnInit {
   constructor(
     private productManagerService: ProductManagerService,
     private router: Router,
-    private updateTitle: UpdateTitleService) { }
+    private updateTitle: UpdateTitleService,
+    private localStorageManager: LocalStorageManagerService) { }
 
   ngOnInit(): void {
     this.updateTitle.setTitle('PRODUCTS');

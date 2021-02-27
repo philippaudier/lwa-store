@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { CartManagerService } from '../services/cart-manager.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HeaderComponent } from '../header/header.component';
 import { CartUpdateService } from '../services/cart-update.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UpdateTitleService } from '../services/update-title.service';
+import { LocalStorageManagerService } from '../services/local-storage-manager.service';
 
 
 
@@ -16,10 +16,8 @@ import { UpdateTitleService } from '../services/update-title.service';
 export class ShoppingCartComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'quantity', 'price', 'delete'];
-  public dataSource: any[];
+  dataSource: any[];
   dataSourceLength: number;
-
-  /* public rowId: any = {}; */
 
   quantityFormGroup: FormGroup;
 
@@ -32,10 +30,10 @@ export class ShoppingCartComponent implements OnInit {
   constructor(
     private cartManagerService: CartManagerService,
     private formBuilder: FormBuilder,
-    private header: HeaderComponent,
     private cartUpdate: CartUpdateService,
     private router: Router,
-    private updateTitle: UpdateTitleService
+    private updateTitle: UpdateTitleService,
+    private localStorageManager: LocalStorageManagerService
   ) {}
 
   ngOnInit(): void {
@@ -104,7 +102,8 @@ export class ShoppingCartComponent implements OnInit {
     if (this.cartManagerService.get(key)) {
       this.cartManagerService.remove(key);
       this.cartUpdate.removeCheckoutData(key);
-    
+      // also decrement cart counter value
+      this.localStorageManager.decrement('count');
       this.ngOnInit();
     } else {
       console.log('this product doesnt exist');
