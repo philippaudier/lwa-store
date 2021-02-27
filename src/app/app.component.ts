@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { setTokenSourceMapRange } from 'typescript';
 import { Product } from './models/product.model';
@@ -16,11 +17,14 @@ import { ProductManagerService } from './services/product-manager.service';
 export class AppComponent {
   title = 'lwa-store';
 
+  
+
 
   isShopping = true;
   onCheckout = false;
   cartProductQuantity = 0;
   onContactPage = false;
+  isNavigating = false;
 
   products: Product[];
   count = 0;
@@ -29,7 +33,8 @@ export class AppComponent {
     private cartUpdate: CartUpdateService,
     private productManager: ProductManagerService,
     private cartManagerService: CartManagerService,
-    private localStorageManager: LocalStorageManagerService
+    private localStorageManager: LocalStorageManagerService,
+    private router: Router,
   ) {
 
   const firebaseConfig = {
@@ -46,6 +51,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    this.isNavigating = true;
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
     });
@@ -61,6 +67,12 @@ export class AppComponent {
     this.cartUpdate.getOnContact().subscribe((value) => {
       this.onContactPage = value;
     });
-    this.count = this.localStorageManager.get('count');
+    setTimeout(() => {
+      this.count = this.localStorageManager.get('count');
+    });
+    console.log('is navigating ? = ' + this.isNavigating);
+    console.log('is shopping ? = ' + this.isShopping);
+    console.log('on checkout ? = ' + this.onCheckout);
+    console.log('count ? = ' + this.count);
   }
 }

@@ -50,8 +50,10 @@ export class ShoppingCartComponent implements OnInit {
     // get cart length
     this.cartUpdate.setCount(this.dataSource?.length);
     //
-    this.setIsShopping();
-    this.enableCheckoutButton();
+    setTimeout(() => {
+      this.setIsShopping();
+      this.enableCheckoutButton();
+    });
     console.log(this.isEnabled);
   }
 
@@ -135,9 +137,18 @@ export class ShoppingCartComponent implements OnInit {
 
   enableCheckoutButton() {
     if (this.router.url === 'shopping-cart') {
-      this.isEnabled = true;
+      setTimeout(() => {
+        this.isEnabled = true;
+      });
     }
   }
+
+  clearCart() {
+    this.localStorageManager.clear();
+    this.ngOnInit();
+  }
+
+
 
   ngOnDestroy() {
     setTimeout(() => {

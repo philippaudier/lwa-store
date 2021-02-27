@@ -35,8 +35,10 @@
       </mat-form-field>
 
       <p class="text-danger">{{ errorMessage }}</p>
+      <div class="separator"></div> 
+      <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SEND</button>
     </form>
-    <div class="separator"></div> 
+    
   </div>
-  <button class="submit" mat-raised-button color="primary" type="submit" [disabled]="FormData.invalid">SEND</button>
+  
 </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { count } from 'rxjs/operators';
 import { CartManagerService } from './cart-manager.service';
 
@@ -10,7 +11,8 @@ export class LocalStorageManagerService {
 
 
   constructor(
-    private cartManagerService: CartManagerService
+    private cartManagerService: CartManagerService,
+    private router: Router
   ) { }
 
   increment(key: string, value: string): void {
@@ -51,6 +53,11 @@ export class LocalStorageManagerService {
     } catch (e) {
       console.error('Error removing data from localStorage');
     }
+  }
+
+  clear() {
+    window.localStorage.clear();
+    this.router.navigate(['/products']);
   }
 
 }
