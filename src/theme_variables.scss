@@ -300,6 +300,77 @@ $md-sand-accent2: (
     )
 );
 
+/* For use in src/lib/core/theming/_palette.scss */
+$md-sand-accent3: (
+    50 : #fcfaf9,
+    100 : #f8f3ef,
+    200 : #f3ece4,
+    300 : #eee4d9,
+    400 : #ebded1,
+    500 : #e7d8c9,
+    600 : #e4d4c3,
+    700 : #e0cebc,
+    800 : #ddc8b5,
+    900 : #d7bfa9,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary2: (
+    50 : #e4e5e8,
+    100 : #bbbec6,
+    200 : #8e92a0,
+    300 : #60667a,
+    400 : #3e465e,
+    500 : #1c2541,
+    600 : #19213b,
+    700 : #141b32,
+    800 : #11162a,
+    900 : #090d1c,
+    A100 : #5d76ff,
+    A200 : #2a4aff,
+    A400 : #0026f6,
+    A700 : #0022dc,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+
+
+
 
 
 

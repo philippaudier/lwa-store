@@ -18,13 +18,16 @@
                 <img class="" src="assets/logo/logo-r.png" alt="LWA">
             </button>
             </a> -->
+            <mat-divider></mat-divider>
             <button mat-icon-button aria-label="checkout menu" (click)="hideMenu()">
-                <a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
+                <a class="center" routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
             </button>
+            <mat-divider></mat-divider>
         </div>
-        <button mat-menu-item (click)="hideMenu()"><a routerLink="products"><span>PRODUCTS</span></a></button>
-        <button mat-menu-item disabled ><span>GALLERY</span></button>
-        <button mat-menu-item (click)="hideMenu()"><a routerLink="contact"><span>CONTACT</span></a></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="products"><span>PRODUCTS</span></a></button>
+        <button class="center" mat-menu-item disabled ><span>GALLERY</span></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="contact"><span>CONTACT</span></a></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a class="center" routerLink="contact"><img src="../../../assets/social/instagram.png" alt="instagram"></a></button>
     </div>
 </div>
 

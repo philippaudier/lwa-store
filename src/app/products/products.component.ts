@@ -64,7 +64,7 @@ export class ProductsComponent implements OnInit {
       size: ['', Validators.required]
     });
 
-    this.updateTitle.setTitle('PRODUCT');
+    this.updateTitle.setTitle('PRODUCTS');
 
     this.title.setTitle('PRODUCTS');
     this.product = new Product('', '', null, null);

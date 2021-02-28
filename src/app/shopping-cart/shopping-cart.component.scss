@@ -3,7 +3,6 @@
     text-align: center;
     flex-direction: column;
     padding-bottom: 32px;
-    margin-left: -16px;
     
     align-items: center;
     height: 100%;
@@ -42,6 +41,7 @@
     margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
     
 }
 
@@ -62,13 +62,19 @@
 /* ::ng-deep .mat-form-field-infix {
     top: -1em;
 } */
-.mat-form-field-wrapper{
+::ng-deep .mat-form-field-wrapper{
     padding-bottom: 0;
   }
 
-:host ::ng-deep .mat-form-field-infix {
+::ng-deep .mat-form-field-infix {
     margin: 0 !important;
     padding: 0px !important;
+    border: none;
+}
+
+.mat-form-field {
+    margin: 0;
+    border: 0;
 }
 
 
@@ -202,17 +208,39 @@ input {
 
 img {
     object-fit:cover;
-    max-width: 100%;
-    padding-top: 16px;
+    max-width: 332px;
+    
 }
 
-.product-name {
+// REFACTOR
+
+.flex-column {
     display: flex;
-    width: 33%;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
 }
 
-.product-price {
-    width: 33%;
-    display: flex;
-    justify-content: flex-end;
+.float-above {
+    position: absolute;
 }
+
+p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.grow-33 {
+    flex: 1;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+

@@ -1,7 +1,8 @@
 <div class="container" (swipeRight)="onSwipeRight()">
     <div class="row title" *ngIf="isLookingProduct">
-        <h1>{{ product.name}}</h1>
         <h2 class="price">{{ product.price | currency:"EUR":"symbol"}}</h2>
+        <h1>{{ product.name}}</h1>
+        
     </div>
     <div class="row conten">
         <div class="row product flex flow column">
@@ -9,7 +10,6 @@
                 <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
             </div>
             <div class="description">
-                <h2 class="price price-mobile">{{ product.price | currency:"EUR":"symbol"}}</h2>
                 <div class="row add">
                     <form [formGroup]="addToCartFormGroup" class="full width">
                         <mat-form-field appearance="fill" class="full width">

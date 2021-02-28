@@ -36,6 +36,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.updateTitle.getLookProduct().subscribe((value) => {
       this.isDisplayed = value;
     });
@@ -60,7 +61,6 @@ export class HeaderComponent implements OnInit {
         console.log('onHomePage ? ' + this.onHomePage);
       });
     });
-    
     /* this.localStorageManager.get('count').subscribe((value) => {
       this.count = value;
       console.log('countHeader' + this.countHeader);

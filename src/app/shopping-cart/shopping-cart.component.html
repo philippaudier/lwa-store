@@ -6,31 +6,36 @@
     <div  ng-template *ngIf="dataSource?.length; else noRecipes" class="ng template">
       <div *ngFor="let item of dataSource" class="row product">
         <div class="photo-resume">
+          <div class="flex-column">
+            <p class="product-name grow-33 align-left">{{item.name}}</p>
+            <div class="row quantity grow-33">
+              <form [formGroup]="quantityFormGroup" class="example-form">
+                <mat-form-field style="width:5vw" appearance="none">
+                    <input type="number" min="1" id="item.idProduct" matInput formControlName="quantity" required
+                    (input)="item.price = getProductBasePrice(item.idProduct) * this.quantityFormGroup.get('quantity').value"
+                    (input)="item.quantity = this.quantityFormGroup.get('quantity').value">
+                </mat-form-field>
+              </form>
+            </div>
+            <p class="product-price grow-33 align-right">{{item.price | currency:"EUR":"symbol"}}</p>
+            
+          </div>
+          
           <div class="row picture">
             <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
+            <button class="float-above" mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(item.idProduct)">
+              <mat-icon>clear</mat-icon>
+            </button>
           </div>
           <div class="resume">
             <div class="row information">
-              <p class="product-name">{{item.name}}</p>
-              <div class="row quantity">
-                <form [formGroup]="quantityFormGroup" class="example-form">
-                  <mat-form-field style="width:5vw" appearance="none">
-                    
-                      <input type="number" min="1" id="item.idProduct" matInput formControlName="quantity" required
-                      (input)="item.price = getProductBasePrice(item.idProduct) * this.quantityFormGroup.get('quantity').value"
-                      (input)="item.quantity = this.quantityFormGroup.get('quantity').value">
-                  </mat-form-field>
-              </form>
-              </div>
-              <p class="product-price">{{item.price | currency:"EUR":"symbol"}}</p>
+              
+              
+              
             </div>
           </div>
         </div>
-        <div class="row delete">
-          <button mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(item.idProduct)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </div>
+        
       </div>
       <div class="regular checkout">
         <button class="hide" routerLink="/checkout" routerLinkActive="true" mat-raised-button color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
