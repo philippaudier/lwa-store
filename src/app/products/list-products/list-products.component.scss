@@ -38,8 +38,10 @@ padding-bottom: 32px;
 }
 
 .row.mat.card {
-    margin-bottom: 34px;
+    margin-bottom: 32px;
     flex-grow: 1;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -67,6 +69,7 @@ mat-card {
     flex-direction: column;
     background-color:transparent;
     color: #E9D8B7;
+    padding: 0;
 }
 
 @media (min-width: 480px){
@@ -87,6 +90,11 @@ mat-card {
     font-weight: bold;
 }
 
+img {
+    padding-top: 16px;
+    object-fit:cover;
+
+}
 
 
 
