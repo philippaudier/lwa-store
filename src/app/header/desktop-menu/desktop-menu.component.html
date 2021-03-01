@@ -1,0 +1,38 @@
+<div class="desktop-header">
+    
+    <div class="menu-trigger"> <!-- left menu -->
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon color="primary">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" color="primary">
+            <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
+            <button mat-menu-item disabled><span>GALLERY</span></button>
+            <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
+        </mat-menu>
+
+    </div>
+    <div class="logo"> <!-- logo -->
+        <a routerLink="/home" routerLinkActive="active">
+            <button mat-icon-button 
+                aria-label="logo">
+                <img class="logo-lwa" src="assets/logo/logo-r.png" alt="LWA">
+            </button>
+        </a>
+    </div>
+    <div class="cart-link"> <!-- cart -->
+
+        <a routerLink="shopping-cart" class="hide" *ngIf="!onCheckout">
+            <button mat-icon-button aria-label="shopping-cart" class="cart-button">
+                <mat-icon 
+                    [matBadge]="productNumber" 
+                    [matBadgeHidden]="productNumber < 1"
+                    matBadgeColor="accent" 
+                    matBadgePosition="below after"
+                    matBadgeSize="small"
+                    matBadgeOverlap="true"
+                    >shopping_cart</mat-icon>
+            </button>
+        </a>
+    </div>
+</div>

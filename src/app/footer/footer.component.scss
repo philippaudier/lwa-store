@@ -1,16 +1,31 @@
-.container {
+.desktop-footer {
     display: flex;
-    padding: 64px 32px 64px 32px;
+    padding: 64px;
 }
 
-.container .footer {
+/* @media (min-width: 480px){
+    .desktop-footer {
+        margin-left: 34px;
+        margin-right: 34px;
+        
+    }
+} */
+
+@media (max-width: 480px){
+    .desktop-footer {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+
+
+.desktop-footer .footer {
     width: 25%;
     text-transform: capitalize;
-    color: white;
-
 }
 
-.container .footer.social .content {
+.desktop-footer .footer.social .content {
     display: flex;
     flex-direction: column;
 }
@@ -22,5 +37,42 @@ a {
 
 p {
     margin-bottom: 24px;
-    color: white;
+}
+
+// REFACTORING
+
+h4 {
+    padding: 0 8px;
+    margin: 0 0 24px;
+}
+
+nav.footernav {
+    padding: 0 32px 0 0;
+}
+
+.footernav h4 a {
+    padding: 0 0 0 0;
+    opacity: 1;
+}
+.footernav a {
+    padding: 9px 8px;
+    opacity: 0.7;
+}
+
+.row.cart.button {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    background-color: blue;
+  }
+
+@media (max-width: 480px){
+.row.cart.button{
+    display : none; 
+    visibility : hidden; 
+    }
 }

@@ -243,4 +243,16 @@ p {
     text-align: right;
 }
 
+// REFACTORING 2
 
+.page-title {
+    margin: 96px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        display: none;
+        visibility: hidden;
+    }
+}

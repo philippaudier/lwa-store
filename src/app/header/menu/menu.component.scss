@@ -3,9 +3,37 @@ a {
     color: #2B2D42;
 }
 
-button {
-    width: 40px;
-    height: 40px;
+.mobile-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
 }
 
+.mobile-header-logo {
+    width: 100%;
+    position: absolute;
+    top: 12px;
+    text-align: center;
+}
 
+.mobile-header-brandname {
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    text-align: center;
+}
+
+.logo-lwa {
+    width: 40px;
+}
+
+h1 {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.mobile-menu {
+    position: relative;
+    z-index: 10;
+}

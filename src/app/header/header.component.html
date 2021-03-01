@@ -1,5 +1,8 @@
-<div class="container" id="container">
-    <div class="header title font size" *ngIf="!onCheckout && !isShopping && countHeader < 2">
+<div class="header-container">
+    <app-desktop-menu class="hide-on-mobile"></app-desktop-menu>
+    <app-menu class="hide-on-desktop"></app-menu>
+</div>
+<!--     <div class="header title font size" *ngIf="!onCheckout && !isShopping && countHeader < 2">
         <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
         <p>{{countHeader}} ITEM</p>
     </div>
@@ -20,9 +23,6 @@
             </button>
             </a>
         </div>
-        <!-- <div class="logo mobile title font size" *ngIf="isDisplayed">
-            <p>{{productTitle}}</p>
-        </div> -->
         <div class="logo mobile font size" *ngIf="!onCheckout && isShopping">
             <p *ngIf="!onHomePage">{{pageTitle}}</p>
             <a *ngIf="onHomePage"routerLink="/home" routerLinkActive="active">
@@ -35,24 +35,9 @@
         </div>
         
         
-        <div class="logo checkout" *ngIf="onCheckout">
-            <img class="" src="assets/logo/logo-r.png" alt="LWA">
-        </div>
-        <a routerLink="shopping-cart" class="hide" *ngIf="!onCheckout">
-            <button mat-icon-button aria-label="shopping-cart" class="cart-button">
-                <mat-icon 
-                    [matBadge]="countHeader" 
-                    [matBadgeHidden]="countHeader < 1"
-                    matBadgeColor="accent" 
-                    matBadgePosition="below after"
-                    matBadgeSize="small"
-                    matBadgeOverlap="true"
-                    >shopping_cart</mat-icon>
-            </button>
-        </a>
+        
         <app-mobile-menu class="show"></app-mobile-menu>
-      </mat-toolbar>
-</div>
+      </mat-toolbar> -->
 
   
   

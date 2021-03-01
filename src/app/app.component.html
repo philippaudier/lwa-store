@@ -1,34 +1,20 @@
 <div class="container mat-typography">
+
+  <!-- HEADER -->
   <div class="row header">
     <app-header></app-header>
   </div>
+
+  <!-- CONTENT -->
   <div class="row content">
     <router-outlet></router-outlet>
     <div class="separator" *ngIf="count > 0"></div>
   </div>
   
-  <!-- <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count !== null && isShopping"> -->
-    <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count > 0 && isShopping">  
-    <a routerLink="/shopping-cart" routerLinkActive="true">
-      <button mat-raised-button color="transparent" >
-        <!-- <mat-icon aria-hidden="false" aria-label="cart" appearance="outline" >shopping_cart</mat-icon> -->
-        <p *ngIf="count < 2">{{count}} ITEM</p>
-        <p *ngIf="count > 1">{{count}} ITEMS</p>
-      </button>
-      </a>
-      <!-- <a routerLink="/checkout" routerLinkActive="true"
-      *ngIf="!isShopping">
-        <button mat-raised-button color="transparent">
-          <p  class="checkout button">CHECKOUT</p>
-        </button>
-        </a> -->
-        
-      
-      
-  </div>
-  
+  <!-- FOOTER -->
   <div class="row footer">
     <app-footer></app-footer>
   </div>
+
 </div>
 

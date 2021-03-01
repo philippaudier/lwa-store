@@ -1,22 +1,24 @@
-<div class="container">
-    <div class="footer products">
-        <p>products</p>
-        <div class="content">
-            <a routerLink="products"><span>LWA</span></a>
-        </div>
-    </div>
-    <div class="footer pages">
-        <p>pages</p>
-        <div class="content">
-            <a routerLink="contact"><span>contact</span></a>
-        </div>
-    </div>
-    <div class="footer social">
-        <p>social</p>
-        <div class="content">
-            <a routerLink="."><span>instagram</span></a>
-            <a routerLink="."><span>facebook</span></a>
-        </div>
-    </div>
+<div class="desktop-footer">
+    <nav class="footernav">
+        <h4><a class="exclude" routerLink="products">PRODUCTS</a></h4>
+        <a routerLink="products">LWA</a>
+    </nav>
+    <nav class="footernav">
+        <h4>PAGES</h4>
+        <a routerLink="contact">Contact</a>
+    </nav>
+    <nav class="footernav">
+        <h4>SOCIAL</h4>
+        <a routerLink=".">Instagram</a>
+    </nav>
 </div>
+
+<div class="row cart button" *ngIf="!onCheckout && !onContactPage && count > 0 && isShopping">  
+    <a routerLink="/shopping-cart" routerLinkActive="true">
+      <button mat-raised-button color="transparent" >
+        <p *ngIf="count < 2">{{count}} ITEM</p>
+        <p *ngIf="count > 1">{{count}} ITEMS</p>
+      </button>
+      </a>
+  </div>
 

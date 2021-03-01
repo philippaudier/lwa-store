@@ -1,50 +1,59 @@
-<div class="container" (swipeRight)="onSwipeRight()">
-    <div class="row title" *ngIf="isLookingProduct">
+
+<div class="product-container" (swipeRight)="onSwipeRight()">
+    <h1 class="page-title">PRODUCTS</h1>
+    <div class="product-price-title">
         <h2 class="price">{{ product.price | currency:"EUR":"symbol"}}</h2>
         <h1>{{ product.name}}</h1>
-        
     </div>
-    <div class="row conten">
-        <div class="row product flex flow column">
-            <div class="photo">
-                <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
-            </div>
-            <div class="description">
-                <div class="row add">
-                    <form [formGroup]="addToCartFormGroup" class="full width">
-                        <mat-form-field appearance="fill" class="full width">
-                            <mat-label>Size</mat-label>
-                            <mat-select value="SMALL" type="text" id="type" placeholder="Type de produit" formControlName="size" required>
-                                <mat-option *ngFor="let size of sizes" [value]="size.value">
-                                {{size.viewValue}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </form>
-                    <button mat-raised-button color="primary" (click)="addToCart()" class="full width">ADD TO CART</button>
-                    <div class="separator"></div>
-                    <p>
-                        6 oz., 100% Preshrunk combed ring spun Cotton
-                        (SUPeR SOFT)
-                        Standard Sizing / True To Size
-                        Seamless non-topstitched 7/8"collar
-                        Taped neck and shoulders
-                        7/8" double needle sleeve and bottom hems
-                    </p>
-                </div>
-            </div>
+    <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
+    <div class="product-images">
+        <div class="primary-image">
+            <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
         </div>
-        
-        
-        
-        <!-- <div class="row footer">
-            <p>Remove the product from the store:</p>
-            <button mat-icon-button color="primary" aria-label="remove" (click)="onClickRemoveProduct()">
-                <mat-icon>remove_circle_outline</mat-icon>
-            </button>
-        </div> -->
-        
-        <p *ngIf="nonExistentProduct">Ce produit n'existe pas</p>
+        <ul class="product-thumbnails">
+            <li>
+            </li>
+        </ul>
     </div>
-    
+    <div class="product-details">
+        <form [formGroup]="addToCartFormGroup" class="product-form">
+                <select class="" alue="SMALL" type="text" id="type" placeholder="Type de produit" formControlName="size" required>
+                    <option *ngFor="let size of sizes" [value]="size.value">
+                    {{size.viewValue}}
+                    </option>
+                </select>
+            <button class="button" mat-flat-button color="primary" (click)="addToCart()">ADD TO CART</button>
+        </form>
+        <div class="product-description">
+            <p>
+                6 oz., 100% Preshrunk combed ring spun Cotton
+                (SUPeR SOFT)
+                Standard Sizing / True To Size
+                Seamless non-topstitched 7/8"collar
+                Taped neck and shoulders
+                7/8" double needle sleeve and bottom hems
+            </p>
+        </div>
+    </div>
 </div>
+
+
+
+
+    <div class="container" >
+        <div class="row title" *ngIf="isLookingProduct">
+            
+            
+        </div>
+        <div class="row content">
+            <div class="row product flex flow column">
+                <div class="photo">
+                    
+                </div>
+                
+            </div>        
+            
+        </div>
+
+
+    

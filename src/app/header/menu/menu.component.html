@@ -1,8 +1,13 @@
-<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon color="primary">more_vert</mat-icon>
-</button>
-<mat-menu #menu="matMenu" color="primary">
-    <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
-    <button mat-menu-item disabled><span>GALLERY</span></button>
-    <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
-</mat-menu>
+<div class="mobile-header">
+    <div class="mobile-header-logo" *ngIf="onHomePage">
+        <a routerLink="/home" routerLinkActive="active">
+        <button mat-icon-button 
+            aria-label="logo">
+            <img class="logo-lwa" src="assets/logo/logo-r.png" alt="LWA">
+        </button>
+        </a>
+    </div>
+    <h1 class="mobile-header-brandname" *ngIf="!onHomePage">{{pageTitle}}</h1>
+    <app-mobile-menu class="mobile-menu"></app-mobile-menu>
+    
+</div>

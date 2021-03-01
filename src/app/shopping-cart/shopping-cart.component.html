@@ -1,8 +1,6 @@
 <div class="container">
 
-    <div class="row title">
-      <h1>CART</h1>
-    </div>
+    <h1 class="page-title">CART</h1>
     <div  ng-template *ngIf="dataSource?.length; else noRecipes" class="ng template">
       <div *ngFor="let item of dataSource" class="row product">
         <div class="photo-resume">

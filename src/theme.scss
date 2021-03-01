@@ -1,5 +1,6 @@
 // Google font Forum-Regular
 @import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import '~@angular/material/theming';
 @import './theme_variables.scss';
 
@@ -11,7 +12,8 @@ $lwa-theme: mat-light-theme($lwa-primary, $lwa-accent, $lwa-warn);
 /* $lwa-theme: mat-light-theme($lwa-sand-primary, $lwa-sand-accent, $lwa-sand-warn); */
 // LWA typography
 $general-typography: mat-typography-config(
-  $font-family: '"Forum", cursive',
+  /* $font-family: '"Forum", cursive', */
+  $font-family: '"Montserrat", sans-serif',
   $body-2:        mat-typography-level(14px, 24px, 600)  
 );
 

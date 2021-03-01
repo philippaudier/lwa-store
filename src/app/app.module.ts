@@ -39,6 +39,7 @@ import { CartUpdateService } from './services/cart-update.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
+import { DesktopMenuComponent } from './header/desktop-menu/desktop-menu.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -71,7 +72,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     CreateProductComponent,
     CheckoutComponent,
     FooterComponent,
-    MobileMenuComponent
+    MobileMenuComponent,
+    DesktopMenuComponent
   ],
   imports: [
     BrowserModule,

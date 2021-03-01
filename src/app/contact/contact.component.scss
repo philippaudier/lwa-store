@@ -1,5 +1,5 @@
 
-.container {
+/* .container {
     max-width: 1000px;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,6 @@
 
 
 .container .row {
-    /* border: 1px dotted grey; */
     width: 100%;
     
 }
@@ -30,7 +29,6 @@ padding-bottom: 32px;
 }
 
 .form {
-    /* flex: 1 1 auto; */
     min-width: 100%;
     
     
@@ -72,5 +70,62 @@ h1 {
         bottom: 0;
         left: 0;
         height: 64px;
+    }
+} */
+
+// REFACTORING
+
+// Responsiveness
+@media (max-width: 480px) {
+    .contact-form-block {
+        padding: 8px 32px 0;
+    }
+}
+@media (min-width: 480px) {
+    .contact-form-block {
+        padding: 32px 48px;
+    }
+}
+
+// ========================>
+
+.contact-form-block {
+    display: flex;
+    align-items: center;
+
+}
+
+label {
+    flex: 0 1 auto;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.button {
+    height: 64px;
+    background-color: black;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+
+h1 {
+    margin: 96px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    h1 {
+        display: none;
+        visibility: hidden;
     }
 }

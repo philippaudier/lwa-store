@@ -51,29 +51,9 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.isNavigating = true;
-    this.cartUpdate.getIsShopping().subscribe((value) => {
-      this.isShopping = value;
-    });
-    this.cartUpdate.getCheckoutState().subscribe((value) => {
-      this.onCheckout = value;
-    });
-    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
-      this.cartProductQuantity = value;
-    });
-    this.cartUpdate.getCount().subscribe((value) => {
-    this.count = value;
-    });
-    this.cartUpdate.getOnContact().subscribe((value) => {
-      this.onContactPage = value;
-    });
     setTimeout(() => {
       this.count = this.localStorageManager.get('count');
     });
-    console.log('is navigating ? = ' + this.isNavigating);
-    console.log('is shopping ? = ' + this.isShopping);
-    console.log('on checkout ? = ' + this.onCheckout);
-    console.log('on contactPage ? = ' + this.onContactPage);
     console.log('count ? = ' + this.count);
   }
 }

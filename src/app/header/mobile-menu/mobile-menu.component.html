@@ -1,33 +1,16 @@
-<div class="container" *ngIf="!onCheckout">
-    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon color="primary">more_vert</mat-icon>
+<div class="container typography" *ngIf="!onCheckout">
+    <button mat-icon-button (click)="displayMenuTrue()" id="arrow-button">
+        <mat-icon color="primary" id="arrow">keyboard_arrow_down</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" color="primary" class="menu">
-        <a routerLink="products"><button mat-menu-item><span>PRODUCTS</span></button></a>
-        <button mat-menu-item disabled><span>GALLERY</span></button>
-        <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
-    </mat-menu>
- -->
-    <button mat-icon-button aria-label="checkout menu" (click)="displayMenuTrue()" id="arrow-button">
-        <mat-icon color="primary" id="arrow">keyboard_arrow_left</mat-icon>
-    </button>
-    <div color="primary" class="menu" *ngIf="displayMenu" (clickOutside)="onClickedOutside($event)" >
-        <div class="logo">
-            <!-- <a routerLink="/home" routerLinkActive="active">
-            <button mat-icon-button class="example-icon favorite-icon" aria-label="logo" (click)="hideMenu()">
-                <img class="" src="assets/logo/logo-r.png" alt="LWA">
-            </button>
-            </a> -->
-            <mat-divider></mat-divider>
-            <button mat-icon-button aria-label="checkout menu" (click)="hideMenu()">
-                <a class="center" routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a>
-            </button>
-            <mat-divider></mat-divider>
+    <div color="primary" class="dropdown" *ngIf="displayMenu" (clickOutside)="onClickedOutside($event)" >
+        <button class="center" mat-menu-item (click)="hideMenu()"><a class="center" routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="products">PRODUCTS</a></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="home">GALLERY</a></button>
+        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="contact">CONTACT</a></button>
+        <button class="center" mat-menu-item routerLink="contact" (click)="hideMenu()"><img src="../../../assets/social/instagram.png" alt="instagram"></button>
+        <div class="bigcat-credit">
+            <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="home"><p class="bigcat-link">BIGCAt<img class="bigcat-logo" src="../../../assets/logo/BIgCAT.svg" alt="instagram"></p></a></button> 
         </div>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="products"><span>PRODUCTS</span></a></button>
-        <button class="center" mat-menu-item disabled ><span>GALLERY</span></button>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="contact"><span>CONTACT</span></a></button>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a class="center" routerLink="contact"><img src="../../../assets/social/instagram.png" alt="instagram"></a></button>
     </div>
 </div>
 
