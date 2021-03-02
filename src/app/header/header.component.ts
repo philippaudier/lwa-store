@@ -7,6 +7,7 @@ import { Product } from '../models/product.model';
 import { CartManagerService } from '../services/cart-manager.service';
 import { CartUpdateService } from '../services/cart-update.service';
 import { LocalStorageManagerService } from '../services/local-storage-manager.service';
+import { NewCartManagerService } from '../services/new-cart-manager.service';
 import { ProductManagerService } from '../services/product-manager.service';
 import { UpdateTitleService } from '../services/update-title.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
@@ -33,6 +34,7 @@ export class HeaderComponent implements OnInit {
     private cartUpdate: CartUpdateService,
     private updateTitle: UpdateTitleService,
     private localStorageManager: LocalStorageManagerService,
+    private newCartManager: NewCartManagerService
   ) { }
 
   ngOnInit(): void {
@@ -65,6 +67,10 @@ export class HeaderComponent implements OnInit {
       console.log('countHeader' + this.countHeader);
     }); */
     this.count = this.localStorageManager.get('count');
+
+    this.newCartManager.getTotalProduct().subscribe((value) => {
+      this.countHeader = value;
+    });
 
   }
 }

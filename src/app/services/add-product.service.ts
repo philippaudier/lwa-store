@@ -9,14 +9,14 @@ export class AddProductService {
 
   constructor() { }
 
-  addNewProduct(name: string, type: string, price: number) {
+  addNewProduct(name, type, price, description, stock) {
     return new Promise<number>(
         (resolve, reject) => {
-            const newProduct: Product = new Product(name, type, price);
+            const newProduct: Product = new Product(name, type, price, description, stock);
             this.getNextId().then( // Get next Id to assign it to the new group
                 (nextProductId) => {
                     newProduct.idProduct = nextProductId;
-                    newProduct.quantity = '1';
+                    newProduct.quantity = 1;
                     // Create new product
                     firebase.database().ref('/products/nextProductId').set(nextProductId + 1);
                     firebase.database().ref('/products/' + newProduct.idProduct).set(newProduct).then(

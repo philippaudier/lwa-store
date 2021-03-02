@@ -2,14 +2,14 @@
         <div class="create-product-title">
             <h2>Ajouter un produit</h2>
         </div>
-        <form [formGroup]="nameFormGroup" class="example-form">
-            <mat-form-field class="example-full-width">
+        <form [formGroup]="nameFormGroup">
+            <mat-form-field>
                 <mat-label>Nom</mat-label>
                 <input matInput placeholder="Nom du produit" type="text" id="name" formControlName="name" required>
             </mat-form-field>
         </form>
-        <form [formGroup]="typeFormGroup" class="example-form">
-            <mat-form-field class="example-full-width">
+        <form [formGroup]="typeFormGroup">
+            <mat-form-field>
                 <mat-label>Type</mat-label>
                 <mat-select type="text" id="type" placeholder="Type de produit" formControlName="type" required>
                     <mat-option *ngFor="let type of types" [value]="type.value">
@@ -18,11 +18,23 @@
                 </mat-select>
             </mat-form-field>
         </form>
-        <form [formGroup]="priceFormGroup" class="example-form">
-            <mat-form-field class="example-full-width">
+        <form [formGroup]="priceFormGroup">
+            <mat-form-field>
                 <mat-label>Prix</mat-label>
-                <input matInput type="text" placeholder="Prix du produit" id="price" formControlName="price" required>
+                <input matInput type="number" placeholder="Prix du produit" id="price" formControlName="price" required>
               </mat-form-field>
+        </form>
+        <form [formGroup]="descriptionFormGroup">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput type="text" placeholder="Description du produit" id="description" formControlName="description" required>
+              </mat-form-field>
+        </form>
+        <form [formGroup]="stockFormGroup">
+            <mat-form-field>
+                <mat-label>Quantité en stock</mat-label>
+                <input matInput placeholder="Quantité en stock" type="number" id="stock" formControlName="stock" required>
+            </mat-form-field>
         </form>
         <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="priceFormGroup.invalid">Ajouter à la vente</button>
         <p class="text-danger">{{ errorMessage }}</p>

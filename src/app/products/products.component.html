@@ -22,17 +22,10 @@
                     {{size.viewValue}}
                     </option>
                 </select>
-            <button class="button" mat-flat-button color="primary" (click)="addToCart()">ADD TO CART</button>
+            <button class="button" mat-flat-button color="primary" (click)="addToCart()" (click)="setProductQuantity()">ADD TO CART</button>
         </form>
         <div class="product-description">
-            <p>
-                6 oz., 100% Preshrunk combed ring spun Cotton
-                (SUPeR SOFT)
-                Standard Sizing / True To Size
-                Seamless non-topstitched 7/8"collar
-                Taped neck and shoulders
-                7/8" double needle sleeve and bottom hems
-            </p>
+            <p>{{product.description}}</p>
         </div>
     </div>
 </div>
@@ -40,20 +33,11 @@
 
 
 
-    <div class="container" >
+<!--     <div class="container" >
         <div class="row title" *ngIf="isLookingProduct">
             
             
-        </div>
-        <div class="row content">
-            <div class="row product flex flow column">
-                <div class="photo">
-                    
-                </div>
-                
-            </div>        
-            
-        </div>
-
+        </div> -->
+        
 
     

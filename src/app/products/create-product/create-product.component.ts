@@ -23,6 +23,8 @@ export class CreateProductComponent implements OnInit {
   nameFormGroup: FormGroup;
   typeFormGroup: FormGroup;
   priceFormGroup: FormGroup;
+  descriptionFormGroup: FormGroup;
+  stockFormGroup: FormGroup;
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -44,14 +46,22 @@ export class CreateProductComponent implements OnInit {
     this.priceFormGroup = this.formBuilder.group({
       price: ['', [Validators.required]]
     });
+    this.descriptionFormGroup = this.formBuilder.group({
+      description: ['', [Validators.required]]
+    });
+    this.stockFormGroup = this.formBuilder.group({
+      stock: ['', [Validators.required]]
+    });
   }
 
   onSubmit() {
     const name = this.nameFormGroup.get('name').value;
     const type = this.typeFormGroup.get('type').value;
     const price = this.priceFormGroup.get('price').value;
+    const description = this.descriptionFormGroup.get('description').value;
+    const stock = this.stockFormGroup.get('stock').value;
 
-    this.addproductService.addNewProduct(name, type, price).then(
+    this.addproductService.addNewProduct(name, type, price, description, stock).then(
       (newProductId) => {
         this.router.navigate(['/products', newProductId]);
         console.log('product created');

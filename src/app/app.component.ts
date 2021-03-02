@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { Product } from './models/product.model';
 import { CartUpdateService } from './services/cart-update.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
+import { NewCartManagerService } from './services/new-cart-manager.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AppComponent {
   constructor(
     private cartUpdate: CartUpdateService,
     private localStorageManager: LocalStorageManagerService,
+    private newCartManagerService: NewCartManagerService
   ) {
 
   const firebaseConfig = {
@@ -50,12 +52,42 @@ export class AppComponent {
     this.cartUpdate.getCartProductQuantity().subscribe((value) => {
       this.cartProductQuantity = value;
     });
-    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
+    this.newCartManagerService.getTotalProducts().subscribe((value) => {
     this.count = value;
     });
     this.cartUpdate.getOnContact().subscribe((value) => {
       this.onContactPage = value;
     });
+
+    this.setProductQuantity();
+
     /* this.count = this.localStorageManager.get('count'); */
+    console.log('isShopping? = ' + this.isShopping);
+    console.log('onCheckout? = ' + this.onCheckout);
+    console.log('onContactPage? = ' + this.onContactPage);
+    console.log('count? = ' + this.count);
+
   }
+
+  // TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
+  setProductQuantity() {
+    let total = 0;
+    Object.keys(localStorage).forEach(idProduct => {
+      const product = this.newCartManagerService.getProductByKey(idProduct);
+      if (product.idProduct) {
+        const localStorageProduct = this.newCartManagerService.getProductByKey(idProduct);
+        const quantity = this.convertToNumber(localStorageProduct.quantity);
+        total += quantity;
+      }
+    });
+    this.newCartManagerService.setTotalProduct(total);
+    console.log('total product is = ' + total);
+  }
+
+  convertToNumber(value: string) {
+    const numeric = Number(value);
+    return numeric;
+  }
+
+
 }

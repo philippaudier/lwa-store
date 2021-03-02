@@ -1,15 +1,15 @@
 <div class="container">
 
     <h1 class="page-title">CART</h1>
-    <ul  ng-template *ngIf="dataSource?.length; else noRecipes" class="ng template">
+    <ul  ng-template *ngIf="cart?.length; else noRecipes" class="ng template">
 
-      <li *ngFor="let item of dataSource" class="cart-item">
+      <li *ngFor="let product of cart" class="cart-item">
 
         <div class="item-image-details">
           <div class="item-image">
-            <img mat-card-image src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
+            <img src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
             <div class="cart-item item-image item-delete">
-              <button class="float-above" mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(item.idProduct)">
+              <button class="float-above" mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(product.idProduct)">
                 <mat-icon>clear</mat-icon>
               </button>
             </div>
@@ -17,8 +17,8 @@
           <div class="item-details">
 
             <a class="item-product-link" routerLink="/products/product.idProduct" routerLinkActive="active">
-              <span class="item-details-price">{{getProductBasePrice(item.idProduct) | currency:"EUR":"symbol"}}</span>
-              <span class="item-details-name">{{item.name}}</span>
+              <span class="item-details-price">{{getProductBasePrice(product.idProduct) | currency:"EUR":"symbol"}}</span>
+              <span class="item-details-name">{{product.name}}</span>
               <span class="item-details-option">size</span>
             </a>
             
@@ -27,15 +27,16 @@
         <div class="item-quantity-holder">
           <span class="quanty-label">QTY.</span>
           <form [formGroup]="quantityFormGroup" class="example-form">
-            <mat-form-field style="width:5vw" appearance="none">
-                <input type="number" value="item.quantity" min="1" id="item.idProduct" matInput formControlName="quantity" required
-                (input)="item.price = getProductBasePrice(item.idProduct) * this.quantityFormGroup.get('quantity').value"
-                (input)="item.quantity = this.quantityFormGroup.get('quantity').value"
-                (input)="updateProductQuantity(item.idProduct, this.quantityFormGroup.get('quantity').value)">
+            <mat-form-field >
+              <!-- <mat-label>Favorite food</mat-label> -->
+              <input #quantity matInput value={{product.quantity}} type="number"
+              (input)="product.price = getProductBasePrice(product.idProduct) * quantity.value"
+              (input)="updateQuantity(product.idProduct, quantity.value)"
+              (input)="setProductQuantity()">
             </mat-form-field>
           </form>
         </div>
-      
+        
         
       </li>
       
@@ -45,7 +46,7 @@
       <div class="regular checkout">
         <button class="checkout-button" mat-raised-button color="primary" type="submit" (click)="clearCart()">CLEAR CART</button>
       </div>
-      <div class="fixed-cart-footer"><p>SUBTOTAL {{getTotalCost() | currency:"EUR":"symbol"}}</p></div>  
+      <div class="fixed-cart-footer"><p>SUBTOTAL {{ getTotalCost() | currency:"EUR":"symbol"}}</p></div>  
       <div class="footer-cart-buttons">
         <button class="cart" routerLink="[/shopping-cart]" mat-raised-button type="submit">CONTINUE SHOPPING</button>
         <button routerLink="/checkout" mat-raised-button routerLinkActive="true" color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
@@ -55,7 +56,6 @@
       
      
     </ul>
-      
 </div>
     <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>
       

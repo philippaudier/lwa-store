@@ -3,14 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductManagerService } from '../services/product-manager.service';
-import { CartManagerService } from '../services/cart-manager.service';
-import { HeaderComponent } from '../header/header.component';
-import { CartUpdateService } from '../services/cart-update.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateTitleService } from '../services/update-title.service';
 import { LocalStorageManagerService } from '../services/local-storage-manager.service';
+import { NewCartManagerService } from '../services/new-cart-manager.service';
 
 interface Size {
   value: string;
@@ -34,7 +31,7 @@ export class ProductsComponent implements OnInit {
   product: Product;
   productSubscription: Subscription;
   nonExistentProduct = false;
-  dataSource: any[];
+  public dataSource: any[];
   isLookingProduct = false;
 
   addToCartFormGroup: FormGroup;
@@ -42,19 +39,21 @@ export class ProductsComponent implements OnInit {
   constructor(private productManagerService: ProductManagerService,
               private route: ActivatedRoute,
               private router: Router,
-              private cartManagerService: CartManagerService,
-              private header: HeaderComponent,
-              private cartUpdate: CartUpdateService,
-              private shoppingCart: ShoppingCartComponent,
               private title: Title,
               private formBuilder: FormBuilder,
               private updateTitle: UpdateTitleService,
-              private localStorageManager: LocalStorageManagerService
+              private localStorageManager: LocalStorageManagerService,
+
+              // REFACTORING
+              private newCartManagerService: NewCartManagerService
               ) { }
 
 
   ngOnInit(): void {
-
+    //
+    this.setProductQuantity();
+    this.product = new Product('', '', 0, '', 0);
+    //
     this.updateTitle.getLookProduct().subscribe((value) => {
       this.isLookingProduct = value;
     });
@@ -67,7 +66,6 @@ export class ProductsComponent implements OnInit {
     this.updateTitle.setTitle('PRODUCTS');
 
     this.title.setTitle('PRODUCTS');
-    this.product = new Product('', '', null, null);
     this.dataSource = [];
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
@@ -75,6 +73,7 @@ export class ProductsComponent implements OnInit {
           (product) => {
             if (product) {
               this.product = product;
+
               this.updateTitle.setProductName(this.product.name);
             } else {
               this.nonExistentProduct = true;
@@ -91,11 +90,13 @@ export class ProductsComponent implements OnInit {
     setTimeout(() => {
       this.updateTitle.setLookProductFalse();
     });
+    this.setProductQuantity();
   }
 
   addToCart() {
 
-    this.product = new Product('', '', null, null);
+    this.product = new Product('', '', 0, '', 0);
+    
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
         this.productSubscription = this.productManagerService.currentProduct.subscribe(
@@ -104,13 +105,16 @@ export class ProductsComponent implements OnInit {
               this.product = product;
               // also increment cart counter value
               this.localStorageManager.increment('count', JSON.stringify(product.idProduct));
-              this.cartManagerService.set(JSON.stringify(product.idProduct), product);
+              this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), product);
               this.router.navigate(['/shopping-cart']);
             } else {
               this.nonExistentProduct = true;
             }
           }
         );
+    });
+    setTimeout(() => {
+      this.setProductQuantity();
     });
   }
 
@@ -125,6 +129,26 @@ export class ProductsComponent implements OnInit {
 
   onSwipeRight() {
     this.router.navigate(['/products']);
+  }
+
+  // TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
+  setProductQuantity() {
+    let total = 0;
+    Object.keys(localStorage).forEach(idProduct => {
+      const product = this.newCartManagerService.getProductByKey(idProduct);
+      if (product.idProduct) {
+        const localStorageProduct = this.newCartManagerService.getProductByKey(idProduct);
+        const quantity = this.convertToNumber(localStorageProduct.quantity);
+        total += quantity;
+      }
+    });
+    this.newCartManagerService.setTotalProduct(total);
+    console.log('total product is = ' + total);
+  }
+  
+  convertToNumber(value: string) {
+    const numeric = Number(value);
+    return numeric;
   }
 
 }

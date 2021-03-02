@@ -34,7 +34,6 @@ export class CartUpdateService {
 
   setCount(count: number) {
     this.productCount.next(count);
-    console.log(this.productCount);
   }
 
   getCount(): Observable<number> {
@@ -48,12 +47,10 @@ export class CartUpdateService {
         this.checkoutData.push(product);
       }
     });
-    console.log(this.checkoutData);
   }
 
   removeCheckoutData(key: string) {
     this.checkoutData.splice(this.checkoutData.indexOf(key));
-    console.log('length = ' + this.checkoutData.length);
   }
 
   setTotalCost(total: number) {

@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.updateTitle.setOnHomePage(false);
+    setTimeout(() => {
+      this.updateTitle.setOnHomePage(false);
+    });
+    
   }
 }

@@ -28,6 +28,8 @@ export class ListProductsComponent implements OnInit {
         this.products = data;
       }
     );
+
+    
   }
 
   onClickAddProduct() {

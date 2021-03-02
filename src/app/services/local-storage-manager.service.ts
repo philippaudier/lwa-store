@@ -17,7 +17,7 @@ export class LocalStorageManagerService {
 
   increment(key: string, value: string): void {
     try {
-      if (this.cartManagerService.get(value) === null) {
+      if (this.cartManagerService.getProductByKey(value) === null) {
         const addCount = JSON.parse(localStorage.getItem(key)) + 1;
         console.log('addCount = ' + addCount);
         localStorage.setItem(key, JSON.stringify(addCount));
