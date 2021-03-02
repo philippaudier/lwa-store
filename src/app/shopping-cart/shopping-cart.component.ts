@@ -26,6 +26,8 @@ export class ShoppingCartComponent implements OnInit {
   totalCheckoutCost: number;
   isEnabled = false;
 
+  productTotalQuantity = 0;
+
   @Input() quantity: number;
 
   constructor(
@@ -156,6 +158,26 @@ export class ShoppingCartComponent implements OnInit {
       this.isEnabled = false;
       console.log(this.isEnabled);
     });
+  }
+
+  updateProductQuantity(idProduct, value) {
+    this.dataSource.forEach(product => {
+      if (product.idProduct === idProduct) {
+        product.quantity = value;
+      }
+      console.log(product.quantity);
+    });
+    this.setNumberProducts();
+  }
+
+  setNumberProducts() {
+    this.productTotalQuantity = 0;
+    this.dataSource.forEach(product => {
+      this.productTotalQuantity += this.convertToNumber(product.quantity);
+      console.log(product.quantity);
+    });
+    this.cartUpdate.setCartProductQuantity(this.productTotalQuantity);
+    console.log('total product !!!!! = ' + this.productTotalQuantity);
   }
 }
 

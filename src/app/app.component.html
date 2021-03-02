@@ -14,7 +14,15 @@
   <!-- FOOTER -->
   <div class="row footer">
     <app-footer></app-footer>
+    
   </div>
-
+  <div class="row cart button" *ngIf="!onCheckout && !onContactPage && count > 0 && isShopping">  
+    <a routerLink="/shopping-cart" routerLinkActive="true">
+      <button mat-raised-button color="transparent" >
+        <p *ngIf="count < 2">{{count}} ITEM</p>
+        <p *ngIf="count > 1">{{count}} ITEMS</p>
+      </button>
+      </a>
+  </div>
 </div>
 

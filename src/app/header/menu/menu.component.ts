@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
+import { CartUpdateService } from 'src/app/services/cart-update.service';
+import { LocalStorageManagerService } from 'src/app/services/local-storage-manager.service';
 import { UpdateTitleService } from 'src/app/services/update-title.service';
 
 @Component({
@@ -10,22 +13,51 @@ export class MenuComponent implements OnInit {
 
   onHomePage = true;
   pageTitle: string;
+  public count: number;
+  countHeader: number;
+  productTitle: string;
+  onCheckout = false;
+  isShopping = true;
+  isDisplayed = false;
+
+  products: Product[];
 
   constructor(
-    private updateTitle: UpdateTitleService
+    private updateTitle: UpdateTitleService,
+    private cartUpdate: CartUpdateService,
+    private localStorageManager: LocalStorageManagerService
   ) { }
 
   ngOnInit(): void {
-    this.updateTitle.getOnHomePage().subscribe((value) => {
-      this.onHomePage = value;
-      console.log('onHomePage ? ' + this.onHomePage);
+    setTimeout(() => {
+      this.updateTitle.getOnHomePage().subscribe((value) => {
+        this.onHomePage = value;
+      });
     });
     setTimeout(() => {
       this.updateTitle.getTitle().subscribe((value) => {
         this.pageTitle = value;
-        console.log(this.pageTitle);
       });
     });
+    this.updateTitle.getLookProduct().subscribe((value) => {
+      this.isDisplayed = value;
+    });
+    this.cartUpdate.getCheckoutState().subscribe((value) => {
+      this.onCheckout = value;
+    });
+    this.updateTitle.getProductName().subscribe((value) => {
+      this.productTitle = value;
+    });
+    this.cartUpdate.getIsShopping().subscribe((value) => {
+      this.isShopping = value;
+    });
+    /* this.localStorageManager.get('count').subscribe((value) => {
+      this.count = value;
+      console.log('countHeader' + this.countHeader);
+    }); */
+    this.count = this.localStorageManager.get('count');
+    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
+      this.countHeader = value;
+    });
   }
-
 }

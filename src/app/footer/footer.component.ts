@@ -47,9 +47,5 @@ export class FooterComponent implements OnInit {
       this.onContactPage = value;
     });
     this.count = this.localStorageManager.get('count');
-    console.log('count ????????????????????? = ' + this.count);
-    console.log('onCheckout ? ' + this.onCheckout);
-    console.log('onContactPage ? ' + this.onContactPage);
-    console.log('isShopping ? ' + this.isShopping);
   }
 }

@@ -1,4 +1,5 @@
 <div class="mobile-header">
+    
     <div class="mobile-header-logo" *ngIf="onHomePage">
         <a routerLink="/home" routerLinkActive="active">
         <button mat-icon-button 
@@ -7,7 +8,21 @@
         </button>
         </a>
     </div>
-    <h1 class="mobile-header-brandname" *ngIf="!onHomePage">{{pageTitle}}</h1>
+
+    <div class="mobile-header-cart-container">
+        <div class="mobile-header-cart" *ngIf="!onCheckout && !isShopping && countHeader < 2">
+            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+            <p>{{countHeader}} ITEM</p>
+        </div>
+        <div class="mobile-header-cart" *ngIf="!onCheckout && !isShopping && countHeader > 1">
+            <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
+            <p>{{countHeader}} ITEMS</p>
+        </div>
+    </div>
+    
+    
+    <h1 class="mobile-header-brandname" *ngIf="!onHomePage && !onCheckout && isShopping" >{{pageTitle}}</h1>
+    
     <app-mobile-menu class="mobile-menu"></app-mobile-menu>
     
 </div>

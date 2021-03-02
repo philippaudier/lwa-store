@@ -36,6 +36,5 @@ export class ListProductsComponent implements OnInit {
 
   setProductName(value) {
     this.updateTitle.setProductName(value);
-    console.log('TRUE NAME = ' + value);
   }
 }

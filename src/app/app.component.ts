@@ -1,13 +1,9 @@
-import { Component, HostListener } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import firebase from 'firebase';
-import { setTokenSourceMapRange } from 'typescript';
 import { Product } from './models/product.model';
-import { CartManagerService } from './services/cart-manager.service';
 import { CartUpdateService } from './services/cart-update.service';
 import { LocalStorageManagerService } from './services/local-storage-manager.service';
-import { ProductManagerService } from './services/product-manager.service';
+
 
 @Component({
   selector: 'app-root',
@@ -15,26 +11,19 @@ import { ProductManagerService } from './services/product-manager.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'lwa-store';
-
-  
-
-
   isShopping = true;
   onCheckout = false;
   cartProductQuantity = 0;
   onContactPage = false;
   isNavigating = false;
-
   products: Product[];
   count = 0;
 
   constructor(
     private cartUpdate: CartUpdateService,
-    private productManager: ProductManagerService,
-    private cartManagerService: CartManagerService,
     private localStorageManager: LocalStorageManagerService,
-    private router: Router,
   ) {
 
   const firebaseConfig = {
@@ -51,9 +40,22 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.count = this.localStorageManager.get('count');
+    this.isNavigating = true;
+    this.cartUpdate.getIsShopping().subscribe((value) => {
+      this.isShopping = value;
     });
-    console.log('count ? = ' + this.count);
+    this.cartUpdate.getCheckoutState().subscribe((value) => {
+      this.onCheckout = value;
+    });
+    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
+      this.cartProductQuantity = value;
+    });
+    this.cartUpdate.getCartProductQuantity().subscribe((value) => {
+    this.count = value;
+    });
+    this.cartUpdate.getOnContact().subscribe((value) => {
+      this.onContactPage = value;
+    });
+    /* this.count = this.localStorageManager.get('count'); */
   }
 }

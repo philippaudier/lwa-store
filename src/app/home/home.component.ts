@@ -23,14 +23,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.router.url === '/home') {
-      this.updateTitle.setOnHomePage(true);
-    console.log('home onInit' + this.updateTitle.getOnHomePage());
-    } else {
-      this.updateTitle.setOnHomePage(false);
-    }
-    
+    this.updateTitle.setOnHomePage(true);
   }
 
-  
+  ngOnDestroy() {
+    this.updateTitle.setOnHomePage(false);
+  }
 }

@@ -59,5 +59,4 @@ export class LocalStorageManagerService {
     window.localStorage.clear();
     this.router.navigate(['/home']);
   }
-
 }

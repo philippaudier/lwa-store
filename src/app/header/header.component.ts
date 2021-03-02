@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.updateTitle.getOnHomePage().subscribe((value) => {
         this.onHomePage = value;
-        console.log('onHomePage ? ' + this.onHomePage);
       });
     });
     /* this.localStorageManager.get('count').subscribe((value) => {
