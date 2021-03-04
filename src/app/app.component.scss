@@ -101,18 +101,18 @@
 
 .container .row.footer {
   flex: 0 1 auto;
-  width: 100%;
   color: black;
   padding: 64px 0 96px 0;
   /* background-color: #2b2d42; */
 }
 
-@media (max-width: 480px){
-  .container .row.footer{
-      display : none;    
-      visibility : hidden; 
+@media (max-width: 480px) {
+  .container .row.footer {
+    padding: 32px;
   }
 }
+
+
 
 .row.cart.button {
   position: fixed;
@@ -152,7 +152,7 @@ mat-progress-bar {
 }
 
 ::ng-deep .mat-progress-bar {
-  border-radius: 2px;
+  border-radius: 0;
 }
 
 /* mat-progress-bar {

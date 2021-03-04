@@ -31,7 +31,7 @@
           <form [formGroup]="quantityFormGroup" class="example-form">
             <mat-form-field >
               <!-- <mat-label>Favorite food</mat-label> -->
-              <input #quantity matInput autofocus value={{product.quantity}} type="number"
+              <input #quantity matInput value={{product.quantity}} type="number"
               (input)="updateQuantity(product.idProduct, quantity.value)"
               (input)="setProductQuantity()"
               (input)="this.calculTotal()"

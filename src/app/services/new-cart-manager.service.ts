@@ -149,7 +149,7 @@ export class NewCartManagerService {
     }
   } */
 
-  remove(key: string) {
+  remove(key: string): void {
     try {
       localStorage.removeItem(key);
     } catch (e) {
@@ -157,7 +157,7 @@ export class NewCartManagerService {
     }
   }
 
-  convertToNumber(value: string) {
+  convertToNumber(value: string): number {
     const numeric = Number(value);
     return numeric;
   }

@@ -1,10 +1,18 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Event as RouterEvent, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { Product } from './models/product.model';
 import { CartUpdateService } from './services/cart-update.service';
 import { NewCartManagerService } from './services/new-cart-manager.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
+
+
+window.onload = () => {
+  setTimeout(() => {
+    // This hides the address bar:
+    window.scrollTo(0, 1);
+  }, 0);
+};
 
 @Component({
   selector: 'app-root',
@@ -24,7 +32,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   products: Product[];
   count = 0;
-  
+
 
   constructor(
     private cartUpdate: CartUpdateService,
@@ -45,10 +53,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   }
-
-
-
-
+  
   ngOnInit(): void {
     this.isNavigating = true;
     this.cartUpdate.getIsShopping().subscribe((value) => {

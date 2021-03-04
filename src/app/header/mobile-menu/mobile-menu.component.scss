@@ -74,7 +74,7 @@ img {
 
 // REFACTORING
 .container.typography {
-    position: relative;
+    
     z-index: 9;
 }
 
@@ -86,9 +86,10 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 62px;
+    padding: 0 22px;
     width: 100%;
-    padding: 22px;
+    height: 62px;
+    background-color: #E9D8B7;
 }
 
 .dropdown {
@@ -96,7 +97,11 @@ img {
     position: fixed;
     left: 0;
     top: 0;
-    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     -webkit-animation: fadein 300ms; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 300ms; /* Firefox < 16 */
     -ms-animation: fadein 300ms; /* Internet Explorer */
@@ -110,7 +115,7 @@ img {
 
 .philly-credit {
     padding: 24px;
-    
+    width: 100%;
 }
 
 p.philly-link {
@@ -128,6 +133,11 @@ p.philly-link {
     font-family: 'Quattrocento Sans', sans-serif;
 }
 
-button {
-    border: none;
+
+.arrow-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    background-color: transparent;
 }

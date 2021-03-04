@@ -11,12 +11,18 @@
     }
 } */
 
+.mobile-footer {
+
+}
+
 @media (max-width: 480px){
     .desktop-footer {
         display: none;
         visibility: hidden;
     }
 }
+
+
 
 
 
@@ -69,7 +75,25 @@ nav.footernav {
     left: 0; */
   }
 
-@media (max-width: 480px){
+.row.cart.button {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+
+.row.cart.button button {
+    width: 100%;
+    height: 64px;
+    background-color:#E9D8B7;
+}
+
+.row.cart.button p {
+    margin: 0;
+}
+
+@media (min-width: 480px){
 .row.cart.button{
     display : none; 
     visibility : hidden; 

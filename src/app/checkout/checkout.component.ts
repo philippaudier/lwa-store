@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartUpdateService } from '../services/cart-update.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
@@ -13,7 +13,7 @@ interface Country {
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   countries: Country[] = [
     {value: 'FRANCE', viewValue: 'FRANCE'},
@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     setTimeout(() => {
       this.cartUpdate.setCheckoutState(false);
     });

@@ -57,7 +57,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(data: any): void {
-    
     this.contact.senMessage(data)
     .subscribe(response => {
     this.router.navigate(['/home']);

@@ -32,7 +32,7 @@ export class CartUpdateService {
     this.onContact = new BehaviorSubject<boolean>(false);
   }
 
-  setCount(count: number) {
+  setCount(count: number): void {
     this.productCount.next(count);
   }
 
@@ -40,7 +40,7 @@ export class CartUpdateService {
     return this.productCount.asObservable();
   }
 
-   setCheckoutData(dataSource: any) {
+   setCheckoutData(dataSource: any): void {
 
     dataSource.forEach((product: any) => {
       if (!this.checkoutData.find(p => p.idProduct === product.idProduct)) {
@@ -49,15 +49,15 @@ export class CartUpdateService {
     });
   }
 
-  removeCheckoutData(key: string) {
+  removeCheckoutData(key: string): void {
     this.checkoutData.splice(this.checkoutData.indexOf(key));
   }
 
-  setTotalCost(total: number) {
+  setTotalCost(total: number): void {
     this.total = total;
   }
 
-  getTotalCost() {
+  getTotalCost(): number {
     return this.total;
   }
 
@@ -65,7 +65,7 @@ export class CartUpdateService {
     return this.checkoutData;
   }
 
-  setIsShopping() {
+  setIsShopping(): void {
     if (this.router.url !== '/shopping-cart') {
       this.isShopping.next(true);
     } else {
@@ -73,35 +73,35 @@ export class CartUpdateService {
     }
   }
 
-  getIsShopping() {
+  getIsShopping(): Observable<boolean> {
     return this.isShopping.asObservable();
   }
 
-  setCheckoutState(value) {
+  setCheckoutState(value): void {
     this.onCheckout.next(value);
   }
 
-  getCheckoutState() {
+  getCheckoutState(): Observable<boolean> {
     return this.onCheckout.asObservable();
   }
 
-  setCartProductQuantity(value) {
+  setCartProductQuantity(value): void {
     this.cartProductQuantity.next(value);
   }
 
-  getCartProductQuantity() {
+  getCartProductQuantity(): Observable<number> {
     return this.cartProductQuantity.asObservable();
   }
 
-  updateCartCounter(value) {
+  updateCartCounter(value): void {
     this.cartCounter.next(value);
   }
 
-  setOnContact(value) {
+  setOnContact(value): void {
     this.onContact.next(value);
   }
 
-  getOnContact() {
+  getOnContact(): Observable<boolean> {
     return this.onContact.asObservable();
   }
 }

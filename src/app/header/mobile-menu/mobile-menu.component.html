@@ -1,15 +1,15 @@
 <div class="container typography" *ngIf="!onCheckout" [@fade]="'in'">
-    <button mat-icon-button (click)="displayMenuTrue()" id="arrow-button">
+    <button class="arrow-button" mat-icon-button (click)="displayMenuTrue()" id="arrow-button">
         <mat-icon color="primary" id="arrow">keyboard_arrow_down</mat-icon>
     </button>
     <div color="primary" class="dropdown" *ngIf="displayMenu" (clickOutside)="onClickedOutside($event)" >
-        <button class="center" mat-menu-item (click)="hideMenu()"><a class="center" routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a></button>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="products">PRODUCTS</a></button>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="home">GALLERY</a></button>
-        <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="contact">CONTACT</a></button>
-        <a href="https://instagram.com/prototyp.lwa?igshid=15ow9qwtlmx6p"><button class="center" mat-menu-item (click)="hideMenu()"><img src="../../../assets/social/instagram.png" alt="instagram"></button></a>
+        <button mat-flat-button class="center" (click)="hideMenu()"><a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a></button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/products">PRODUCT</button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/home">GALLERY</button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/contact">CONTACT</button>
+        <a class="center" href="https://instagram.com/prototyp.lwa?igshid=15ow9qwtlmx6p"><button mat-flat-button class="center" (click)="hideMenu()"><img src="../../../assets/social/instagram.png" alt="instagram"></button></a>
         <div class="philly-credit">
-            <button class="center" mat-menu-item (click)="hideMenu()"><a routerLink="home"><p class="philly-link">PHillY</p></a></button> 
+            <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/home"><p class="philly-link">PHillY</p></button> 
         </div>
     </div>
 </div>

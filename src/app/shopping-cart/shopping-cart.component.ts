@@ -99,14 +99,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     });
   }
 
-  calculTotal() {
-    
+  calculTotal(): void {
     let total = 0;
     this.cart.forEach(product => {
       total += product.price * product.quantity;
     });
     this.totalCost = total;
-    
   }
 
   updateQuantity(key: string, value): void {
