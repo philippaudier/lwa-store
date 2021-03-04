@@ -117,15 +117,16 @@ p.philly-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 4px;
     margin: 0 0 0 0;
-    background-color: rgba($color: #000000, $alpha: 0.1);
+    background-color: rgba($color: #000000, $alpha: 0.5);
     width: 64px;
     height: 32px;
+    color: #E9D8B7;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 button {
     border: none;
 }
-
