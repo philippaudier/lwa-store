@@ -1,6 +1,12 @@
 <div class="desktop-header">
-    
-    <div class="menu-trigger"> <!-- left menu -->
+    <div class="header-item header-nav">
+        <ul class="header-nav-pages">
+            <li><a routerLink="products">PRODUCTS</a></li>
+            <li><a routerLink="home">GALLERY</a></li>
+            <li><a routerLink="contact">CONTACT</a></li>
+        </ul>
+    </div>
+    <!-- <div class="menu-trigger">
 
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon color="primary">more_vert</mat-icon>
@@ -11,7 +17,7 @@
             <a routerLink="contact"><button mat-menu-item><span>CONTACT</span></button></a>
         </mat-menu>
 
-    </div>
+    </div> -->
     <div class="logo"> <!-- logo -->
         <a routerLink="/home" routerLinkActive="active">
             <button mat-icon-button 

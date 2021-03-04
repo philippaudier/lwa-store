@@ -117,9 +117,15 @@ label {
 }
 
 .button {
+    
+}
+
+button {
     height: 64px;
     background-color: black;
     width: 100%;
+    border-radius: 0;
+    color: #E9D8B7;
 }
 
 

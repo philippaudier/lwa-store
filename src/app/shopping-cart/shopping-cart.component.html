@@ -31,11 +31,11 @@
           <form [formGroup]="quantityFormGroup" class="example-form">
             <mat-form-field >
               <!-- <mat-label>Favorite food</mat-label> -->
-              <input #quantity matInput value={{product.quantity}} type="number"
+              <input #quantity matInput autofocus value={{product.quantity}} type="number"
               (input)="updateQuantity(product.idProduct, quantity.value)"
               (input)="setProductQuantity()"
-              (input)="calculTotal()"
-              (input)="ngOnInit()">
+              (input)="this.calculTotal()"
+              (mouseout)="ngOnInit()">
             </mat-form-field>
           </form>
         </div>
@@ -44,22 +44,19 @@
       </li>
       
       <div class="regular checkout">
-        <button class="hide" routerLink="/checkout" routerLinkActive="true" mat-raised-button color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
+        <button class="hide checkout-button" routerLink="/checkout" routerLinkActive="true" mat-flat-button color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
       </div>
       <div class="regular checkout">
-        <button class="checkout-button" mat-raised-button color="primary" type="submit" (click)="clearCart()">CLEAR CART</button>
-      </div>
-      <div class="fixed-cart-footer"><p>SUBTOTAL {{ totalCost | currency:"EUR":"symbol"}}</p></div>  
+        <button class="checkout-button" mat-flat-button color="primary" type="submit" (click)="clearCart()">CLEAR CART</button>
+      </div> 
       <div class="footer-cart-buttons">
-        <button class="cart" routerLink="[/shopping-cart]" mat-raised-button type="submit">CONTINUE SHOPPING</button>
-        <button routerLink="/checkout" mat-raised-button routerLinkActive="true" color="primary" type="submit" (click)="checkout()">CHECKOUT</button>
+        <button class="continue-shopping-button" routerLink="[/shopping-cart]" mat-flat-button type="submit">CONTINUE SHOPPING</button>
+        <button class="checkout-button" routerLink="/checkout" mat-flat-button routerLinkActive="true" type="submit" (click)="checkout()">CHECKOUT</button>
       </div>
-      
-      
-      
-     
     </ul>
+    <div class="subtotal"><p>SUBTOTAL {{ totalCost | currency:"EUR":"symbol"}}</p></div> 
 </div>
+
     <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>
       
     

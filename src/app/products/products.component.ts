@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   nonExistentProduct = false;
   public dataSource: any[];
   isLookingProduct = false;
+  defaultValue = 'SMALL';
 
   addToCartFormGroup: FormGroup;
 
@@ -86,7 +87,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   addToCart(): void {
-
+    const size = this.addToCartFormGroup.get('size').value;
     this.product = new Product('', '', 0, '', 0);
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
