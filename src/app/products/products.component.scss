@@ -108,6 +108,7 @@ h1 {
 // REFACTORING
 .product-container {
     touch-action: pan-y !important;
+    
 }
 .product-price-title {
     padding: 32px;
@@ -195,7 +196,7 @@ ul {
     text-align: center;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 668px) {
     .page-title {
         display: none;
         visibility: hidden;

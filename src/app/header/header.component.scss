@@ -186,18 +186,18 @@ p {
 
 .header-container {
     
-    height: 62px;
+    
     
 }
 
-@media (max-width: 480px){
+@media (max-width: 800px){
     .hide-on-mobile{
         display : none;    
         visibility : hidden; 
     }
 }
 
-@media (min-width: 480px){
+@media (min-width: 800px){
     .hide-on-desktop{
         display : none;    
         visibility : hidden; 

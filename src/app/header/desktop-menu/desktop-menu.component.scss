@@ -1,16 +1,31 @@
 .desktop-header {
     display: flex;
-    height: 100%;
+    height: 158px;
     justify-content: space-between;
     align-items: center;
+    padding: 0 64px;
 }
 
 .cart-link a {
     color: inherit;
+    
+}
+
+.cart-link {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    
 }
 
 img {
     width: 40px;
+}
+
+@media (min-width: 800px) {
+    img {
+        width: 100px;
+    }
 }
 
 .header-nav-pages {
@@ -24,14 +39,42 @@ img {
     text-decoration: none;
 }
 
+.header-item.header-nav {
+    flex: 1;
+
+    }
+
 @media (max-width: 800px){
-    .header-item.header-nav{
-        display : none;    
+    .header-item.header-nav{ 
         visibility : hidden; 
     }
 }
 
 .logo {
-    position: absolute;
-    left: 50%;
+    height: 100%;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.logo a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo button {
+    width: 100px;
+    height: 100px;
+}
+
+ul {
+    padding: 0;
 }

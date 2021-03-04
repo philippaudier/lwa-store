@@ -85,6 +85,7 @@
 .container .row.header {
   flex: 0 1 auto;
   width: 100%;
+  
   /* The above is shorthand for:
   flex-grow: 0,
   flex-shrink: 1,
@@ -92,23 +93,41 @@
   */
 }
 
+/* @media (max-width: 800px) {
+  .row.header {
+    height: 118px;
+    background-color: brown;
+  }
+}
+
+@media (max-width: 668px) {
+  .row.header {
+    height: 62px;
+    background-color: cadetblue;
+  }
+} */
+
+
+
 .container .row.content {
   flex: 1 1 auto;
   width: 100%;
   text-align: center;
   max-width: 828px;
+
 }
 
 .container .row.footer {
   flex: 0 1 auto;
   color: black;
   padding: 64px 0 96px 0;
+  width: 100%;
   /* background-color: #2b2d42; */
 }
 
 @media (max-width: 480px) {
   .container .row.footer {
-    padding: 32px;
+    padding: 0px;
   }
 }
 
