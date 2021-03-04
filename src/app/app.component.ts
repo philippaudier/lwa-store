@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { Product } from './models/product.model';
 import { CartUpdateService } from './services/cart-update.service';
-import { LocalStorageManagerService } from './services/local-storage-manager.service';
 import { NewCartManagerService } from './services/new-cart-manager.service';
 
 
@@ -11,7 +10,7 @@ import { NewCartManagerService } from './services/new-cart-manager.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'lwa-store';
   isShopping = true;
@@ -24,7 +23,6 @@ export class AppComponent {
 
   constructor(
     private cartUpdate: CartUpdateService,
-    private localStorageManager: LocalStorageManagerService,
     private newCartManagerService: NewCartManagerService
   ) {
 
@@ -41,7 +39,7 @@ export class AppComponent {
   firebase.initializeApp(firebaseConfig);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isNavigating = true;
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
@@ -70,7 +68,7 @@ export class AppComponent {
   }
 
   // TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
-  setProductQuantity() {
+  setProductQuantity(): void {
     let total = 0;
     Object.keys(localStorage).forEach(idProduct => {
       const product = this.newCartManagerService.getProductByKey(idProduct);
@@ -84,7 +82,7 @@ export class AppComponent {
     console.log('total product is = ' + total);
   }
 
-  convertToNumber(value: string) {
+  convertToNumber(value: string): number {
     const numeric = Number(value);
     return numeric;
   }

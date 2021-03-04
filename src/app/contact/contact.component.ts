@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Contact } from '../models/contact.model';
 import { CartUpdateService } from '../services/cart-update.service';
 import { ContactService } from '../services/contact.service';
 import { UpdateTitleService } from '../services/update-title.service';
@@ -11,18 +10,14 @@ import { UpdateTitleService } from '../services/update-title.service';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
 
-  model = new Contact('', '', '', '');
-
+  FormData: FormGroup;
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
   subjectFormGroup: FormGroup;
   messageFormGroup: FormGroup;
   errorMessage: string;
-
-  submitted = false;
-  FormData: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,21 +28,20 @@ export class ContactComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.updateTitle.setTitle('CONTACT');
-    setTimeout(() => {
-      this.cartUpdate.setOnContact(true);
-    });
     this.FormData = this.formBuilder.group({
       Name: new FormControl('', [Validators.required]),
       Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
       Subject: new FormControl('', [Validators.required]),
       Message: new FormControl('', [Validators.required])
       });
+    this.updateTitle.setTitle('CONTACT');
+    setTimeout(() => {
+      this.cartUpdate.setOnContact(true);
+    });
     this.initForm();
   }
 
-  initForm() {
+  initForm(): void {
     this.nameFormGroup = this.formBuilder.group({
       name: ['', [Validators.required]]
     });
@@ -62,7 +56,7 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  onSubmit(data: any) {
+  onSubmit(data: any): void {
 
     this.contact.senMessage(data)
     .subscribe(response => {
@@ -75,7 +69,7 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     setTimeout(() => {
       this.cartUpdate.setOnContact(false);
     });

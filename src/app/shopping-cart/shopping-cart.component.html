@@ -9,14 +9,16 @@
           <div class="item-image">
             <img src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">
             <div class="cart-item item-image item-delete">
-              <button class="float-above" mat-icon-button color="primary" aria-label="delete" (click)="removeProductFromCart(product.idProduct)">
+              <button mat-button class="float-above" mat-icon-button color="primary" aria-label="delete" 
+                (click)="removeProductFromCart(product.idProduct)" 
+                (click)="setProductQuantity()">
                 <mat-icon>clear</mat-icon>
               </button>
             </div>
           </div>
           <div class="item-details">
 
-            <a class="item-product-link" routerLink="/products/product.idProduct" routerLinkActive="active">
+            <a class="item-product-link" routerLink="/products/{{product.idProduct}}" routerLinkActive="active">
               <span class="item-details-price">{{getProductBasePrice(product.idProduct) | currency:"EUR":"symbol"}}</span>
               <span class="item-details-name">{{product.name}}</span>
               <span class="item-details-option">size</span>
@@ -30,9 +32,10 @@
             <mat-form-field >
               <!-- <mat-label>Favorite food</mat-label> -->
               <input #quantity matInput value={{product.quantity}} type="number"
-              (input)="product.price = getProductBasePrice(product.idProduct) * quantity.value"
               (input)="updateQuantity(product.idProduct, quantity.value)"
-              (input)="setProductQuantity()">
+              (input)="setProductQuantity()"
+              (input)="calculTotal()"
+              (input)="ngOnInit()">
             </mat-form-field>
           </form>
         </div>
@@ -46,7 +49,7 @@
       <div class="regular checkout">
         <button class="checkout-button" mat-raised-button color="primary" type="submit" (click)="clearCart()">CLEAR CART</button>
       </div>
-      <div class="fixed-cart-footer"><p>SUBTOTAL {{ getTotalCost() | currency:"EUR":"symbol"}}</p></div>  
+      <div class="fixed-cart-footer"><p>SUBTOTAL {{ totalCost | currency:"EUR":"symbol"}}</p></div>  
       <div class="footer-cart-buttons">
         <button class="cart" routerLink="[/shopping-cart]" mat-raised-button type="submit">CONTINUE SHOPPING</button>
         <button routerLink="/checkout" mat-raised-button routerLinkActive="true" color="primary" type="submit" (click)="checkout()">CHECKOUT</button>

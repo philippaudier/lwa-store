@@ -9,7 +9,7 @@ export class AddProductService {
 
   constructor() { }
 
-  addNewProduct(name, type, price, description, stock) {
+  addNewProduct(name, type, price, description, stock): Promise<number> {
     return new Promise<number>(
         (resolve, reject) => {
             const newProduct: Product = new Product(name, type, price, description, stock);
@@ -36,21 +36,19 @@ export class AddProductService {
 /**
  * Return next available group id
  */
-getNextId() {
-    return new Promise<number>(
-        (resolve, reject) => {
-            firebase.database().ref('/products/nextProductId')
-                .once('value')
-                .then(
-                (data) => {
-                    resolve(data.val());
-                }, (error) => {
-                    reject(error);
-                }
-            );
-        }
-    );
-}
-
-
+    getNextId(): Promise<number> {
+        return new Promise<number>(
+            (resolve, reject) => {
+                firebase.database().ref('/products/nextProductId')
+                    .once('value')
+                    .then(
+                    (data) => {
+                        resolve(data.val());
+                    }, (error) => {
+                        reject(error);
+                    }
+                );
+            }
+        );
+    }
 }

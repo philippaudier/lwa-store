@@ -3,7 +3,6 @@ import { Product } from 'src/app/models/product.model';
 import { Router } from '@angular/router';
 import { ProductManagerService } from 'src/app/services/product-manager.service';
 import { UpdateTitleService } from 'src/app/services/update-title.service';
-import { LocalStorageManagerService } from 'src/app/services/local-storage-manager.service';
 
 @Component({
   selector: 'app-list-products',
@@ -17,8 +16,7 @@ export class ListProductsComponent implements OnInit {
   constructor(
     private productManagerService: ProductManagerService,
     private router: Router,
-    private updateTitle: UpdateTitleService,
-    private localStorageManager: LocalStorageManagerService) { }
+    private updateTitle: UpdateTitleService) { }
 
   ngOnInit(): void {
     this.updateTitle.setTitle('PRODUCTS');
@@ -28,15 +26,13 @@ export class ListProductsComponent implements OnInit {
         this.products = data;
       }
     );
-
-    
   }
 
-  onClickAddProduct() {
+  onClickAddProduct(): void {
     this.router.navigate(['/products/create-products']);
   }
 
-  setProductName(value) {
+  setProductName(value): void {
     this.updateTitle.setProductName(value);
   }
 }

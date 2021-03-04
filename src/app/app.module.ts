@@ -35,7 +35,6 @@ import { HomeComponent } from './home/home.component';
 import { ListProductsComponent } from './products/list-products/list-products.component';
 import { ContactService } from './services/contact.service';
 import { CreateProductComponent } from './products/create-product/create-product.component';
-import { CartUpdateService } from './services/cart-update.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
@@ -105,7 +104,6 @@ export class MyHammerConfig extends HammerGestureConfig {
       useClass: MyHammerConfig,
     },
     ContactService,
-    /* CartUpdateService, */
     ShoppingCartComponent,
     HeaderComponent,
   ],

@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AddProductService } from 'src/app/services/add-product.service';
 
 interface Type {
@@ -29,14 +29,13 @@ export class CreateProductComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private addproductService: AddProductService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  initForm() {
+  initForm(): void {
     this.nameFormGroup = this.formBuilder.group({
       name: ['', [Validators.required]]
     });
@@ -54,7 +53,7 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const name = this.nameFormGroup.get('name').value;
     const type = this.typeFormGroup.get('type').value;
     const price = this.priceFormGroup.get('price').value;

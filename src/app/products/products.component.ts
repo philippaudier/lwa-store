@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Product } from '../models/product.model';
@@ -6,7 +6,6 @@ import { ProductManagerService } from '../services/product-manager.service';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateTitleService } from '../services/update-title.service';
-import { LocalStorageManagerService } from '../services/local-storage-manager.service';
 import { NewCartManagerService } from '../services/new-cart-manager.service';
 
 interface Size {
@@ -19,7 +18,7 @@ interface Size {
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   sizes: Size[] = [
     {value: 'SMALL', viewValue: 'SMALL'},
@@ -42,7 +41,6 @@ export class ProductsComponent implements OnInit {
               private title: Title,
               private formBuilder: FormBuilder,
               private updateTitle: UpdateTitleService,
-              private localStorageManager: LocalStorageManagerService,
 
               // REFACTORING
               private newCartManagerService: NewCartManagerService
@@ -85,18 +83,11 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  ngOnDestroy() {
-    this.productSubscription.unsubscribe();
-    setTimeout(() => {
-      this.updateTitle.setLookProductFalse();
-    });
-    this.setProductQuantity();
-  }
 
-  addToCart() {
+
+  addToCart(): void {
 
     this.product = new Product('', '', 0, '', 0);
-    
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
         this.productSubscription = this.productManagerService.currentProduct.subscribe(
@@ -104,7 +95,8 @@ export class ProductsComponent implements OnInit {
             if (product) {
               this.product = product;
               // also increment cart counter value
-              this.localStorageManager.increment('count', JSON.stringify(product.idProduct));
+              this.newCartManagerService.updateCartProduct(product);
+              console.log('NEWCART = ' + JSON.stringify(this.newCartManagerService.getCartList()));
               this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), product);
               this.router.navigate(['/shopping-cart']);
             } else {
@@ -119,7 +111,7 @@ export class ProductsComponent implements OnInit {
   }
 
   // ADMIN
-  onClickRemoveProduct() {
+  onClickRemoveProduct(): void {
     this.productManagerService.removeProductFromStore(this.route.snapshot.params.idProduct);
     setTimeout(() => {
       this.router.navigate(['/products']);
@@ -127,12 +119,12 @@ export class ProductsComponent implements OnInit {
     console.log('you are trying to remove a product !');
   }
 
-  onSwipeRight() {
+  onSwipeRight(): void {
     this.router.navigate(['/products']);
   }
 
   // TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
-  setProductQuantity() {
+  setProductQuantity(): void {
     let total = 0;
     Object.keys(localStorage).forEach(idProduct => {
       const product = this.newCartManagerService.getProductByKey(idProduct);
@@ -145,10 +137,18 @@ export class ProductsComponent implements OnInit {
     this.newCartManagerService.setTotalProduct(total);
     console.log('total product is = ' + total);
   }
-  
-  convertToNumber(value: string) {
+
+  convertToNumber(value: string): number {
     const numeric = Number(value);
     return numeric;
+  }
+
+  ngOnDestroy(): void {
+    this.productSubscription.unsubscribe();
+    setTimeout(() => {
+      this.updateTitle.setLookProductFalse();
+    });
+    this.setProductQuantity();
   }
 
 }

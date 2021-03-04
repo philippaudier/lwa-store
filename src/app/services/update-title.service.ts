@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,36 +21,38 @@ export class UpdateTitleService {
       this.onHomePage = new BehaviorSubject<boolean>(false);
     }
 
-    setTitle(value) {
+    setTitle(value): void {
       this.pageTitle.next(value);
     }
 
-    getTitle() {
+    getTitle(): Observable<string> {
       return this.pageTitle.asObservable();
     }
 
-    setProductName(value) {
+    setProductName(value): void {
       this.productName.next(value);
     }
 
-    getProductName() {
+    getProductName(): Observable<string> {
       return this.productName.asObservable();
     }
 
-    setLookProductTrue() {
+    setLookProductTrue(): void {
       this.lookProduct.next(true);
     }
-    setLookProductFalse() {
+    setLookProductFalse(): void {
       this.lookProduct.next(false);
     }
-    getLookProduct() {
+    getLookProduct(): Observable<boolean> {
       return this.lookProduct.asObservable();
     }
 
-    setOnHomePage(value) {
+
+    // HOMEPAGE BOOLEAN
+    setOnHomePage(value): void {
       this.onHomePage.next(value);
     }
-    getOnHomePage() {
+    getOnHomePage(): Observable<boolean> {
       return this.onHomePage.asObservable();
     }
 

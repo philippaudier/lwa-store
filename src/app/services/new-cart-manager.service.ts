@@ -1,25 +1,43 @@
+import { isTemplateDiagnostic } from '@angular/compiler-cli/src/ngtsc/typecheck/diagnostics';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewCartManagerService {
 
-  cart: BehaviorSubject<any[]>;
+  cart: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   totalProduct: BehaviorSubject<number>;
+  totalCost: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   count: number;
 
   constructor(
     private router: Router
   ) {
-    this.cart = new BehaviorSubject<any[]>(null);
     this.totalProduct = new BehaviorSubject<number>(0);
    }
 
+   // GET CART
+   getCartList(skip: number = 0, limit: number = 0): BehaviorSubject<any[]> {
+     return this.cart;
+   }
 
+   // ADD PRODUCT TO CART
+   updateCartProduct(product): void {
+     const myProducts = this.cart.getValue();
+     myProducts.push(JSON.stringify(product));
+     this.cart.next(myProducts);
+   }
+
+   // REMOVE PRODUCT FROM CART
+   removeCartProduct(product): void {
+     const myProducts = this.cart.getValue();
+     const newCart = myProducts.filter(({idProduct}) => idProduct !== product.idProduct);
+     this.cart.next(newCart);
+   }
 
   // ADD A PRODUCT TO THE LOCALSTORAGE CART
   addProduct(key: string, product: any): void {
@@ -45,7 +63,7 @@ export class NewCartManagerService {
   }
 
   // REMOVE A PRODUCT FROM THE LOCALSTORAGE CART BY KEY
-  removeProductByKey(key) {
+  removeProductByKey(key): void {
     try {
       localStorage.removeItem(key);
     } catch (e) {
@@ -54,17 +72,17 @@ export class NewCartManagerService {
   }
 
   // SET TOTAL PRODUCTS
-  setTotalProducts(total) {
+  setTotalProducts(total): void {
     this.totalProduct.next(total);
     console.log('total products = ' + total);
   }
   // RETURN THE TOTAL OF THE PRODUCTS IN THE CART
-  getTotalProducts() {
+  getTotalProducts(): Observable<number> {
     return this.totalProduct.asObservable();
   }
 
   // UPDATE PRODUCT QUANTITY BY KEY
-  setProductQuantityByKey(key, value) {
+  setProductQuantityByKey(key, value): void {
     try {
       const localStorageProduct = this.getProductByKey(key);
       if (localStorageProduct) {
@@ -80,7 +98,7 @@ export class NewCartManagerService {
   }
 
   // GET PRODUCT QUANTITY BY KEY
-  getProductQuantityByKey(key) {
+  getProductQuantityByKey(key): number {
     try {
       const localStorageProduct = this.getProductByKey(key);
       let quantity = 0;
@@ -95,22 +113,29 @@ export class NewCartManagerService {
     }
   }
 
-  // CLEAR CART
-  clearCart() {
+  // CLEAR CART LOCALSTORAGE
+  clearCart(): void {
     window.localStorage.clear();
     this.router.navigate(['/home']);
   }
 
 
   // SET GET TOTAL PRODUCT
-  setTotalProduct(value) {
+  setTotalProduct(value): void {
     this.totalProduct.next(value);
   }
 
-  getTotalProduct() {
+  getTotalProduct(): Observable<number> {
     return this.totalProduct.asObservable();
   }
 
+  setTotalCost(value): void {
+    this.totalCost.next(value);
+  }
+
+  getTotalCost(): Observable<number> {
+    return this.totalCost.asObservable();
+  }
 
 
   /* getQuantity(key: string) {

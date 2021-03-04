@@ -1,12 +1,10 @@
-import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { CartManagerService } from '../services/cart-manager.service';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartUpdateService } from '../services/cart-update.service';
 import { Router } from '@angular/router';
 import { UpdateTitleService } from '../services/update-title.service';
-import { LocalStorageManagerService } from '../services/local-storage-manager.service';
-import { HeaderComponent } from '../header/header.component';
 import { NewCartManagerService } from '../services/new-cart-manager.service';
+import { isRegularExpressionLiteral } from 'typescript';
 
 
 
@@ -15,7 +13,7 @@ import { NewCartManagerService } from '../services/new-cart-manager.service';
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['name', 'quantity', 'price', 'delete'];
   cart: any[];
@@ -23,54 +21,38 @@ export class ShoppingCartComponent implements OnInit {
   productBasePrice: number;
   isEnabled = false;
   totalProductQuantity: number;
-  quantities: number[];
-  totalCost = 0;
-   /*
-  dataSourceLength: number;
+  isAlreadyInCart: boolean;
 
-  */
+  totalCost: number;
 
-  
-  /*
-  totalCheckoutCost: number;*/
-  
-  /*
-  productTotalQuantity = 0;
-  */
   @Input() quantity: number;
 
   constructor(
-    /* private cartManagerService: CartManagerService,
-  */private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private cartUpdate: CartUpdateService,
     private router: Router,
-    private newCartManagerService: NewCartManagerService/*
+    private newCartManagerService: NewCartManagerService,
     private updateTitle: UpdateTitleService,
-    private localStorageManager: LocalStorageManagerService,
-    private header: HeaderComponent,
-    private newCartManager: NewCartManagerService */
+    private newCartManager: NewCartManagerService
   ) {}
 
   ngOnInit(): void {
-    this.quantities = [];
     this.cart = [];
     this.initCart();
+    console.log('CART LENGTH = ' + this.cart?.length);
     console.log('CART = ' + this.cart);
-
+    console.log('cart = ' + JSON.stringify(this.cart));
     this.newCartManagerService.getTotalProduct().subscribe((value) => {
       this.totalProductQuantity = value;
-      console.log('VALUE =====> ' + value);
     });
+    this.calculTotal();
+    /* this.newCartManagerService.getTotalCost().subscribe((value) => {
+      this.totalCost = value;
+    }); */
 
     /* this.newCartManager.getTotalProducts();
-
-
-
-
     this.updateTitle.setTitle('CART');
-    this.dataSource = [];
-    this.initCart();
-    this.getCart(); */
+    */
     this.quantityFormGroup = this.formBuilder.group({
       quantity: [this.quantity, [Validators.required]]
     });
@@ -78,68 +60,64 @@ export class ShoppingCartComponent implements OnInit {
     this.quantityFormGroup.valueChanges.subscribe(value => {
       this.totalProductQuantity += value.quantity;
     });
-    // get cart length
-   /*  this.cartUpdate.setCount(this.dataSource?.length); */
-    //
     setTimeout(() => {
       this.setIsShopping();
     });
     this.enableCheckoutButton();
   }
 
-  initCart() {
-    Object.keys(localStorage).forEach(idProduct => {
-      const product = this.newCartManagerService.getProductByKey(idProduct);
-      if (product.idProduct) {
-
-        this.cart.push(product);
-        this.cart.sort((a, b) => {
-          if (a.idProduct > b.idProduct) {
-            return 1;
-          } else if (a.idProduct < b.idProduct) {
-            return -1;
-          } else {
-            return 0;
-          }
-        });
+  initCart(): void {
+    // CLEAN LOCAL STORAGE
+    this.cleanLocalStorage();
+    //
+    /* this.newCartManagerService.getCartList().forEach(product => {
+      this.cart.push(product);
+    }); */
+    Object.keys(localStorage).forEach(key => {
+      const product = this.newCartManagerService.getProductByKey(key);
+      this.cart.push(product);
+    });
+    // SORT CART BY ID_PRODUCT
+    this.cart.sort((a, b) => {
+      if (a.idProduct > b.idProduct) {
+        return 1;
+      } else if (a.idProduct < b.idProduct) {
+        return -1;
+      } else {
+        return 0;
       }
     });
   }
 
-  updateQuantity(key, value) {
+  // REMOVE OBJECTS THAT ARE NOT PRODUCTS FORM THE LOCAL STORAGE
+  cleanLocalStorage(): void {
+    Object.keys(localStorage).forEach(item => {
+      const product = this.newCartManagerService.getProductByKey(item);
+      if (!product.idProduct) {
+        this.newCartManager.remove(item);
+      }
+    });
+  }
+
+  calculTotal() {
+    
+    let total = 0;
+    this.cart.forEach(product => {
+      total += product.price * product.quantity;
+    });
+    this.totalCost = total;
+    
+  }
+
+  updateQuantity(key: string, value): void {
     this.newCartManagerService.setProductQuantityByKey(key, value);
   }
-  
-  setTotalProducts() {
+
+  setTotalProducts(): void {
     const total = this.cart.reduce((acc, value) => acc + this.convertToNumber(value.quantity), 0);
     this.newCartManagerService.setTotalProducts(total);
   }
 
-  /* getProductQuantity(key) {
-    const total = this.cartManagerService.getProductQuantityByKey(key);
-    return total;
-  }
-
-
-
-  setProductQuantity(key, value) {
-    this.cartManagerService.setProductQuantityByKey(key, value);
-    console.log('new quantity = ' + this.cartManagerService.getProductQuantityByKey(key));
-  }
-
-  
-
-  getCart() {
-    if (this.dataSource?.length > 0) {
-      this.isEnabled = true;
-      this.cartUpdate.setCount(this.dataSource.length);
-      return this.dataSource?.length;
-    } else {
-      this.isEnabled = false;
-    }
-  }
-
-  */
   /*
   costTimesQuantity(value: string, quantity: number) {
     const newValue = this.convertToNumber(value) * quantity;
@@ -147,18 +125,18 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   */
-  getTotalCost() {
+  /* getTotalCost(): number {
+    const total = this.cart.reduce((acc, value) => acc + this.convertToNumber(value.price), 0);
+    this.newCartManagerService.setTotalCost(total);
+    return total;
+  } */
 
-    return this.cart.reduce((acc, value) => acc + this.convertToNumber(value.price), 0);
-    
-  }
-
-  removeProductFromCart(key: string) {
+  removeProductFromCart(key: string): void {
     console.log(this.cart.length);
-    
     const index: number = this.cart.indexOf(key);
     if (this.newCartManagerService.getProductByKey(key)) {
-      this.newCartManagerService.remove(key);
+      this.newCartManagerService.removeProductByKey(key);
+      // REMOVE FROM CART
       this.cart.splice(index, 1);
       console.log(this.cart);
       if (this.cart.length === 0) {
@@ -172,12 +150,9 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  
-  getProductBasePrice(key: string) {
+  getProductBasePrice(key: string): number {
     const product = this.newCartManagerService.getProductByKey(key);
     this.productBasePrice = this.convertToNumber(product.price);
-    /* console.log(this.quantity); */
-    /* console.log('quantity value = ' + this.quantityFormGroup.get('quantity').value); */
     return this.productBasePrice;
   }
   /*
@@ -187,24 +162,51 @@ export class ShoppingCartComponent implements OnInit {
     this.cartUpdate.setTotalCost(this.totalCheckoutCost);
   }
   */
-  setIsShopping() {
+  setIsShopping(): void {
     this.cartUpdate.setIsShopping();
   }
 
-  enableCheckoutButton() {
+  enableCheckoutButton(): void {
     if (this.router.url === 'shopping-cart') {
       this.isEnabled = true;
     }
   }
-  
-  clearCart() {
+
+  clearCart(): void {
     this.newCartManagerService.clearCart();
     /* this.ngOnInit(); */
   }
-  
 
+// TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
+  setProductQuantity(): void {
+  let total = 0;
+  Object.keys(localStorage).forEach(idProduct => {
+    const product = this.newCartManagerService.getProductByKey(idProduct);
+    if (product.idProduct) {
+      const localStorageProduct = this.newCartManagerService.getProductByKey(idProduct);
+      const quantity = this.convertToNumber(localStorageProduct.quantity);
+      total += quantity;
+    }
+  });
+  this.newCartManagerService.setTotalProduct(total);
+  console.log('total product is = ' + total);
+  }
 
-  ngOnDestroy() {
+/*   setCartProductPrice(product, value): void {
+    this.cart.forEach(item => {
+      if (item.idProduct === product.idProduct) {
+        item.price = Math.round(value * 100) / 100;
+        console.log('cart = ' + JSON.stringify(this.cart));
+      }
+    });
+  } */
+
+  convertToNumber(value: string): number {
+    const numeric = Math.round(Number(value) * 100) / 100;
+    return numeric;
+  }
+
+  ngOnDestroy(): void {
     setTimeout(() => {
       this.setIsShopping();
       this.isEnabled = false;
@@ -212,46 +214,5 @@ export class ShoppingCartComponent implements OnInit {
 
     this.setProductQuantity();
   }
-
-// TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
-setProductQuantity() {
-let total = 0;
-Object.keys(localStorage).forEach(idProduct => {
-  const product = this.newCartManagerService.getProductByKey(idProduct);
-  if (product.idProduct) {
-    const localStorageProduct = this.newCartManagerService.getProductByKey(idProduct);
-    const quantity = this.convertToNumber(localStorageProduct.quantity);
-    total += quantity;
-  }
-});
-this.newCartManagerService.setTotalProduct(total);
-console.log('total product is = ' + total);
-}
-
-convertToNumber(value: string) {
-  const numeric = Number(value);
-  return numeric;
-}
-/*
-  updateProductQuantity(idProduct, value) {
-    this.dataSource.forEach(product => {
-      if (product.idProduct === idProduct) {
-        product.quantity = value;
-      }
-    });
-    this.setNumberProducts();
-  }
-
-  setNumberProducts() {
-    this.productTotalQuantity = 0;
-    this.dataSource.forEach(product => {
-      this.productTotalQuantity += this.convertToNumber(product.quantity);
-    });
-    this.cartUpdate.setCartProductQuantity(this.productTotalQuantity);
-  }
- */
-/*   setDefaultQuantity(idProduct, value) {
-    this.cartManagerService.setProductQuantityByKey(idProduct, value);
-  } */
 }
 
