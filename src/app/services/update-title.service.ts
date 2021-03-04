@@ -7,10 +7,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UpdateTitleService {
 
-  private pageTitle: BehaviorSubject<string>;
-  private productName: BehaviorSubject<string>;
-  private lookProduct: BehaviorSubject<boolean>;
-  private onHomePage: BehaviorSubject<boolean>;
+  pageTitle: BehaviorSubject<string>;
+  productName: BehaviorSubject<string>;
+  lookProduct: BehaviorSubject<boolean>;
+  onHomePage: BehaviorSubject<boolean>;
 
   constructor(
     private router: Router,

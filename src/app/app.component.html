@@ -2,12 +2,16 @@
 
   <!-- HEADER -->
   <div class="row header">
+    <mat-progress-bar class="progress-bar" mode="determinate" [value]="loader.value$ | async"></mat-progress-bar>
     <app-header></app-header>
   </div>
 
   <!-- CONTENT -->
   <div class="row content">
+    
+    <!-- <ngx-loading-bar fixed="false" color="#000" height="4px"></ngx-loading-bar> -->
     <router-outlet></router-outlet>
+    
     <div class="separator" *ngIf="count > 0"></div>
   </div>
   
@@ -24,5 +28,6 @@
       </button>
       </a>
   </div>
+  
 </div>
 

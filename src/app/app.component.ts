@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Event as RouterEvent, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import firebase from 'firebase';
 import { Product } from './models/product.model';
 import { CartUpdateService } from './services/cart-update.service';
 import { NewCartManagerService } from './services/new-cart-manager.service';
-
+import { LoadingBarService } from '@ngx-loading-bar/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'lwa-store';
   isShopping = true;
@@ -18,12 +19,18 @@ export class AppComponent implements OnInit {
   cartProductQuantity = 0;
   onContactPage = false;
   isNavigating = false;
+
+  isLoading = false;
+
   products: Product[];
   count = 0;
+  
 
   constructor(
     private cartUpdate: CartUpdateService,
-    private newCartManagerService: NewCartManagerService
+    private newCartManagerService: NewCartManagerService,
+    private router: Router,
+    public loader: LoadingBarService
   ) {
 
   const firebaseConfig = {
@@ -38,6 +45,9 @@ export class AppComponent implements OnInit {
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   }
+
+
+
 
   ngOnInit(): void {
     this.isNavigating = true;
@@ -87,5 +97,7 @@ export class AppComponent implements OnInit {
     return numeric;
   }
 
-
+  ngAfterViewInit(): void {
+    this.isLoading = false;
+  }
 }

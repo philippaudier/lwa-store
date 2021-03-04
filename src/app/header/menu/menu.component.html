@@ -1,6 +1,6 @@
 <div class="mobile-header">
     
-    <div class="mobile-header-logo" *ngIf="onHomePage">
+    <div class="mobile-header-logo" *ngIf="checkRoute()">
         <a routerLink="/home" routerLinkActive="active">
         <button mat-icon-button 
             aria-label="logo">

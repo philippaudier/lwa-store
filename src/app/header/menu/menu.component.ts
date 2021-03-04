@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { CartUpdateService } from 'src/app/services/cart-update.service';
 import { NewCartManagerService } from 'src/app/services/new-cart-manager.service';
@@ -24,7 +25,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private updateTitle: UpdateTitleService,
     private cartUpdate: CartUpdateService,
-    private newCartManager: NewCartManagerService
+    private newCartManager: NewCartManagerService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -38,9 +40,6 @@ export class MenuComponent implements OnInit {
     this.updateTitle.getLookProduct().subscribe((value) => {
       this.isDisplayed = value;
     });
-    this.updateTitle.getOnHomePage().subscribe((value) => {
-      this.onHomePage = value;
-    });
     // UPDATE BOOLEAN
     this.cartUpdate.getCheckoutState().subscribe((value) => {
       this.onCheckout = value;
@@ -52,5 +51,14 @@ export class MenuComponent implements OnInit {
     this.newCartManager.getTotalProducts().subscribe((value) => {
       this.productAmount = value;
     });
+  }
+
+  checkRoute(): boolean {
+    if (this.router.url === '/home') {
+      this.onHomePage = true;
+    } else {
+      this.onHomePage = false;
+    }
+    return this.onHomePage;
   }
 }

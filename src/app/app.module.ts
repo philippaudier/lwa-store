@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import * as Hammer from 'hammerjs';
 import 'hammer-timejs';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +26,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -96,7 +98,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatStepperModule,
     HammerModule,
     MatDividerModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    MatProgressBarModule,
+    LoadingBarRouterModule
   ],
   providers: [
     {
