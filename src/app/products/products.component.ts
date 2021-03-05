@@ -7,6 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UpdateTitleService } from '../services/update-title.service';
 import { NewCartManagerService } from '../services/new-cart-manager.service';
+import { JsonpClientBackend } from '@angular/common/http';
+import { validateAndRewriteCoreSymbol } from '@angular/compiler-cli/src/ngtsc/imports';
 
 interface Size {
   value: string;
@@ -35,6 +37,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   defaultValue = 'SMALL';
 
   selectedSize = '';
+  isDuplicate = false;
 
   addToCartFormGroup: FormGroup;
 
@@ -51,6 +54,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    this.newCartManagerService.getIsDuplicate().subscribe((value) => {
+      this.isDuplicate = value;
+    });
+
     //
     this.setProductQuantity();
     this.product = new Product('', '', 0, '', 0, []);
@@ -104,7 +111,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
               // also increment cart counter value
               this.newCartManagerService.updateCartProduct(product);
               console.log('NEWCART = ' + JSON.stringify(this.newCartManagerService.getCartList()));
-              this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), product);
+              // check is duplicate product
+              this.newCartManagerService.checkDuplicateProduct(JSON.stringify(product.idProduct));
+              
+              if (this.isDuplicate) {
+                console.log('duplicate!');
+                const newProduct = this.newCartManagerService.getProductByKey(JSON.stringify(product.idProduct));
+                const newSize = this.selectedSize;
+                if (newProduct.quantity) {
+
+                }
+                newProduct.quantity += 1;
+                newProduct.size = newSize;
+                // delete product
+                this.newCartManagerService.removeProductByKey(JSON.stringify(product.idProduct));
+                this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), newProduct);
+              } else {
+                console.log('no duplicate!');
+                this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), product);
+              }
                // SAVE PRODUCT SIZE
               this.newCartManagerService.setProductSizeByKey(product.idProduct, this.selectedSize);
               this.router.navigate(['/shopping-cart']);
@@ -118,6 +143,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.setProductQuantity();
     });
   }
+
+
 
   // ADMIN
   onClickRemoveProduct(): void {

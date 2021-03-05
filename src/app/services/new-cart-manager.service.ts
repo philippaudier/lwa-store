@@ -11,6 +11,7 @@ export class NewCartManagerService {
   cart: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   totalProduct: BehaviorSubject<number>;
   totalCost: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  isDuplicate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   count: number;
 
@@ -107,13 +108,22 @@ export class NewCartManagerService {
     } catch (e) {
       console.error('Error saving to localStorage', e);
     }
+  }
 
+  checkDuplicateProduct(key: any): void {
 
+    const localStorageProduct = this.getProductByKey(key);
+    if (localStorageProduct !== null) {
+      console.log('FOUND' + localStorageProduct);
+      this.isDuplicate.next(true);
+    } else {
+      console.log('NOT FOUND' + localStorageProduct);
+      this.isDuplicate.next(false);
+    }
+  }
 
-
-
-
-
+  getIsDuplicate(): Observable<boolean> {
+    return this.isDuplicate.asObservable();
   }
 
   // GET PRODUCT QUANTITY BY KEY
