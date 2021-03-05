@@ -166,7 +166,6 @@ export class NewCartManagerService {
     return this.totalCost.asObservable();
   }
 
-
   /* getQuantity(key: string) {
     try {
       const product = this.getProductByKey(key);
@@ -190,5 +189,7 @@ export class NewCartManagerService {
     const numeric = Number(value);
     return numeric;
   }
+
+  
 
 }

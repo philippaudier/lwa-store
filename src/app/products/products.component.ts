@@ -118,10 +118,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
                 console.log('duplicate!');
                 const newProduct = this.newCartManagerService.getProductByKey(JSON.stringify(product.idProduct));
                 const newSize = this.selectedSize;
-                if (newProduct.quantity) {
-
-                }
-                newProduct.quantity += 1;
+                // new quantity
+                const newQuantity = this.convertToNumber(newProduct.quantity) + 1;
+                newProduct.quantity = JSON.stringify(newQuantity);
                 newProduct.size = newSize;
                 // delete product
                 this.newCartManagerService.removeProductByKey(JSON.stringify(product.idProduct));
