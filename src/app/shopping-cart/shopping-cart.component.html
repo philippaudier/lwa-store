@@ -49,12 +49,13 @@
       <div class="regular checkout">
         <button class="checkout-button" mat-flat-button color="primary" type="submit" (click)="clearCart()">CLEAR CART</button>
       </div> 
+      <div class="subtotal"><p>SUBTOTAL {{ totalCost | currency:"EUR":"symbol"}}</p></div>
       <div class="footer-cart-buttons">
         <button class="continue-shopping-button" routerLink="[/shopping-cart]" mat-flat-button type="submit">CONTINUE SHOPPING</button>
         <button class="checkout-button" routerLink="/checkout" mat-flat-button routerLinkActive="true" type="submit" (click)="checkout()">CHECKOUT</button>
       </div>
     </ul>
-    <div class="subtotal"><p>SUBTOTAL {{ totalCost | currency:"EUR":"symbol"}}</p></div> 
+     
 </div>
 
     <ng-template #noRecipes><p>Your cart is empty!</p></ng-template>

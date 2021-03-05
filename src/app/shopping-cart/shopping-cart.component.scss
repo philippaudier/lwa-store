@@ -242,6 +242,10 @@ p {
 
 // REFACTORING 2
 .container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
 }
 img {
@@ -282,17 +286,17 @@ ul {
 }
 
 .footer-cart-buttons {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
     display: flex;
+    
 
 }
 
 .footer-cart-buttons button {
     width: 100%;
     height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media screen and (min-width: 480px) {
@@ -402,7 +406,7 @@ a.item-product-link {
     top: 20px;
     width: 32px;  */
     float: left;
-    background: #ffffff;
+    background: #E9D8B7;
     position: absolute;
     top: 0;
     left: 0;
@@ -420,6 +424,7 @@ a.item-product-link {
 
 button {
     border-radius: 0;
+    
 }
 
 @media screen and (max-width: 480px) {
@@ -429,9 +434,11 @@ button {
     }
 }
 
-.subtotal {
+.subtotal p{
     position: relative;
-    bottom: 0;
+    margin: 0;
+    padding: 32px;
+    font-size: 16px;
 }
 
 
