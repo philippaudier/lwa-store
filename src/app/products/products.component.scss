@@ -145,6 +145,9 @@ h1 {
 .button {
     height: 64px;
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button {
@@ -156,6 +159,13 @@ button {
     height: 64px;
     display: flex;
     align-items: center;
+}
+
+::ng-deep .cdk-overlay-container{left: 0vw;}
+::ng-deep .cdk-overlay-pane { left:0 !important; transform:none !important;}
+::ng-deep .mat-select-panel{
+    left: 0;
+    background-color: #E7D4B1; 
 }
 
 ::ng-deep.mat-select-value {

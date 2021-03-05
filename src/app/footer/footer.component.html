@@ -18,7 +18,7 @@
 
     </div>
     <div class="mobile-footer cart-button" *ngIf="!onCheckout && !onContactPage && count > 0 && isShopping">
-        <button mat-flat-button color="transparent" routerLink="/shopping-cart" routerLinkActive="true">
+        <button mat-flat-button class="cart-button-container" color="transparent" routerLink="/shopping-cart" routerLinkActive="true">
             <mat-icon>shopping_cart</mat-icon>
             <p *ngIf="count < 2">{{count}} ITEM</p>
             <p *ngIf="count > 1">{{count}} ITEMS</p>
@@ -27,5 +27,6 @@
     <div class="mobile-footer checkout-button">
 
     </div>
+    
 </div>
 

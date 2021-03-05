@@ -153,13 +153,13 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.productBasePrice = this.convertToNumber(product.price);
     return this.productBasePrice;
   }
-  /*
-  /* checkout() {
+  
+/*   checkout() {
     this.totalCheckoutCost = this.getTotalCost();
     this.cartUpdate.setCheckoutData(this.dataSource);
     this.cartUpdate.setTotalCost(this.totalCheckoutCost);
-  }
-  */
+  } */
+  
   setIsShopping(): void {
     this.cartUpdate.setIsShopping();
   }
