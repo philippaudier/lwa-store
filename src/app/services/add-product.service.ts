@@ -9,10 +9,10 @@ export class AddProductService {
 
   constructor() { }
 
-  addNewProduct(name, type, price, description, stock): Promise<number> {
+  addNewProduct(name, type, price, description, stock, size): Promise<number> {
     return new Promise<number>(
         (resolve, reject) => {
-            const newProduct: Product = new Product(name, type, price, description, stock);
+            const newProduct: Product = new Product(name, type, price, description, stock, size);
             this.getNextId().then( // Get next Id to assign it to the new group
                 (nextProductId) => {
                     newProduct.idProduct = nextProductId;

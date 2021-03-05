@@ -180,7 +180,9 @@ button {
     display: flex;
     align-items: center;
 }
-
+::ng-deep.mat-select-trigger {
+    width: 100%;
+}
 ::ng-deep.mat-select-arrow-wrapper {
     padding: 0 22px;
     

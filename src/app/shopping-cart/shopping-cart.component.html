@@ -21,7 +21,7 @@
             <a class="item-product-link" routerLink="/products/{{product.idProduct}}" routerLinkActive="active">
               <span class="item-details-price">{{getProductBasePrice(product.idProduct) | currency:"EUR":"symbol"}}</span>
               <span class="item-details-name">{{product.name}}</span>
-              <span class="item-details-option">size</span>
+              <span class="item-details-option">{{product.size}}</span>
             </a>
             
           </div>
@@ -29,7 +29,7 @@
         <div class="item-quantity-holder">
           <span class="quanty-label">QTY.</span>
           <form [formGroup]="quantityFormGroup" class="example-form">
-            <mat-form-field >
+            <mat-form-field appearance="none">
               <!-- <mat-label>Favorite food</mat-label> -->
               <input #quantity matInput value={{product.quantity}} type="number"
               (input)="updateQuantity(product.idProduct, quantity.value)"

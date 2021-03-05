@@ -36,6 +36,17 @@
                 <input matInput placeholder="Quantité en stock" type="number" id="stock" formControlName="stock" required>
             </mat-form-field>
         </form>
+        <form [formGroup]="sizeFormGroup">
+            <mat-label>Taille(s) disponible(s)</mat-label>
+            <div *ngFor="let size of sizes">
+                <mat-checkbox formControlName="size"
+                [(ngModel)]="size.completed"
+                            [color]="size.color"
+                            (ngModelChange)="getSizes()">
+                {{size.name}}
+                </mat-checkbox>
+            </div>
+        </form>
         <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="priceFormGroup.invalid">Ajouter à la vente</button>
         <p class="text-danger">{{ errorMessage }}</p>
     </div>

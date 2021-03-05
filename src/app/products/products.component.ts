@@ -34,6 +34,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   isLookingProduct = false;
   defaultValue = 'SMALL';
 
+  selectedSize = '';
+
   addToCartFormGroup: FormGroup;
 
   constructor(private productManagerService: ProductManagerService,
@@ -51,7 +53,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //
     this.setProductQuantity();
-    this.product = new Product('', '', 0, '', 0);
+    this.product = new Product('', '', 0, '', 0, []);
     //
     this.updateTitle.getLookProduct().subscribe((value) => {
       this.isLookingProduct = value;
@@ -83,12 +85,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
   }
 
-
+  saveSize(value: any) {
+    this.selectedSize = value;
+    console.log('selected size' + this.selectedSize);
+  }
 
 
   addToCart(): void {
-    const size = this.addToCartFormGroup.get('size').value;
-    this.product = new Product('', '', 0, '', 0);
+    /* const size = this.addToCartFormGroup.get('size').value;
+    console.log('selected size = ' + size); */
+    this.product = new Product('', '', 0, '', 0, [this.selectedSize]);
     this.productManagerService.getProduct(this.route.snapshot.params.idProduct).then(
       () => {
         this.productSubscription = this.productManagerService.currentProduct.subscribe(
@@ -99,6 +105,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
               this.newCartManagerService.updateCartProduct(product);
               console.log('NEWCART = ' + JSON.stringify(this.newCartManagerService.getCartList()));
               this.newCartManagerService.addProduct(JSON.stringify(product.idProduct), product);
+               // SAVE PRODUCT SIZE
+              this.newCartManagerService.setProductSizeByKey(product.idProduct, this.selectedSize);
               this.router.navigate(['/shopping-cart']);
             } else {
               this.nonExistentProduct = true;

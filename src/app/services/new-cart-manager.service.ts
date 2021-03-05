@@ -87,14 +87,33 @@ export class NewCartManagerService {
       const localStorageProduct = this.getProductByKey(key);
       if (localStorageProduct) {
         localStorageProduct.quantity = value;
-        console.log('value ' + value);
         this.removeProductByKey(key);
         this.addProduct(key, localStorageProduct);
-        console.log('NEW PRODUCT = ' + localStorageProduct);
       }
     } catch (e) {
       console.error('Error saving to localStorage', e);
     }
+  }
+
+  setProductSizeByKey(key, value): void {
+    try {
+      const localStorageProduct = this.getProductByKey(key);
+      if (localStorageProduct) {
+        localStorageProduct.size = value;
+        this.removeProductByKey(key);
+        this.addProduct(key, localStorageProduct);
+        console.log('NEW PRODUCT SIZE = ' + localStorageProduct);
+      }
+    } catch (e) {
+      console.error('Error saving to localStorage', e);
+    }
+
+
+
+
+
+
+
   }
 
   // GET PRODUCT QUANTITY BY KEY

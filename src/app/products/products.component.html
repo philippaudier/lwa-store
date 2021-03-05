@@ -17,12 +17,14 @@
     </div>
     <div class="product-details">
         <form [formGroup]="addToCartFormGroup" class="product-form">
-                <mat-select class="size-selection" type="text" id="type" placeholder="SIZE" formControlName="size" required>
-                    <mat-option *ngFor="let size of sizes" [value]="size.value">
-                    {{size.viewValue}}
+            <mat-form-field appearance="none">
+                <mat-select placeholder="Please select a size" (valueChange)="saveSize($event)" class="size-selection" type="text" id="size" formControlName="size" required>
+                    <mat-option *ngFor="let i = index; let size of product.size" [value]=size>
+                    {{size}}
                     </mat-option>
                 </mat-select>
-            <button class="button" mat-flat-button (click)="addToCart()" (click)="setProductQuantity()">ADD TO CART</button>
+            </mat-form-field>
+            <button typr="submit" class="button" mat-flat-button (click)="addToCart()" (click)="setProductQuantity()" [disabled]="addToCartFormGroup.invalid">ADD TO CART</button>
         </form>
         <div class="product-description">
             <p>{{product.description}}</p>

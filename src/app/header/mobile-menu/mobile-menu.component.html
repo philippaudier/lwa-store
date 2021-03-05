@@ -3,10 +3,10 @@
         <mat-icon color="primary" id="arrow">keyboard_arrow_down</mat-icon>
     </button>
     <div color="primary" class="dropdown" *ngIf="displayMenu" (clickOutside)="onClickedOutside($event)" >
-        <button mat-flat-button class="center" (click)="hideMenu()"><a routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></a></button>
-        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/products">PRODUCT</button>
-        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/home">GALLERY</button>
-        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/contact">CONTACT</button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/home" routerLinkActive="active"><span class="brand-name">LWA</span></button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/products" routerLinkActive="active">PRODUCT</button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/home" routerLinkActive="active">GALLERY</button>
+        <button mat-flat-button class="center" (click)="hideMenu()" routerLink="/contact" routerLinkActive="active">CONTACT</button>
         <a class="center" href="https://instagram.com/prototyp.lwa?igshid=15ow9qwtlmx6p"><button mat-flat-button class="center" (click)="hideMenu()"><img src="../../../assets/social/instagram.png" alt="instagram"></button></a>
         <div class="phorau-credit">
             <button mat-flat-button class="center phorau" (click)="hideMenu()" routerLink="/home"><p class="phorau-link">PHORAU</p></button> 
