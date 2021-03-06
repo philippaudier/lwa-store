@@ -35,4 +35,8 @@ export class ListProductsComponent implements OnInit {
   setProductName(value): void {
     this.updateTitle.setProductName(value);
   }
+
+  onSwipeRight(): void {
+    this.router.navigate(['/contact']);
+  }
 }

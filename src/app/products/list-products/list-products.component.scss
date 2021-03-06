@@ -99,6 +99,10 @@ img {
 
 
  */
+.container {
+    touch-action: pan-y !important;
+}
+
 .product {
     padding: 48px;
     margin: 2px 0;

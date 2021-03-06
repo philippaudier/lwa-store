@@ -18,7 +18,7 @@
     </div>
 </div> -->
 <h1 class="page-title">PRODUCTS</h1>
-<div *ngIf="products" class="container">
+<div *ngIf="products" class="container" (swipeRight)="onSwipeRight()">
     <div  *ngFor="let product of products" class="product">
         <a class="display-column" routerLink="/products/{{product.idProduct}}" (click)="setProductName(product.name)">
             <img src="https://source.unsplash.com/collection/9634735/1600x900" alt="product">

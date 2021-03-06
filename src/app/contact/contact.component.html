@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (swipeLeft)="onSwipeLeft()">
   <h1>CONTACT</h1>
   <section class="content">
     <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="form">
@@ -27,10 +27,10 @@
         <label for="message">MESSAGE</label>
         <mat-form-field appearance="outline" class="contact-message">
           <!-- <mat-label for="message">MESSAGE</mat-label> -->
-          <textarea matInput type="text" id="message" formControlName="Message" required></textarea>
+          <textarea matInput matTextareaAutosize type="text" id="message" formControlName="Message" required></textarea>
         </mat-form-field>
       </div>
     </form>
   </section>
-  <button class="send-button" mat-flat-button type="submit" [disabled]="FormData.invalid">SEND</button>
+  <button class="send-button" mat-flat-button type="submit" [disabled]="FormData.invalid">SEND MESSAGE</button>
 </div>

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import firebase from 'firebase';
 import { Product } from './models/product.model';
 import { CartUpdateService } from './services/cart-update.service';
@@ -53,9 +53,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   }
-  
+
   ngOnInit(): void {
     this.isNavigating = true;
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+  });
     this.cartUpdate.getIsShopping().subscribe((value) => {
       this.isShopping = value;
     });

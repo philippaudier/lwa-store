@@ -68,6 +68,10 @@ export class ContactComponent implements OnInit, OnDestroy {
     });
   }
 
+  onSwipeLeft(): void {
+    this.router.navigate(['/products']);
+  }
+
   ngOnDestroy(): void {
     setTimeout(() => {
       this.cartUpdate.setOnContact(false);
