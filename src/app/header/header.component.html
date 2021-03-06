@@ -1,6 +1,6 @@
 <div class="header-container">
-    <app-desktop-menu class="hide-on-mobile"></app-desktop-menu>
-    <app-menu class="hide-on-desktop"></app-menu>
+    <app-desktop-menu class="hide-on-mobile" *ngIf="!onCheckout"></app-desktop-menu>
+    <app-menu class="hide-on-desktop" *ngIf="!onCheckout"></app-menu>
 </div>
 <!--     <div class="header title font size" *ngIf="!onCheckout && !isShopping && countHeader < 2">
         <mat-icon aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>
