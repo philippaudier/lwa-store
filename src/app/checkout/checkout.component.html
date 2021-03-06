@@ -112,12 +112,63 @@
       <a routerLink="/shopping-cart" class="edit">back to cart</a>
     </header>
   
-    <div class="section buyer active" style="height: 292px;">
+    <div class="section buyer active" >
       <div class="section_summary">
-        <p>Contact Information</p>
+        <h2>Contact Information</h2>
       </div>
       
     </div>
+    <div class="section_summary">
+      <h2>Shipping</h2>
+      
+    </div>
+    <div class="section_summary">
+      <h2>Payment</h2>
+    </div>
+    
+    
+    <div class="section summary">
+      <div class="cart">
+        <h2 class="section_header">Summary</h2>
+        <table class="items">
+          <tbody>
+            <tr *ngFor="let product of cartContent">
+              <td class="product">
+                <p>{{product.name}}</p>
+                <div class="product-size">
+                  <i>{{product.size}}</i>
+                  <p *ngIf="product.quantity > 1" class="size-price"><img class="cross" src="../../assets/misc/cross.svg" alt="LWA">{{product.quantity}} @ {{product.price | currency:"EUR":"symbol"}}</p>
+                </div>
+                
+              </td>
+              <td class="price">
+                <p>{{product.price * product.quantity | currency:"EUR":"symbol"}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <ul class="receipt">
+      <li class="subtotal">
+        <p>Subtotal</p>
+        <p>{{totalCost | currency:"EUR":"symbol"}}</p>
+      </li>
+      <li class="shipping_total">
+        <p>Shipping</p>
+        <p>{{0 | currency:"EUR":"symbol"}}</p>
+      </li>
+      <li class="tax_total">
+        <p>Tax</p>
+        <p>{{0 | currency:"EUR":"symbol"}}</p>
+      </li>
+      <li class="total">
+        <p>Total</p>
+        <p style="font-weight: bold;">{{totalCost | currency:"EUR":"symbol"}}</p>
+      </li>
+    </ul>
+    
 </div>  
 
 

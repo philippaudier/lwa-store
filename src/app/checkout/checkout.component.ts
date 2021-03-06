@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartUpdateService } from '../services/cart-update.service';
+import { CheckoutManagerService } from '../services/checkout-manager.service';
+import { NewCartManagerService } from '../services/new-cart-manager.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 interface Country {
@@ -23,7 +25,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     {value: 'JAPAN', viewValue: 'JAPAN'}
   ];
 
-  cartContent: any;
+  cartContent: any[] = [];
   totalCost: number;
 
   isLinear = false;
@@ -34,16 +36,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   errorMessage: string;
 
   constructor(
+    private checkoutManagerService: CheckoutManagerService,
+    private newCartManagerService: NewCartManagerService,
     private cartUpdate: CartUpdateService,
     private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
+    this.initCheckoutCart();
+    setTimeout(() => {
+      this.calculTotal();
+    });
+    console.log('cartContent = ' + this.cartContent);
     // Update onCheckout boolean
     setTimeout(() => {
       this.cartUpdate.setCheckoutState(true);
     });
-    this.cartContent = this.cartUpdate.getCheckoutData();
+    /* this.cartContent = this.cartUpdate.getCheckoutData(); */
     console.log('CHECKOUT DATA === ' + this.cartContent);
     this.totalCost = this.cartUpdate.getTotalCost();
 
@@ -56,6 +65,34 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.paymentFormGroup = this.formBuilder.group({
       payment: ['', Validators.required]
     });
+  }
+
+  initCheckoutCart(): void {
+    // CLEAN LOCAL STORAGE
+    
+    Object.keys(localStorage).forEach(key => {
+      const product = this.newCartManagerService.getProductByKey(key);
+      this.cartContent.push(product);
+    });
+    // SORT CART BY ID_PRODUCT
+    this.cartContent.sort((a, b) => {
+      if (a.idProduct > b.idProduct) {
+        return 1;
+      } else if (a.idProduct < b.idProduct) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(this.cartContent.length);
+  }
+
+  calculTotal(): void {
+    let total = 0;
+    this.cartContent.forEach(product => {
+      total += product.price * product.quantity;
+    });
+    this.totalCost = total;
   }
 
   ngOnDestroy(): void {

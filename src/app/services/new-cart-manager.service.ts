@@ -143,9 +143,13 @@ export class NewCartManagerService {
   }
 
   // CLEAR CART LOCALSTORAGE
-  clearCart(): void {
-    window.localStorage.clear();
-    this.router.navigate(['/home']);
+  cleanLocalStorage(): void {
+    Object.keys(localStorage).forEach(item => {
+      const product = this.getProductByKey(item);
+      if (!product.idProduct) {
+        this.remove(item);
+      }
+    });
   }
 
 
@@ -190,6 +194,6 @@ export class NewCartManagerService {
     return numeric;
   }
 
-  
+
 
 }

@@ -170,10 +170,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     }
   }
 
-  clearCart(): void {
+/*   clearCart(): void {
     this.newCartManagerService.clearCart();
-    /* this.ngOnInit(); */
-  }
+  } */
 
 // TO OBSERVE CART PRODUCT QUANTITY AND SET THE TOTAL
   setProductQuantity(): void {

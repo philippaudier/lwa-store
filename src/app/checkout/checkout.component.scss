@@ -171,6 +171,21 @@ h1 {
     font-weight: bold;
 }
 
+h2.section_header {
+    font-size: 18px;
+    margin: 0 0 40px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+.section_summary h2 {
+    margin: 0;
+    flex: 0 1 auto;
+    font-size: 18px;
+}
+
 .edit {
     display: flex;
     justify-content: center;
@@ -195,12 +210,86 @@ header {
 }
 
 .section_summary {
-    height: 100px;
+    
     display: flex;
-    align-items: center;
+    
     justify-content: center;
+    padding: 39px 20px;
 }
 
 .section_summary p {
     margin: 0;
 }
+
+.summary {
+    /* border: 1px dotted black; */
+}
+
+.items {
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 auto;
+}
+
+.product-size {
+    display: flex;
+
+}
+
+td.product {
+    flex: 1 1 auto;
+}
+
+.product p {
+ margin: 0;
+ text-align: left;
+}
+
+td.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    
+    margin: 0;
+}
+
+tbody
+
+tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+td {
+    padding: 24px 0;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.cart {
+    padding: 38px 20px 24px;
+}
+
+.size-price {
+    display: flex;
+
+}
+
+.cross {
+    width: 6px;
+    padding: 0 4px;
+}
+
+ul.receipt {
+    padding: 0 20px 40px;
+    margin: 0;
+}
+
