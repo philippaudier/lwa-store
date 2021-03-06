@@ -123,21 +123,21 @@
           </mat-expansion-panel-header>
             
           <form [formGroup]="contactInformationFormGroup">
-            <div class="first-last-name-form">
-              <mat-form-field appearance="outline">
+            <div class="input_group">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="First name" formControlName="firstName" required>
               </mat-form-field>
               <div class="separator"></div>
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="Last name" formControlName="lastName" required>
               </mat-form-field>
             </div>
-            <div>
-              <mat-form-field appearance="outline">
+            <div class="input_group">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="Email adress" formControlName="email" required>
               </mat-form-field>
               <div class="separator"></div>
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="Phone (optional)" formControlName="phone">
               </mat-form-field>
             </div>
@@ -154,29 +154,29 @@
 
           <form [formGroup]="shippingFormGroup" class="shipping-form">
             <div class="adress-apt-form">
-              <mat-form-field appearance="outline" >
-                <input matInput placeholder="Adress" formControlName="adress" required>
+              <mat-form-field appearance="outline" class="input_single">
+                <input matInput id="shipping_adress" placeholder="Adress" formControlName="adress" required>
               </mat-form-field>
-              <mat-form-field appearance="outline" >
+              <mat-form-field appearance="outline" class="input_single">
                 <input matInput placeholder="Apt num, Suite (optional)" formControlName="aptNum" required>
               </mat-form-field>
             </div>
             
-            <div class="city-state-form">
-              <mat-form-field appearance="outline">
+            <div class="input_group">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="City" formControlName="city" required>
               </mat-form-field>
               <div class="separator"></div>
-              <mat-form-field appearance="outline">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="State / Province" formControlName="state">
               </mat-form-field>
             </div>
-            <div class="zip-country-form">
-              <mat-form-field appearance="outline">
+            <div class="input_group">
+              <mat-form-field appearance="outline" class="span_half">
                 <input matInput placeholder="Zip / Postal Code" formControlName="zip" required>
               </mat-form-field>
               <div class="separator"></div>
-              <mat-select value="UNITED STATES" type="text" id="type" placeholder="Country" formControlName="country" required>
+              <mat-select class="span_half" value="UNITED STATES" type="text" id="type" placeholder="Country" formControlName="country" required>
                 <mat-option *ngFor="let country of countries" [value]="country.value" >
                   {{country.viewValue}}
                 </mat-option>

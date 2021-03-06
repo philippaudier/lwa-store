@@ -387,3 +387,16 @@ mat-expansion-panel {
 .zip-country-form {
     display: flex;
 }
+
+.input_group {
+    display: flex;
+    margin: 0 0 18px;
+}
+
+.input_single {
+    margin: 0 0 18px;
+}
+
+.span_half, .label.span_half, .textarea.span_half {
+    width: 48%;
+}
