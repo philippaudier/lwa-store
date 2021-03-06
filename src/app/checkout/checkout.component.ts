@@ -17,6 +17,11 @@ interface Country {
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
 
+  panelOpenState = false;
+  step = 0;
+
+  
+
   countries: Country[] = [
     {value: 'FRANCE', viewValue: 'FRANCE'},
     {value: 'UNITED STATE', viewValue: 'UNITED STATE'},
@@ -65,6 +70,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.paymentFormGroup = this.formBuilder.group({
       payment: ['', Validators.required]
     });
+  }
+
+  setStep(index: number): void {
+    this.step = index;
+  }
+
+  nextStep(): void {
+    this.step++;
+  }
+
+  prevStep(): void {
+    this.step--;
   }
 
   initCheckoutCart(): void {

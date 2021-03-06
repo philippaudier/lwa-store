@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './header/menu/menu.component';
@@ -102,7 +103,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     ClickOutsideModule,
     MatProgressBarModule,
     MatCheckboxModule,
-    LoadingBarRouterModule
+    LoadingBarRouterModule,
+    MatExpansionModule
   ],
   providers: [
     {

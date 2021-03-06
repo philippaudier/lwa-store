@@ -1,4 +1,22 @@
 <div class="mobile-header">
+
+    <!-- <mat-accordion MatAccordionDisplayMode="flat" >
+        <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+          <mat-expansion-panel-header class="section_summary">
+            <mat-panel-title >
+                <div class="mobile-header-logo" *ngIf="checkRoute()">
+                    <a routerLink="/home" routerLinkActive="active">
+                    <button mat-icon-button 
+                        aria-label="logo">
+                        <img class="logo-lwa" src="assets/logo/logo-r.png" alt="LWA">
+                    </button>
+                    </a>
+                </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>CONTACT INFORMATION FORM</p>
+        </mat-expansion-panel>
+      </mat-accordion> -->
     
     <div class="block-separator"></div>
 
@@ -26,5 +44,7 @@
     <h1 class="mobile-header-brandname" *ngIf="!onHomePage && !onCheckout && isShopping" >{{pageTitle}}</h1>
     
     <app-mobile-menu class="mobile-menu"></app-mobile-menu>
+    
+
     
 </div>

@@ -113,7 +113,35 @@
     </header>
   
     <div class="section buyer active" >
-      <div class="section_summary">
+
+      <mat-accordion MatAccordionDisplayMode="flat" >
+        <mat-expansion-panel hideToggle class="mat-elevation-z0" [expanded]="true">
+          <mat-expansion-panel-header class="section_summary">
+            <mat-panel-title >
+              <h2>Contact Information</h2>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>CONTACT INFORMATION FORM</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle class="mat-elevation-z0">
+          <mat-expansion-panel-header class="section_summary">
+            <mat-panel-title>
+              <h2>Shipping</h2>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>SHIPPING INFORMATION FORM</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle class="mat-elevation-z0">
+          <mat-expansion-panel-header class="section_summary">
+            <mat-panel-title>
+              <h2>Payement</h2>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>PAYMENT FORM</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+      
+      <!-- <div class="section_summary">
         <h2>Contact Information</h2>
       </div>
       
@@ -124,7 +152,7 @@
     </div>
     <div class="section_summary">
       <h2>Payment</h2>
-    </div>
+    </div> -->
     
     
     <div class="section summary">
