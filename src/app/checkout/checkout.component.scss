@@ -309,12 +309,10 @@ mat-panel-title {
 
 input {
     
-    flex: 0 0 0;
-    background-color: yellowgreen;
+    padding: 0 20px;
 }
 
 mat-input {
-    background-color: yellowgreen;
 }
 
 form {
@@ -346,6 +344,10 @@ form > * {
     justify-content: space-between;
 }
 
+.separator {
+    flex: 1;
+}
+
 mat-expansion-panel {
     background-color:#E9D8B7;
     border-radius: 0;
@@ -359,4 +361,29 @@ mat-expansion-panel {
 .mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true])
 .mat-expansion-panel-header:hover {
   background: #E9D8B7;
+}
+
+.shipping-form {
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+}
+
+.full-width {
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+.adress-apt {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.city-state-form {
+    display: flex;
+}
+
+.zip-country-form {
+    display: flex;
 }

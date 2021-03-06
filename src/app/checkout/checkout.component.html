@@ -121,15 +121,69 @@
               <h2>Contact Information</h2>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>CONTACT INFORMATION FORM</p>
+            
+          <form [formGroup]="contactInformationFormGroup">
+            <div class="first-last-name-form">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="First name" formControlName="firstName" required>
+              </mat-form-field>
+              <div class="separator"></div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Last name" formControlName="lastName" required>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Email adress" formControlName="email" required>
+              </mat-form-field>
+              <div class="separator"></div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Phone (optional)" formControlName="phone">
+              </mat-form-field>
+            </div>
+            
+          </form>
+
         </mat-expansion-panel>
-        <mat-expansion-panel hideToggle class="mat-elevation-z0">
+        <mat-expansion-panel hideToggle class="mat-elevation-z0" [expanded]="false">
           <mat-expansion-panel-header class="section_summary">
             <mat-panel-title>
               <h2>Shipping</h2>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>SHIPPING INFORMATION FORM</p>
+
+          <form [formGroup]="shippingFormGroup" class="shipping-form">
+            <div class="adress-apt-form">
+              <mat-form-field appearance="outline" >
+                <input matInput placeholder="Adress" formControlName="adress" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline" >
+                <input matInput placeholder="Apt num, Suite (optional)" formControlName="aptNum" required>
+              </mat-form-field>
+            </div>
+            
+            <div class="city-state-form">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="City" formControlName="city" required>
+              </mat-form-field>
+              <div class="separator"></div>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="State / Province" formControlName="state">
+              </mat-form-field>
+            </div>
+            <div class="zip-country-form">
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Zip / Postal Code" formControlName="zip" required>
+              </mat-form-field>
+              <div class="separator"></div>
+              <mat-select value="UNITED STATES" type="text" id="type" placeholder="Country" formControlName="country" required>
+                <mat-option *ngFor="let country of countries" [value]="country.value" >
+                  {{country.viewValue}}
+                </mat-option>
+              </mat-select>
+            </div>
+            
+          </form>
         </mat-expansion-panel>
         <mat-expansion-panel hideToggle class="mat-elevation-z0">
           <mat-expansion-panel-header class="section_summary">

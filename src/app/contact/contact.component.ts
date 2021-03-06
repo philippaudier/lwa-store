@@ -12,7 +12,7 @@ import { UpdateTitleService } from '../services/update-title.service';
 })
 export class ContactComponent implements OnInit, OnDestroy {
 
-  FormData: FormGroup;
+  contactForm: FormGroup;
   nameFormGroup: FormGroup;
   emailFormGroup: FormGroup;
   subjectFormGroup: FormGroup;
@@ -28,11 +28,11 @@ export class ContactComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.FormData = this.formBuilder.group({
-      Name: new FormControl('', [Validators.required]),
-      Email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-      Subject: new FormControl('', [Validators.required]),
-      Message: new FormControl('', [Validators.required])
+    this.contactForm = this.formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      subject: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required])
       });
     this.updateTitle.setTitle('CONTACT');
     setTimeout(() => {

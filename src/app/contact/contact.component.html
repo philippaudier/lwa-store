@@ -1,36 +1,36 @@
 <div class="container" (swipeLeft)="onSwipeLeft()">
   <h1>CONTACT</h1>
   <section class="content">
-    <form [formGroup]='FormData' (ngSubmit)="onSubmit(FormData.value)" class="form">
+    <form [formGroup]='contactForm' (ngSubmit)="onSubmit(contactForm.value)" class="form">
       <div class="contact-form-block">
         <label for="message">NAME</label>
         <mat-form-field appearance="outline" class="contact-name">
           <!-- <mat-label for="name">NAME</mat-label> -->
-          <input matInput type="text" id="name" formControlName="Name" required>
+          <input matInput type="text" id="name" formControlName="name" required>
         </mat-form-field>
       </div>
       <div class="contact-form-block">
         <label for="message">EMAIL</label>
         <mat-form-field appearance="outline" class="contact-email">
           <!-- <mat-label for="email">EMAIL</mat-label> -->
-          <input matInput type="email" id="email" formControlName="Email" required>
+          <input matInput type="email" id="email" formControlName="email" required>
         </mat-form-field>
       </div>
       <div class="contact-form-block">
         <label for="message">SUBJECT</label>
         <mat-form-field appearance="outline" class="contact-subject">
           <!-- <mat-label for="subject">SUBJECT</mat-label> -->
-          <input matInput type="text" id="subject" formControlName="Subject" required>
+          <input matInput type="text" id="subject" formControlName="subject" required>
         </mat-form-field>
       </div>
       <div class="contact-form-block message">
         <label for="message">MESSAGE</label>
         <mat-form-field appearance="outline" class="contact-message">
           <!-- <mat-label for="message">MESSAGE</mat-label> -->
-          <textarea matInput matTextareaAutosize type="text" id="message" formControlName="Message" required></textarea>
+          <textarea matInput matTextareaAutosize type="text" id="message" formControlName="message" required></textarea>
         </mat-form-field>
       </div>
     </form>
   </section>
-  <button class="send-button" mat-flat-button type="submit" [disabled]="FormData.invalid">SEND MESSAGE</button>
+  <button class="send-button" mat-flat-button type="submit" [disabled]="contactForm.invalid">SEND MESSAGE</button>
 </div>

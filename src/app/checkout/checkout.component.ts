@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartUpdateService } from '../services/cart-update.service';
 import { CheckoutManagerService } from '../services/checkout-manager.service';
 import { NewCartManagerService } from '../services/new-cart-manager.service';
@@ -18,9 +18,6 @@ interface Country {
 export class CheckoutComponent implements OnInit, OnDestroy {
 
   panelOpenState = false;
-  step = 0;
-
-  
 
   countries: Country[] = [
     {value: 'FRANCE', viewValue: 'FRANCE'},
@@ -35,8 +32,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   isLinear = false;
 
+  // contact information
   contactInformationFormGroup: FormGroup;
+  firstNameFormGroup: FormGroup;
+  lastNameFormGroup: FormGroup;
+  emailFormGroup: FormGroup;
+  phoneFormGroup: FormGroup;
+  // shipping information
   shippingFormGroup: FormGroup;
+  adressFormGroup: FormGroup;
+  aptNumFormGroup: FormGroup;
+  cityFormGroup: FormGroup;
+  stateFormGroup: FormGroup;
+  zipFormGroup: FormGroup;
+  countryFormGroup: FormGroup;
+  // payment
   paymentFormGroup: FormGroup;
   errorMessage: string;
 
@@ -48,6 +58,24 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.contactInformationFormGroup = this.formBuilder.group({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      phone: new FormControl('', [Validators.required])
+    });
+    this.shippingFormGroup = this.formBuilder.group({
+      adress: new FormControl('', [Validators.required]),
+      aptNum: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      zip: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required])
+    });
+
+    this.paymentFormGroup = this.formBuilder.group({
+      payment: ['', Validators.required]
+    });
     this.initCheckoutCart();
     setTimeout(() => {
       this.calculTotal();
@@ -61,32 +89,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     console.log('CHECKOUT DATA === ' + this.cartContent);
     this.totalCost = this.cartUpdate.getTotalCost();
 
-    this.contactInformationFormGroup = this.formBuilder.group({
-      firstName: ['', Validators.required]
-    });
-    this.shippingFormGroup = this.formBuilder.group({
-      adress: ['', Validators.required]
-    });
-    this.paymentFormGroup = this.formBuilder.group({
-      payment: ['', Validators.required]
-    });
-  }
-
-  setStep(index: number): void {
-    this.step = index;
-  }
-
-  nextStep(): void {
-    this.step++;
-  }
-
-  prevStep(): void {
-    this.step--;
+    
   }
 
   initCheckoutCart(): void {
     // CLEAN LOCAL STORAGE
-    
     Object.keys(localStorage).forEach(key => {
       const product = this.newCartManagerService.getProductByKey(key);
       this.cartContent.push(product);
