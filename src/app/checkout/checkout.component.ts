@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartUpdateService } from '../services/cart-update.service';
 import { CheckoutManagerService } from '../services/checkout-manager.service';
@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ];
 
   cartContent: any[] = [];
-  totalCost: number;
+  subTotalCost: number;
 
   isLinear = false;
 
@@ -40,12 +40,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   phoneFormGroup: FormGroup;
   // shipping information
   shippingFormGroup: FormGroup;
-  adressFormGroup: FormGroup;
+  addressFormGroup: FormGroup;
   aptNumFormGroup: FormGroup;
   cityFormGroup: FormGroup;
   stateFormGroup: FormGroup;
   zipFormGroup: FormGroup;
   countryFormGroup: FormGroup;
+
+  country: Country;
   // payment
   paymentFormGroup: FormGroup;
   errorMessage: string;
@@ -58,6 +60,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.cartUpdate.getTotalCost().subscribe((value) => {
+      this.subTotalCost = value;
+    });
+
+    console.log(this.subTotalCost);
+
+
     this.contactInformationFormGroup = this.formBuilder.group({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -65,7 +74,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       phone: new FormControl('', [Validators.required])
     });
     this.shippingFormGroup = this.formBuilder.group({
-      adress: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       aptNum: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
@@ -73,27 +82,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       country: new FormControl('', [Validators.required])
     });
 
+    
     this.paymentFormGroup = this.formBuilder.group({
       payment: ['', Validators.required]
     });
     this.initCheckoutCart();
-    setTimeout(() => {
-      this.calculTotal();
-    });
-    console.log('cartContent = ' + this.cartContent);
+/*     setTimeout(() => {
+      this.subTotalCost = this.cartUpdate.getTotalCost();
+    }); */
+    /* this.calculSubTotal(); */
     // Update onCheckout boolean
     setTimeout(() => {
       this.cartUpdate.setCheckoutState(true);
     });
     /* this.cartContent = this.cartUpdate.getCheckoutData(); */
     console.log('CHECKOUT DATA === ' + this.cartContent);
-    this.totalCost = this.cartUpdate.getTotalCost();
-
-    
+    this.calculSubTotal();
+    this.cartUpdate.setTotalCost(this.subTotalCost);
+    console.log(this.subTotalCost);
   }
 
   initCheckoutCart(): void {
     // CLEAN LOCAL STORAGE
+    this.cleanLocalStorage();
     Object.keys(localStorage).forEach(key => {
       const product = this.newCartManagerService.getProductByKey(key);
       this.cartContent.push(product);
@@ -111,12 +122,32 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     console.log(this.cartContent.length);
   }
 
-  calculTotal(): void {
-    let total = 0;
+  calculSubTotal(): void {
+    let subTotal = 0;
     this.cartContent.forEach(product => {
-      total += product.price * product.quantity;
+      subTotal += product.price * product.quantity;
+      console.log('subtotal' + subTotal);
     });
-    this.totalCost = total;
+    this.subTotalCost = Math.round(subTotal * 100) / 100;
+  }
+
+  onCountrySelected($event: Country): void {
+    console.log($event);
+    this.country = $event;
+  }
+
+  convertToNumber(value: string): number {
+    const numeric = Math.round(Number(value) * 100) / 100;
+    return numeric;
+  }
+
+  cleanLocalStorage(): void {
+    Object.keys(localStorage).forEach(item => {
+      const product = this.newCartManagerService.getProductByKey(item);
+      if (!product.idProduct) {
+        this.newCartManagerService.remove(item);
+      }
+    });
   }
 
   ngOnDestroy(): void {

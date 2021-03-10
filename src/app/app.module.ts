@@ -12,6 +12,8 @@ import * as Hammer from 'hammerjs';
 import 'hammer-timejs';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { NgxStripeModule } from 'ngx-stripe';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 // Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -43,6 +45,13 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
 import { DesktopMenuComponent } from './header/desktop-menu/desktop-menu.component';
+import { StripePaymentComponent } from './checkout/stripe-payment/stripe-payment.component';
+import { StripeContactComponent } from './checkout/stripe-contact/stripe-contact.component';
+import { StripeShippingComponent } from './checkout/stripe-shipping/stripe-shipping.component';
+import { StripePaymentButtonComponent } from './checkout/stripe-payment-button/stripe-payment-button.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { PaypalPaymentComponent } from './checkout/paypal-payment/paypal-payment.component';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -76,7 +85,12 @@ export class MyHammerConfig extends HammerGestureConfig {
     CheckoutComponent,
     FooterComponent,
     MobileMenuComponent,
-    DesktopMenuComponent
+    DesktopMenuComponent,
+    StripePaymentComponent,
+    StripeContactComponent,
+    StripeShippingComponent,
+    StripePaymentButtonComponent,
+    PaypalPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +118,10 @@ export class MyHammerConfig extends HammerGestureConfig {
     MatProgressBarModule,
     MatCheckboxModule,
     LoadingBarRouterModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxStripeModule.forRoot('pk_test_51IS4wfE8pJVXH6kh5cbqbSztOH0YI1p7Lm9OjHfxhqDYVamDfmkJtAJBVsF2pLOJng86XncfbUqXmLP11NT1mRbQ005osdJyA6'),
+    MatSelectCountryModule.forRoot('en'),
+    NgxPayPalModule
   ],
   providers: [
     {

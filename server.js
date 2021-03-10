@@ -5,13 +5,11 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/dist/lwa-store'));
 
-app.listen(PORT);
-
 // PathLocationStrategy
 app.get('/*', function(req, res) {
 
     res.sendFile(path.join(__dirname + '/dist/lwa-store/index.html'));
 
 })
-
-console.log('Console listening!');
+app.listen(PORT);
+console.log('Console listening!' + PORT);

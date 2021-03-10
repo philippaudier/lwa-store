@@ -46,6 +46,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.totalProductQuantity = value;
     });
     this.calculTotal();
+    this.cartUpdate.getTotalCost().subscribe((value) => {
+      this.totalCost = value;
+    });
+    console.log(this.totalCost);
     /* this.newCartManagerService.getTotalCost().subscribe((value) => {
       this.totalCost = value;
     }); */
@@ -104,7 +108,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.cart.forEach(product => {
       total += product.price * product.quantity;
     });
-    this.totalCost = total;
+    /* this.totalCost = total; */
+    this.cartUpdate.setTotalCost(total);
   }
 
   updateQuantity(key: string, value): void {

@@ -112,7 +112,7 @@
       <a routerLink="/shopping-cart" class="edit">back to cart</a>
     </header>
   
-    <div class="section buyer active" >
+    <!-- <div class="section buyer active" >
 
       <mat-accordion MatAccordionDisplayMode="flat" >
         <mat-expansion-panel hideToggle class="mat-elevation-z0" [expanded]="true">
@@ -125,16 +125,16 @@
           <form [formGroup]="contactInformationFormGroup">
             <div class="input_group">
               <mat-form-field appearance="outline" class="span_half">
-                <input matInput placeholder="First name" formControlName="firstName" required>
+                <input matInput oninput="this.value = this.value.toUpperCase()" placeholder="First name" formControlName="firstName" required>
               </mat-form-field>
               <div class="separator"></div>
               <mat-form-field appearance="outline" class="span_half">
-                <input matInput placeholder="Last name" formControlName="lastName" required>
+                <input matInput oninput="this.value = this.value.toUpperCase()" placeholder="Last name" formControlName="lastName" required>
               </mat-form-field>
             </div>
             <div class="input_group">
               <mat-form-field appearance="outline" class="span_half">
-                <input matInput placeholder="Email adress" formControlName="email" required>
+                <input matInput placeholder="Email address" formControlName="email" required>
               </mat-form-field>
               <div class="separator"></div>
               <mat-form-field appearance="outline" class="span_half">
@@ -153,9 +153,9 @@
           </mat-expansion-panel-header>
 
           <form [formGroup]="shippingFormGroup" class="shipping-form">
-            <div class="adress-apt-form">
+            <div class="address-apt-form">
               <mat-form-field appearance="outline" class="input_single">
-                <input matInput id="shipping_adress" placeholder="Adress" formControlName="adress" required>
+                <input matInput id="shipping_address" placeholder="Address" formControlName="address" required>
               </mat-form-field>
               <mat-form-field appearance="outline" class="input_single">
                 <input matInput placeholder="Apt num, Suite (optional)" formControlName="aptNum" required>
@@ -176,24 +176,38 @@
                 <input matInput placeholder="Zip / Postal Code" formControlName="zip" required>
               </mat-form-field>
               <div class="separator"></div>
-              <mat-select class="span_half" value="UNITED STATES" type="text" id="type" placeholder="Country" formControlName="country" required>
-                <mat-option *ngFor="let country of countries" [value]="country.value" >
+              <mat-select-country 
+                id="select-country" 
+                class="span_half select-country" 
+                autocomplete="new-country" 
+                appearance="outline" 
+                (onCountrySelected)="onCountrySelected($event)"
+                formControlName="country" required >
+              </mat-select-country> -->
+              <!-- <mat-select class="span_half" value="UNITED STATES" type="text" id="type" placeholder="Country" formControlName="country" required>
+                <mat-option *ngFor="let country of countries" >
                   {{country.viewValue}}
                 </mat-option>
-              </mat-select>
-            </div>
+              </mat-select> -->
+            <!-- </div>
             
           </form>
         </mat-expansion-panel>
         <mat-expansion-panel hideToggle class="mat-elevation-z0">
           <mat-expansion-panel-header class="section_summary">
             <mat-panel-title>
-              <h2>Payement</h2>
+              <h2>Payment</h2>
             </mat-panel-title>
-          </mat-expansion-panel-header>
-          <p>PAYMENT FORM</p>
-        </mat-expansion-panel>
-      </mat-accordion>
+          </mat-expansion-panel-header> -->
+          
+          <!-- <app-stripe-payment 
+            [shippingFormGroup]="shippingFormGroup" 
+            [contactInformationFormGroup]="contactInformationFormGroup" 
+            [selectedCountry]="country"
+            [amount]="totalCost">
+          </app-stripe-payment> -->
+   <!--      </mat-expansion-panel>
+      </mat-accordion> -->
       
       <!-- <div class="section_summary">
         <h2>Contact Information</h2>
@@ -235,7 +249,7 @@
     <ul class="receipt">
       <li class="subtotal">
         <p>Subtotal</p>
-        <p>{{totalCost | currency:"EUR":"symbol"}}</p>
+        <p>{{subTotalCost | currency:"EUR":"symbol"}}</p>
       </li>
       <li class="shipping_total">
         <p>Shipping</p>
@@ -247,10 +261,10 @@
       </li>
       <li class="total">
         <p>Total</p>
-        <p style="font-weight: bold;">{{totalCost | currency:"EUR":"symbol"}}</p>
+        <p style="font-weight: bold;">{{subTotalCost | currency:"EUR":"symbol"}}</p>
       </li>
     </ul>
-    
+    <app-paypal-payment [total]="subTotalCost"></app-paypal-payment>
 </div>  
 
 
