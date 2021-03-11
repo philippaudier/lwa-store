@@ -18,18 +18,8 @@ interface Country {
 export class CheckoutComponent implements OnInit, OnDestroy {
 
   panelOpenState = false;
-
-  countries: Country[] = [
-    {value: 'FRANCE', viewValue: 'FRANCE'},
-    {value: 'UNITED STATE', viewValue: 'UNITED STATE'},
-    {value: 'RUSSIA', viewValue: 'RUSSIA'},
-    {value: 'BRAZIL', viewValue: 'BRAZIL'},
-    {value: 'JAPAN', viewValue: 'JAPAN'}
-  ];
-
   cartContent: any[] = [];
   subTotalCost: number;
-
   isLinear = false;
 
   // contact information
@@ -63,10 +53,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartUpdate.getTotalCost().subscribe((value) => {
       this.subTotalCost = value;
     });
-
-    console.log(this.subTotalCost);
-
-
     this.contactInformationFormGroup = this.formBuilder.group({
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
@@ -81,8 +67,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       zip: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required])
     });
-
-    
     this.paymentFormGroup = this.formBuilder.group({
       payment: ['', Validators.required]
     });

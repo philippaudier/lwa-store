@@ -11,5 +11,16 @@ app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/lwa-store/index.html'));
 
 })
+
+app.post('home/checkout-success', (req, res) => {
+    paypalRequestHandler.handleRequest(req, res)
+        .then(() => {
+            res.sendStatus(200);
+        }).catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+    });
+});
+
 app.listen(PORT);
 console.log('Console listening!' + PORT);

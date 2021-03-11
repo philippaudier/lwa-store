@@ -45,16 +45,14 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import { MobileMenuComponent } from './header/mobile-menu/mobile-menu.component';
 import { DesktopMenuComponent } from './header/desktop-menu/desktop-menu.component';
-import { StripePaymentComponent } from './checkout/stripe-payment/stripe-payment.component';
-import { StripeContactComponent } from './checkout/stripe-contact/stripe-contact.component';
-import { StripeShippingComponent } from './checkout/stripe-shipping/stripe-shipping.component';
-import { StripePaymentButtonComponent } from './checkout/stripe-payment-button/stripe-payment-button.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { PaypalPaymentComponent } from './checkout/paypal-payment/paypal-payment.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'home/checkout-success', component: HomeComponent },
+  { path: 'home/checkout-failed', component: HomeComponent },
   { path: 'products', component: HomeComponent },
   { path: 'products/create-product', component: CreateProductComponent },
   { path: 'products/:idProduct', component: ProductsComponent },
@@ -86,10 +84,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     FooterComponent,
     MobileMenuComponent,
     DesktopMenuComponent,
-    StripePaymentComponent,
-    StripeContactComponent,
-    StripeShippingComponent,
-    StripePaymentButtonComponent,
     PaypalPaymentComponent
   ],
   imports: [
